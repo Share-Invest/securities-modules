@@ -14,6 +14,7 @@
 		<Product>Algorithmic Trading</Product>
 		<Description>examining the common wrapper for Kiwoom OpenAPI</Description>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
+		<Version>1.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
