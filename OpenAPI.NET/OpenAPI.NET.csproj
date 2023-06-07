@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows10.0.20348.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>ShareInvest.OpenAPI</AssemblyName>
+    <RootNamespace>ShareInvest</RootNamespace>
+    <PackageId></PackageId>
+    <Description>Common wrapper for Kiwoom OpenAPI</Description>
+    <Title>OpenAPI.NET</Title>
+    <Authors>cyberprophet</Authors>
+    <Company>ShareInvest Corp.</Company>
+    <Product>ShareInvest Kiwoom OpenAPI Module</Product>
+    <Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
+  </PropertyGroup>
+
+</Project>
