@@ -1,6 +1,7 @@
 ﻿using ShareInvest.Events;
 using ShareInvest.Interface;
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -74,6 +75,9 @@ public class AxKHOpenAPI
                 }
             }
         }
+#if DEBUG
+        Debug.WriteLine(clsid);
+#endif
     }
     public virtual int CommConnect()
     {

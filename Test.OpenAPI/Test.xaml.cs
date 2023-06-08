@@ -15,7 +15,7 @@ public partial class Test : Window
 
         axAPI = new AxKHOpenAPI(Handle);
 
-        axAPI.OnEventConnect += (sender, e) =>
+        axAPI.OnEventConnect += (_, e) =>
         {
             if (e.nErrCode == 0)
             {

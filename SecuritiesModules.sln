@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.NET", "OpenAPI.NET\OpenAPI.NET.csproj", "{1BD5314F-1280-4D0F-8958-155FEA160A1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.OpenAPI", "Test.OpenAPI\Test.OpenAPI.csproj", "{C2C26A28-365E-4B69-A5D6-C6CE9F32F2F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.OpenAPI", "Test.OpenAPI\Test.OpenAPI.csproj", "{C2C26A28-365E-4B69-A5D6-C6CE9F32F2F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
