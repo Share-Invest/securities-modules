@@ -30,55 +30,7 @@ public class AxKHOpenAPI
     public bool Created
     {
         get;
-    }
-    public AxKHOpenAPI(IntPtr hWndParent)
-    {
-        string clsid = Environment.Is64BitProcess ? x64 : x86;
-
-        if (!Created)
-        {
-            if (AtlAxWinInit())
-            {
-                hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, (IntPtr)9001, IntPtr.Zero, IntPtr.Zero);
-
-                if (hWndContainer != IntPtr.Zero)
-                {
-                    try
-                    {
-                        _ = AtlAxGetControl(hWndContainer, out object pUnknown);
-
-                        if (pUnknown != null)
-                        {
-                            ocx = (_DKHOpenAPI)pUnknown;
-
-                            if (ocx != null)
-                            {
-                                Guid guidEvents = typeof(_DKHOpenAPIEvents).GUID;
-
-                                ((IConnectionPointContainer)pUnknown).FindConnectionPoint(ref guidEvents, out _pConnectionPoint);
-
-                                if (_pConnectionPoint != null)
-                                {
-                                    _pConnectionPoint.Advise(new AxKHOpenAPIEventMulticaster(this), out _nCookie);
-
-                                    Created = true;
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        DestroyWindow(hWndContainer);
-
-                        hWndContainer = IntPtr.Zero;
-                    }
-                }
-            }
-        }
-#if DEBUG
-        Debug.WriteLine(clsid);
-#endif
-    }
+    }    
     public virtual int CommConnect()
     {
         if (ocx == null)
@@ -542,6 +494,58 @@ public class AxKHOpenAPI
             throw new InvalidActiveXStateException(nameof(GetMarketType), ActiveXInvokeKind.MethodInvoke);
         }
         return ocx.GetMarketType(sTrCode);
+    }
+    /// <summary>
+    /// call the EnsureHandle method to inject it as a parameter.
+    /// </summary>
+    /// <param name="hWndParent"></param>
+    public AxKHOpenAPI(IntPtr hWndParent)
+    {
+        string clsid = Environment.Is64BitProcess ? x64 : x86;
+
+        if (!Created)
+        {
+            if (AtlAxWinInit())
+            {
+                hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, (IntPtr)9001, IntPtr.Zero, IntPtr.Zero);
+
+                if (hWndContainer != IntPtr.Zero)
+                {
+                    try
+                    {
+                        _ = AtlAxGetControl(hWndContainer, out object pUnknown);
+
+                        if (pUnknown != null)
+                        {
+                            ocx = (_DKHOpenAPI)pUnknown;
+
+                            if (ocx != null)
+                            {
+                                Guid guidEvents = typeof(_DKHOpenAPIEvents).GUID;
+
+                                ((IConnectionPointContainer)pUnknown).FindConnectionPoint(ref guidEvents, out _pConnectionPoint);
+
+                                if (_pConnectionPoint != null)
+                                {
+                                    _pConnectionPoint.Advise(new AxKHOpenAPIEventMulticaster(this), out _nCookie);
+
+                                    Created = true;
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        DestroyWindow(hWndContainer);
+
+                        hWndContainer = IntPtr.Zero;
+                    }
+                }
+            }
+        }
+#if DEBUG
+        Debug.WriteLine(clsid);
+#endif
     }
     internal void RaiseOnOnReceiveTrData(object sender, _DKHOpenAPIEvents_OnReceiveTrDataEvent e)
     {
