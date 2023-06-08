@@ -1,6 +1,6 @@
 ﻿using ShareInvest.Events;
 using ShareInvest.Interface;
-
+using ShareInvest.Properties;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
@@ -30,54 +30,6 @@ public class AxKHOpenAPI
     public bool Created
     {
         get;
-    }
-    public AxKHOpenAPI(IntPtr hWndParent)
-    {
-        string clsid = Environment.Is64BitProcess ? x64 : x86;
-
-        if (!Created)
-        {
-            if (AtlAxWinInit())
-            {
-                hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, (IntPtr)9001, IntPtr.Zero, IntPtr.Zero);
-
-                if (hWndContainer != IntPtr.Zero)
-                {
-                    try
-                    {
-                        _ = AtlAxGetControl(hWndContainer, out object pUnknown);
-
-                        if (pUnknown != null)
-                        {
-                            ocx = (_DKHOpenAPI)pUnknown;
-
-                            if (ocx != null)
-                            {
-                                Guid guidEvents = typeof(_DKHOpenAPIEvents).GUID;
-
-                                ((IConnectionPointContainer)pUnknown).FindConnectionPoint(ref guidEvents, out _pConnectionPoint);
-
-                                if (_pConnectionPoint != null)
-                                {
-                                    _pConnectionPoint.Advise(new AxKHOpenAPIEventMulticaster(this), out _nCookie);
-
-                                    Created = true;
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        DestroyWindow(hWndContainer);
-
-                        hWndContainer = IntPtr.Zero;
-                    }
-                }
-            }
-        }
-#if DEBUG
-        Debug.WriteLine(clsid);
-#endif
     }
     public virtual int CommConnect()
     {
@@ -543,6 +495,57 @@ public class AxKHOpenAPI
         }
         return ocx.GetMarketType(sTrCode);
     }
+    /// <summary>
+    /// call the EnsureHandle method to inject it as a parameter.
+    /// </summary>
+    /// <param name="hWndParent"></param>
+    public AxKHOpenAPI(IntPtr hWndParent)
+    {
+        string clsid = Environment.Is64BitProcess ? Resources.X64 : Resources.X86;
+
+        if (!Created && AtlAxWinInit())
+        {
+            hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, (IntPtr)9001, IntPtr.Zero, IntPtr.Zero);
+
+            if (hWndContainer != IntPtr.Zero)
+            {
+                try
+                {
+                    _ = AtlAxGetControl(hWndContainer, out object pUnknown);
+
+                    if (pUnknown != null)
+                    {
+                        ocx = (_DKHOpenAPI)pUnknown;
+
+                        if (ocx != null)
+                        {
+                            Guid guidEvents = typeof(_DKHOpenAPIEvents).GUID;
+
+                            ((IConnectionPointContainer)pUnknown).FindConnectionPoint(ref guidEvents, out _pConnectionPoint);
+
+                            if (_pConnectionPoint != null)
+                            {
+                                _pConnectionPoint.Advise(new AxKHOpenAPIEventMulticaster(this), out _nCookie);
+
+                                Created = true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    DestroyWindow(hWndContainer);
+
+                    hWndContainer = IntPtr.Zero;
+
+                    _ = Task.Run(async () => await new OpenAPI().InstallAsync());
+                }
+            }
+        }
+#if DEBUG
+        Debug.WriteLine(clsid);
+#endif
+    }
     internal void RaiseOnOnReceiveTrData(object sender, _DKHOpenAPIEvents_OnReceiveTrDataEvent e)
     {
         OnReceiveTrData?.Invoke(sender, e);
@@ -590,9 +593,6 @@ public class AxKHOpenAPI
 
     [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
     static extern bool DestroyWindow(IntPtr hWnd);
-
-    const string x64 = "{0f3a0d96-1432-4d05-a1ac-220e202bb52c}";
-    const string x86 = "{a1574a0d-6bfa-4bd7-9020-ded88711818d}";
 
     const int WS_VISIBLE = 0x10000000;
     const int WS_CHILD = 0x40000000;
