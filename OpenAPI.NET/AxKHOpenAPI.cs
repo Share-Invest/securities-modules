@@ -1,6 +1,6 @@
 ﻿using ShareInvest.Events;
 using ShareInvest.Interface;
-
+using ShareInvest.Properties;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
@@ -30,7 +30,7 @@ public class AxKHOpenAPI
     public bool Created
     {
         get;
-    }    
+    }
     public virtual int CommConnect()
     {
         if (ocx == null)
@@ -501,45 +501,44 @@ public class AxKHOpenAPI
     /// <param name="hWndParent"></param>
     public AxKHOpenAPI(IntPtr hWndParent)
     {
-        string clsid = Environment.Is64BitProcess ? x64 : x86;
+        string clsid = Environment.Is64BitProcess ? Resources.X64 : Resources.X86;
 
-        if (!Created)
+        if (!Created && AtlAxWinInit())
         {
-            if (AtlAxWinInit())
+            hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, (IntPtr)9001, IntPtr.Zero, IntPtr.Zero);
+
+            if (hWndContainer != IntPtr.Zero)
             {
-                hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, (IntPtr)9001, IntPtr.Zero, IntPtr.Zero);
-
-                if (hWndContainer != IntPtr.Zero)
+                try
                 {
-                    try
+                    _ = AtlAxGetControl(hWndContainer, out object pUnknown);
+
+                    if (pUnknown != null)
                     {
-                        _ = AtlAxGetControl(hWndContainer, out object pUnknown);
+                        ocx = (_DKHOpenAPI)pUnknown;
 
-                        if (pUnknown != null)
+                        if (ocx != null)
                         {
-                            ocx = (_DKHOpenAPI)pUnknown;
+                            Guid guidEvents = typeof(_DKHOpenAPIEvents).GUID;
 
-                            if (ocx != null)
+                            ((IConnectionPointContainer)pUnknown).FindConnectionPoint(ref guidEvents, out _pConnectionPoint);
+
+                            if (_pConnectionPoint != null)
                             {
-                                Guid guidEvents = typeof(_DKHOpenAPIEvents).GUID;
+                                _pConnectionPoint.Advise(new AxKHOpenAPIEventMulticaster(this), out _nCookie);
 
-                                ((IConnectionPointContainer)pUnknown).FindConnectionPoint(ref guidEvents, out _pConnectionPoint);
-
-                                if (_pConnectionPoint != null)
-                                {
-                                    _pConnectionPoint.Advise(new AxKHOpenAPIEventMulticaster(this), out _nCookie);
-
-                                    Created = true;
-                                }
+                                Created = true;
                             }
                         }
                     }
-                    catch (Exception)
-                    {
-                        DestroyWindow(hWndContainer);
+                }
+                catch (Exception)
+                {
+                    DestroyWindow(hWndContainer);
 
-                        hWndContainer = IntPtr.Zero;
-                    }
+                    hWndContainer = IntPtr.Zero;
+
+                    _ = Task.Run(async () => await new OpenAPI().InstallAsync());
                 }
             }
         }
@@ -594,9 +593,6 @@ public class AxKHOpenAPI
 
     [DllImport("User32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
     static extern bool DestroyWindow(IntPtr hWnd);
-
-    const string x64 = "{0f3a0d96-1432-4d05-a1ac-220e202bb52c}";
-    const string x86 = "{a1574a0d-6bfa-4bd7-9020-ded88711818d}";
 
     const int WS_VISIBLE = 0x10000000;
     const int WS_CHILD = 0x40000000;
