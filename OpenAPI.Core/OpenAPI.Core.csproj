@@ -1,22 +1,41 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0-windows10.0.20348.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
-    <AssemblyName>ShareInvest.OpenAPI.Core</AssemblyName>
-    <RootNamespace>ShareInvest</RootNamespace>
-    <Version>1.0.0.1</Version>
-    <Authors>cyberprophet</Authors>
-    <Company>ShareInvest Corp.</Company>
-    <Product>Algorithmic-Trading</Product>
-    <Description>library for convenient use of Kiwoom OpenAPI</Description>
-    <Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0-windows10.0.20348.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+		<AssemblyName>ShareInvest.OpenAPI.Core</AssemblyName>
+		<RootNamespace>ShareInvest</RootNamespace>
+		<Version>1.0.0.1</Version>
+		<Authors>cyberprophet</Authors>
+		<Company>ShareInvest Corp.</Company>
+		<Product>Algorithmic-Trading</Product>
+		<Description>library for convenient use of Kiwoom OpenAPI</Description>
+		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\OpenAPI.NET\OpenAPI.NET.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\OpenAPI.NET\OpenAPI.NET.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
 </Project>
