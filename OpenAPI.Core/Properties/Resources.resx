@@ -117,26 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ADMIN" xml:space="preserve">
-    <value>runas</value>
+  <data name="ENC" xml:space="preserve">
+    <value>*.enc</value>
   </data>
-  <data name="INSTALL" xml:space="preserve">
-    <value>install.bat</value>
+  <data name="END" xml:space="preserve">
+    <value>@END_</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="OpenAPIx64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpenAPIx64.zip;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="INPUT" xml:space="preserve">
+    <value>[INPUT]</value>
   </data>
-  <data name="PATH" xml:space="preserve">
-    <value>C:\OpenAPI</value>
+  <data name="MODULE" xml:space="preserve">
+    <value>https://www1.kiwoom.com/h/customer/download/VOpenApiInfoView</value>
   </data>
-  <data name="X64" xml:space="preserve">
-    <value>{0f3a0d96-1432-4d05-a1ac-220e202bb52c}</value>
+  <data name="OUTPUT" xml:space="preserve">
+    <value>[OUTPUT]</value>
   </data>
-  <data name="X86" xml:space="preserve">
-    <value>{a1574a0d-6bfa-4bd7-9020-ded88711818d}</value>
-  </data>
-  <data name="ZIP" xml:space="preserve">
-    <value>x64.zip</value>
+  <data name="START" xml:space="preserve">
+    <value>@START_</value>
   </data>
 </root>

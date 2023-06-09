@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net7.0-windows10.0.20348.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWPF>True</UseWPF>
+		<AssemblyName>ShareInvest.Core.Test</AssemblyName>
+		<RootNamespace>ShareInvest</RootNamespace>
+		<ApplicationIcon>kiwoom_logo.ico</ApplicationIcon>
+		<Authors>cyberprophet</Authors>
+		<Company>ShareInvest Corp.</Company>
+		<Product>Algorithmic-Trading</Product>
+		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
+		<Version>1.0.0.1</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="kiwoom_logo.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\OpenAPI.Core\OpenAPI.Core.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -61,66 +61,56 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
-        ///   runas과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   *.enc과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        internal static string ADMIN {
+        internal static string ENC {
             get {
-                return ResourceManager.GetString("ADMIN", resourceCulture);
+                return ResourceManager.GetString("ENC", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   install.bat과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   @END_과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        internal static string INSTALL {
+        internal static string END {
             get {
-                return ResourceManager.GetString("INSTALL", resourceCulture);
+                return ResourceManager.GetString("END", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        ///   [INPUT]과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        internal static byte[] OpenAPIx64 {
+        internal static string INPUT {
             get {
-                object obj = ResourceManager.GetObject("OpenAPIx64", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("INPUT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   C:\OpenAPI과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   https://www1.kiwoom.com/h/customer/download/VOpenApiInfoView과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        internal static string PATH {
+        internal static string MODULE {
             get {
-                return ResourceManager.GetString("PATH", resourceCulture);
+                return ResourceManager.GetString("MODULE", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   {0f3a0d96-1432-4d05-a1ac-220e202bb52c}과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   [OUTPUT]과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        internal static string X64 {
+        internal static string OUTPUT {
             get {
-                return ResourceManager.GetString("X64", resourceCulture);
+                return ResourceManager.GetString("OUTPUT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   {a1574a0d-6bfa-4bd7-9020-ded88711818d}과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   @START_과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        internal static string X86 {
+        internal static string START {
             get {
-                return ResourceManager.GetString("X86", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   x64.zip과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string ZIP {
-            get {
-                return ResourceManager.GetString("ZIP", resourceCulture);
+                return ResourceManager.GetString("START", resourceCulture);
             }
         }
     }
