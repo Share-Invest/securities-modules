@@ -89,6 +89,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   C:\OpenAPI과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string PATH {
+            get {
+                return ResourceManager.GetString("PATH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   {0f3a0d96-1432-4d05-a1ac-220e202bb52c}과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string X64 {

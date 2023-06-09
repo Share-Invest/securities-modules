@@ -10,7 +10,7 @@ public class TR
     {
         get; internal set;
     }
-    public Dictionary<string, string>? Input
+    public string[]? Input
     {
         get; internal set;
     }

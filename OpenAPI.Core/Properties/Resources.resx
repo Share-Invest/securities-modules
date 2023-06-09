@@ -120,4 +120,19 @@
   <data name="ENC" xml:space="preserve">
     <value>*.enc</value>
   </data>
+  <data name="END" xml:space="preserve">
+    <value>@END_</value>
+  </data>
+  <data name="INPUT" xml:space="preserve">
+    <value>[INPUT]</value>
+  </data>
+  <data name="MODULE" xml:space="preserve">
+    <value>https://www1.kiwoom.com/h/customer/download/VOpenApiInfoView</value>
+  </data>
+  <data name="OUTPUT" xml:space="preserve">
+    <value>[OUTPUT]</value>
+  </data>
+  <data name="START" xml:space="preserve">
+    <value>@START_</value>
+  </data>
 </root>

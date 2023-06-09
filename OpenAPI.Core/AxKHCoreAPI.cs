@@ -5,6 +5,8 @@ using ShareInvest.Kiwoom;
 using ShareInvest.Properties;
 
 using System.Diagnostics;
+using System.IO.Compression;
+using System.Text;
 
 namespace ShareInvest;
 
@@ -14,11 +16,34 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
     {
         get;
     }
-    public override int CommRqData(string sRQName, string sTrCode, int nPrevNext, string sScreenNo)
+    public TR GetTrData(string code)
     {
+        var tr = Array.Find(TrInventory, m => code.Equals(m.Code))
 
+            ?? throw new FileNotFoundException(Resources.MODULE);
 
-        return base.CommRqData(sRQName, sTrCode, nPrevNext, sScreenNo);
+        if (string.IsNullOrEmpty(tr.Name))
+        {
+            if (string.IsNullOrEmpty(tr.Code))
+            {
+                throw new FileNotFoundException(Resources.MODULE);
+            }
+            using (var file = File.OpenRead(Path.Combine(path, string.Concat(tr.Code, Resources.ENC[1..]))))
+            {
+                using (var zip = new ZipArchive(file, ZipArchiveMode.Read))
+                {
+                    foreach (var entry in zip.Entries)
+                    {
+                        if (code.Equals(Path.GetFileNameWithoutExtension(entry.Name), StringComparison.OrdinalIgnoreCase) is false)
+                        {
+                            continue;
+                        }
+                        InitializeTR(tr, entry);
+                    }
+                }
+            }
+        }
+        return tr;
     }
     /// <summary>
     /// call the EnsureHandle method to inject it as a parameter.
@@ -34,8 +59,9 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
         }
         else
         {
-            throw new DirectoryNotFoundException(@"https://www1.kiwoom.com/h/customer/download/VOpenApiInfoView");
+            throw new DirectoryNotFoundException(Resources.MODULE);
         }
+        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
     }
     TR[] InitializeTrInventory()
     {
@@ -56,13 +82,90 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
 #if DEBUG
                 Debug.WriteLine(JsonConvert.SerializeObject(new
                 {
-                    code,
-                    fi.FullName
+                    No = inventory.Count,
+                    Code = code,
+                    Path = fi.FullName
                 }));
 #endif
             }
         }
         return inventory.OrderBy(ks => ks.Code).ToArray();
+    }
+    static string[] GetKeyNames(string str)
+    {
+        var sections = new Queue<string>();
+
+        foreach (var line in str.Split("\r\n", StringSplitOptions.RemoveEmptyEntries))
+        {
+            int pos = line.IndexOf('=');
+
+            if (pos != -1)
+            {
+                sections.Enqueue(line[..pos].Trim());
+            }
+        }
+        return sections.ToArray();
+    }
+    static void InitializeTR(TR tr, ZipArchiveEntry entry)
+    {
+        var buffer = new byte[0x4000];
+
+        using (var stream = entry.Open())
+        {
+            stream.Read(buffer, 0, buffer.Length);
+
+            var text = Encoding.GetEncoding(0x3B5).GetString(buffer);
+
+            int nPos = 0, nPosEnd = 0;
+
+            nPos = text.IndexOf(Resources.INPUT, nPos);
+            nPos = text.IndexOf(Resources.START, nPos);
+            nPos += Resources.START.Length;
+            nPosEnd = text.IndexOf("\r\n", nPos);
+
+            tr.Name = text[nPos..nPosEnd];
+
+            nPos = nPosEnd + "\r\n".Length;
+            nPosEnd = text.IndexOf(Resources.END, nPos);
+
+            tr.Input = GetKeyNames(text[nPos..nPosEnd]);
+
+            nPos = nPosEnd;
+            nPos = text.IndexOf(Resources.OUTPUT, nPos);
+            nPos = text.IndexOf(Resources.START, nPos);
+            nPosEnd = text.IndexOf('=', nPos);
+
+            var name = text.Substring(nPos + 7, nPosEnd - nPos - 7);
+
+            nPos = nPosEnd + 1;
+            nPosEnd = text.IndexOf("\r\n", nPos);
+
+            var classification = text[nPos..nPosEnd];
+
+            nPos = nPosEnd + "\r\n".Length;
+            nPosEnd = text.IndexOf(Resources.END, nPos);
+
+            var contents = text[nPos..nPosEnd];
+
+            if (classification == "*,*,*")
+            {
+                tr.SingleData = GetKeyNames(contents);
+
+                nPos = nPosEnd + "\r\n".Length;
+                nPos = text.IndexOf(Resources.START, nPos);
+
+                if (nPos != -1)
+                {
+                    nPosEnd = text.IndexOf("\r\n", nPos);
+                    nPos = nPosEnd + "\r\n".Length;
+                    nPosEnd = text.IndexOf(Resources.END, nPos);
+
+                    tr.MultiData = GetKeyNames(text[nPos..nPosEnd]);
+                }
+            }
+            else
+                tr.MultiData = GetKeyNames(contents);
+        }
     }
     readonly string path;
 }

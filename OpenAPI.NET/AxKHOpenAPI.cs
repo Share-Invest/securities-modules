@@ -539,7 +539,7 @@ public class AxKHOpenAPI
 
                     hWndContainer = IntPtr.Zero;
 
-                    _ = Task.Run(async () => await new OpenAPI().InstallAsync());
+                    Ax.Install();
                 }
             }
         }

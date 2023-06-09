@@ -68,5 +68,50 @@ namespace ShareInvest.Properties {
                 return ResourceManager.GetString("ENC", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   @END_과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string END {
+            get {
+                return ResourceManager.GetString("END", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   [INPUT]과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string INPUT {
+            get {
+                return ResourceManager.GetString("INPUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   https://www1.kiwoom.com/h/customer/download/VOpenApiInfoView과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string MODULE {
+            get {
+                return ResourceManager.GetString("MODULE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   [OUTPUT]과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string OUTPUT {
+            get {
+                return ResourceManager.GetString("OUTPUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   @START_과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string START {
+            get {
+                return ResourceManager.GetString("START", resourceCulture);
+            }
+        }
     }
 }

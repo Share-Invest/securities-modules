@@ -1,6 +1,5 @@
-﻿using ShareInvest.Kiwoom;
+﻿using Newtonsoft.Json;
 
-using System;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Interop;
@@ -15,18 +14,7 @@ public partial class Test : Window
 
         InitializeComponent();
 
-        try
-        {
-            axAPI = new AxKHCoreAPI(handle);
-        }
-        catch (Exception e)
-        {
-            _ = new AxKHOpenAPI(handle);
-#if DEBUG
-            Debug.WriteLine(e.Message);
-#endif
-            axAPI = new AxKHCoreAPI(handle);
-        }
+        axAPI = new AxKHCoreAPI(handle);
 
         axAPI.OnEventConnect += (_, e) =>
         {
@@ -41,13 +29,23 @@ public partial class Test : Window
                 tb.Text = "failure";
             }
         };
-        tb.IsReadOnly = axAPI.Created;
+        tb.IsReadOnly = false;
 
         login_btn.IsEnabled = axAPI.Created;
     }
     void OnClick(object sender, RoutedEventArgs e)
     {
-        axAPI.CommConnect();
+        if (string.IsNullOrEmpty(tb.Text))
+        {
+            axAPI.CommConnect();
+        }
+        else
+        {
+            var tr = axAPI.GetTrData(tb.Text);
+#if DEBUG
+            Debug.WriteLine(JsonConvert.SerializeObject(tr, Formatting.Indented));
+#endif
+        }
     }
     readonly AxKHCoreAPI axAPI;
 }
