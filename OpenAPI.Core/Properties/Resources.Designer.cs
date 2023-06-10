@@ -106,6 +106,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   *,*,*과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string SINGLE {
+            get {
+                return ResourceManager.GetString("SINGLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   @START_과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string START {

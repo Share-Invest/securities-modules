@@ -132,6 +132,9 @@
   <data name="OUTPUT" xml:space="preserve">
     <value>[OUTPUT]</value>
   </data>
+  <data name="SINGLE" xml:space="preserve">
+    <value>*,*,*</value>
+  </data>
   <data name="START" xml:space="preserve">
     <value>@START_</value>
   </data>

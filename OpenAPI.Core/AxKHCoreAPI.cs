@@ -147,7 +147,7 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
 
             var contents = text[nPos..nPosEnd];
 
-            if (classification == "*,*,*")
+            if (classification == Resources.SINGLE)
             {
                 tr.SingleData = GetKeyNames(contents);
 
