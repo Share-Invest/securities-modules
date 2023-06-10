@@ -7,13 +7,23 @@
 		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
 		<AssemblyName>ShareInvest.OpenAPI.Core</AssemblyName>
 		<RootNamespace>ShareInvest</RootNamespace>
-		<Version>1.0.0.1</Version>
 		<Authors>cyberprophet</Authors>
 		<Company>ShareInvest Corp.</Company>
 		<Product>Algorithmic-Trading</Product>
 		<Description>library for convenient use of Kiwoom OpenAPI</Description>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>OpenAPI-Core</Title>
+		<PackageIcon>grow-up.png</PackageIcon>
+		<Version>1.0.0.0</Version>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="J:\Images\grow-up.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
