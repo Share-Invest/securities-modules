@@ -1,5 +1,5 @@
 # Build using [![Build](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=plastic&logoColor=white&logo=githubactions)](https://docs.github.com)
-### · Desktop package is [![.NET PACKAGE](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml/badge.svg?event=push)](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml).
+### · Desktop package is [![NuGet version](https://img.shields.io/badge/nuget-004880?style=plastic&logoColor=white&logo=nuget)](https://www.nuget.org/packages/ShareInvest.OpenAPI.Core) [![.NET PACKAGE](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml/badge.svg?event=push)](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml).
 ---
 ### How to initailize in WPF
 
