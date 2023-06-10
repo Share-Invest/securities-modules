@@ -1,11 +1,20 @@
 # Build using [![Build](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=plastic&logoColor=white&logo=githubactions)](https://docs.github.com)
-### · Web application server is [![.NET SERVER](https://github.com/Share-Invest/Algorithmic-Trading-Server/actions/workflows/server.yml/badge.svg)](https://github.com/Share-Invest/Algorithmic-Trading-Server/actions/workflows/server.yml).
-### · Mobile application is [![ant](https://github.com/Share-Invest/ant/actions/workflows/ant.yml/badge.svg?event=push)](https://github.com/Share-Invest/ant/actions/workflows/ant.yml).
-### · Desktop application is [![.NET WINDOWS](https://github.com/Share-Invest/Algorithmic-Trading-DeskTop/actions/workflows/windows-desktop.yml/badge.svg)](https://github.com/Share-Invest/Algorithmic-Trading-DeskTop/actions/workflows/windows-desktop.yml).
-### · Desktop launcher is [![.NET LAUNCHER](https://github.com/Share-Invest/Algorithmic-Trading-Launcher/actions/workflows/windows-launcher.yml/badge.svg)](https://github.com/Share-Invest/Algorithmic-Trading-Launcher/actions/workflows/windows-launcher.yml).
 ### · Desktop package is [![.NET PACKAGE](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml/badge.svg?event=push)](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml).
 ---
+### How to initailize in WPF
 
-### ANT SERVER using [![Platform](https://img.shields.io/badge/dotnet-512BD4?style=plastic&logoColor=white&logo=.NET)](https://dotnet.microsoft.com/) [![Language](https://img.shields.io/badge/CSharp-239120?style=plastic&logoColor=white&logo=C%20Sharp)](https://learn.microsoft.com/en-us/dotnet/csharp/) [![DB](https://img.shields.io/badge/SQL-CC2927?style=plastic&logoColor=white&logo=microsoftsqlserver)](https://learn.microsoft.com/en-us/sql) alongside [![Language](https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&logoColor=white&logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+```C#
+public partial class Test : Window
+{
+    public Test()
+    {
+        nint handle = new WindowInteropHelper(Application.Current.MainWindow).EnsureHandle();
 
+        InitializeComponent();
+
+        axAPI = new ShareInvest.AxKHCoreAPI(handle);
+    }
+    readonly ShareInvest.AxKHCoreAPI axAPI;
+}
+```
 ### IDE using [![IDE](https://img.shields.io/badge/Visual%20Studio-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://visualstudio.microsoft.com) and [![IDE](https://img.shields.io/badge/VS%20Code-007ACC?style=plastic&logoColor=white&logo=visualstudiocode)](https://code.visualstudio.com)
