@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json;
-
-using ShareInvest.Data;
+﻿using ShareInvest.Data;
 using ShareInvest.Kiwoom;
 using ShareInvest.Properties;
 
-using System.Diagnostics;
 using System.IO.Compression;
 using System.Text;
 
@@ -79,14 +76,6 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
                 {
                     Code = code
                 });
-#if DEBUG
-                Debug.WriteLine(JsonConvert.SerializeObject(new
-                {
-                    No = inventory.Count,
-                    Code = code,
-                    Path = fi.FullName
-                }));
-#endif
             }
         }
         return inventory.OrderBy(ks => ks.Code).ToArray();
