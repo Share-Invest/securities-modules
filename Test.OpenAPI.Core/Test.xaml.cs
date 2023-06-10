@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-
-using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Interop;
 
 namespace ShareInvest;
@@ -41,10 +38,7 @@ public partial class Test : Window
         }
         else
         {
-            var tr = axAPI.GetTrData(tb.Text);
-#if DEBUG
-            Debug.WriteLine(JsonConvert.SerializeObject(tr, Formatting.Indented));
-#endif
+            axAPI.GetTrData(tb.Text);
         }
     }
     readonly AxKHCoreAPI axAPI;
