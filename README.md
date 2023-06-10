@@ -14,4 +14,4 @@ public partial class Test : Window
     readonly ShareInvest.AxKHCoreAPI axAPI;
 }
 ```
-### It is also available in x64 [![.NET PACKAGE](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml/badge.svg?event=push)](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml).
+### It is also available in x64 [![OPENAPI CORE](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml/badge.svg?branch=NET7&event=push)](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml).
