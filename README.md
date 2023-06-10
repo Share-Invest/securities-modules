@@ -14,4 +14,4 @@ public partial class Test : Window
     readonly ShareInvest.AxKHCoreAPI axAPI;
 }
 ```
-### It is also available in x64 [![OPENAPI CORE](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml/badge.svg?branch=NET7&event=push)](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml).
+### [![OPENAPI CORE](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml/badge.svg?branch=NET7&event=push)](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml) is also available in AnyCPU.
