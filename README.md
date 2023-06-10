@@ -1,7 +1,5 @@
-# Build using  [![NuGet](https://img.shields.io/badge/NuGet-004880?style=plastic&logoColor=white&logo=nuget)](https://www.nuget.org/packages/ShareInvest.OpenAPI.Core) [![Build](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=plastic&logoColor=white&logo=githubactions)](https://docs.github.com)
-### · Desktop package is [![NuGet](https://img.shields.io/nuget/v/ShareInvest.OpenAPI.Core?label=NuGet&style=plastic&logo=nuget&color=004880)](https://www.nuget.org/packages/ShareInvest.OpenAPI.Core) [![.NET PACKAGE](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml/badge.svg?event=push)](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml).
-## How to initailize in WPF
-
+# The [![NuGet](https://img.shields.io/badge/NuGet-004880?style=plastic&logoColor=white&logo=nuget)](https://www.nuget.org/packages/ShareInvest.OpenAPI.Core) package is [![NuGet](https://img.shields.io/nuget/v/ShareInvest.OpenAPI.Core?label=NuGet&style=plastic&logo=nuget&color=004880)](https://www.nuget.org/packages/ShareInvest.OpenAPI.Core).
+## How to initailize in WPF [![Windows](https://img.shields.io/badge/Windows-0078D6?style=plastic&logoColor=white&logo=windows)](https://www.microsoft.com/en-us/windows) [![Platform](https://img.shields.io/badge/dotnet-512BD4?style=plastic&logoColor=white&logo=.NET)](https://dotnet.microsoft.com/) [![Language](https://img.shields.io/badge/CSharp-239120?style=plastic&logoColor=white&logo=C%20Sharp)](https://learn.microsoft.com/en-us/dotnet/csharp/) [![IDE](https://img.shields.io/badge/Visual%20Studio-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://visualstudio.microsoft.com)
 ```C#
 public partial class Test : Window
 {
@@ -16,4 +14,4 @@ public partial class Test : Window
     readonly ShareInvest.AxKHCoreAPI axAPI;
 }
 ```
-### IDE using [![IDE](https://img.shields.io/badge/Visual%20Studio-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://visualstudio.microsoft.com) and [![IDE](https://img.shields.io/badge/VS%20Code-007ACC?style=plastic&logoColor=white&logo=visualstudiocode)](https://code.visualstudio.com)
+### It is also available in x64 [![.NET PACKAGE](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml/badge.svg?event=push)](https://github.com/Share-Invest/Algorithmic-Trading-Package/actions/workflows/package-desktop.yml).
