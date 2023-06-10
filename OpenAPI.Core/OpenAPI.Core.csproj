@@ -1,24 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetFramework>net7.0-windows10.0.20348.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
-		<AssemblyName>ShareInvest.OpenAPI.Core</AssemblyName>
-		<RootNamespace>ShareInvest</RootNamespace>
+		<Title>OpenAPI-Core</Title>
 		<Authors>cyberprophet</Authors>
 		<Company>ShareInvest Corp.</Company>
 		<Product>Algorithmic-Trading</Product>
-		<Description>library for convenient use of Kiwoom OpenAPI</Description>
+		<RootNamespace>ShareInvest</RootNamespace>
+		<AssemblyName>ShareInvest.OpenAPI.Core</AssemblyName>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>OpenAPI-Core</Title>
-		<PackageIcon>LOGO.png</PackageIcon>
-		<PackageProjectUrl>https://github.com/Share-Invest/securities-modules</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<Description>library for AnyCPU use and convenient of Kiwoom OpenAPI</Description>
+		<PackageProjectUrl>https://github.com/Share-Invest/securities-modules</PackageProjectUrl>
+		<PackageTags>OpenAPI;KHOpenAPI;Kiwoom;API;Stock</PackageTags>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>1.0.0.1</Version>
+		<PackageIcon>LOGO.png</PackageIcon>
+		<Version>1.0.1.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
