@@ -14,7 +14,7 @@ public partial class Test : Window
     readonly ShareInvest.AxKHCoreAPI axAPI;
 }
 ```
-### · How to use TR data in [![Platform](https://img.shields.io/nuget/v/Microsoft.NETCore.Platforms?label=.NET&style=plastic&logo=windows&color=512BD4)](https://versionsof.net)
+### · How to use CommRqData in [![Platform](https://img.shields.io/nuget/v/Microsoft.NETCore.Platforms?label=.NET&style=plastic&logo=windows&color=512BD4)](https://versionsof.net)
 ```C#
 public partial class Test : Window
 {
