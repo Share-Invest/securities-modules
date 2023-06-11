@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\OpenAPI.NET\OpenAPI.NET.csproj" />
+		<PackageReference Include="ShareInvest.OpenAPI" Version="1.0.0" />
 	</ItemGroup>
 
 </Project>
