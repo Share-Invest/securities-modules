@@ -1,6 +1,6 @@
-﻿using ShareInvest.Data;
-using ShareInvest.Kiwoom;
+﻿using ShareInvest.Kiwoom;
 using ShareInvest.Properties;
+using ShareInvest.Transactions;
 
 using System.IO.Compression;
 using System.Text;
@@ -50,7 +50,7 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
     /// <param name="hWndParent"></param>
     public AxKHCoreAPI(nint hWndParent) : base(hWndParent)
     {
-        path = Path.Combine(GetAPIModulePath(), nameof(Data));
+        path = Path.Combine(GetAPIModulePath(), "Data");
 
         if (Directory.Exists(path))
         {

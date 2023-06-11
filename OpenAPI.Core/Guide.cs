@@ -1,21 +1,9 @@
-﻿namespace ShareInvest.Data;
+﻿namespace ShareInvest;
 
-/// <summary>market event code used by Kiwoom Securities</summary>
-public enum MarketEvent
-{
-    유상증자 = 1,
-    무상증자 = 2,
-    배당락 = 4,
-    액면분할 = 8,
-    액면병합 = 16,
-    기업합병 = 32,
-    감자 = 64,
-    권리락 = 256
-}
-public static class Market
+public static class Guide
 {
     /// <summary>각 함수에서 리턴값으로 성공여부와 오류메세지를 반환합니다.</summary>
-    public static Dictionary<int, string> Error
+    public static Dictionary<int, string> ErrorCode
     {
         get => new()
         {
@@ -140,58 +128,5 @@ public static class Market
                 -500, "종목코드 없음"
             }
         };
-    }
-    /// <summary>market classification code used by Kiwoom Securities</summary>
-    public static Dictionary<string, string> ClassificationCodes
-    {
-        get => new()
-        {
-            {
-                "코스피", "0"
-            },
-            {
-                "코스닥", "10"
-            },
-            {
-                "ELW", "3"
-            },
-            {
-                "ETF", "8"
-            },
-            {
-                "KONEX", "50"
-            },
-            {
-                "뮤추얼펀드", "4"
-            },
-            {
-                "신주인수권", "5"
-            },
-            {
-                "리츠", "6"
-            },
-            {
-                "하이얼펀드", "9"
-            },
-            {
-                "K-OTC", "30"
-            }
-        };
-    }
-    /// <summary>RealType : 장시작시간</summary>
-    /// <param name="gubun">[215] = 장운영구분</param>
-    /// <returns><see cref="MarketOperation"/></returns>
-    public static MarketOperation GetOperation(string? gubun)
-    {
-        if (gubun?.Length == 1)
-        {
-            var index = char.IsDigit(gubun[0]) ? Convert.ToInt32(gubun) : Convert.ToChar(gubun);
-
-            if (Enum.IsDefined(typeof(MarketOperation), index))
-            {
-                return (MarketOperation)index;
-            }
-        }
-        return MarketOperation.장종료_시간외종료;
     }
 }

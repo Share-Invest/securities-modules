@@ -1,4 +1,4 @@
-﻿namespace ShareInvest.Data;
+﻿namespace ShareInvest.Transactions;
 
 public class TR
 {
@@ -27,4 +27,16 @@ public class TR
     {
         get; internal set;
     }
+}
+/// <summary>market event code used by Kiwoom Securities</summary>
+public enum MarketEvent
+{
+    유상증자 = 1,
+    무상증자 = 2,
+    배당락 = 4,
+    액면분할 = 8,
+    액면병합 = 0x10,
+    기업합병 = 0x20,
+    감자 = 0x40,
+    권리락 = 0x100
 }

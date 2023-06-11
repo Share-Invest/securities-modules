@@ -1,6 +1,4 @@
-﻿using ShareInvest.Data;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Interop;
@@ -58,7 +56,7 @@ public partial class Test : Window
             }
             var result = axAPI.CommConnect();
 
-            tb.Text = Market.Error[result];
+            tb.Text = Guide.ErrorCode[result];
         }
         else
         {
@@ -78,7 +76,7 @@ public partial class Test : Window
                 }
                 var errCode = axAPI.CommRqData(tr.Name, tr.Code, 0, "1234");
 
-                tb.Text = Market.Error[errCode];
+                tb.Text = Guide.ErrorCode[errCode];
             }
         }
     }
