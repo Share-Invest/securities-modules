@@ -1,8 +1,6 @@
 ﻿namespace ShareInvest.Data;
 
-/// <summary>
-/// market event code used by Kiwoom Securities
-/// </summary>
+/// <summary>market event code used by Kiwoom Securities</summary>
 public enum MarketEvent
 {
     유상증자 = 1,
@@ -16,9 +14,7 @@ public enum MarketEvent
 }
 public static class Market
 {
-    /// <summary>
-    /// 각 함수에서 리턴값으로 성공여부와 오류메세지를 반환합니다.
-    /// </summary>
+    /// <summary>각 함수에서 리턴값으로 성공여부와 오류메세지를 반환합니다.</summary>
     public static Dictionary<int, string> Error
     {
         get => new()
@@ -145,9 +141,7 @@ public static class Market
             }
         };
     }
-    /// <summary>
-    /// market classification code used by Kiwoom Securities
-    /// </summary>
+    /// <summary>market classification code used by Kiwoom Securities</summary>
     public static Dictionary<string, string> ClassificationCodes
     {
         get => new()
@@ -184,15 +178,9 @@ public static class Market
             }
         };
     }
-    /// <summary>
-    /// RealType : 장시작시간
-    /// </summary>
-    /// <param name="gubun">
-    /// [215] = 장운영구분
-    /// </param>
-    /// <returns>
-    /// enum MarketOperation
-    /// </returns>
+    /// <summary>RealType : 장시작시간</summary>
+    /// <param name="gubun">[215] = 장운영구분</param>
+    /// <returns><see cref="MarketOperation"/></returns>
     public static MarketOperation GetOperation(string? gubun)
     {
         if (gubun?.Length == 1)

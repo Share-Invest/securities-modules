@@ -1,8 +1,6 @@
 ﻿namespace ShareInvest.Data;
 
-/// <summary>
-/// RealType : 파생잔고
-/// </summary>
+/// <summary>RealType : 파생잔고</summary>
 public enum DerivativesBalance
 {
     계좌번호 = 9201,
@@ -25,9 +23,7 @@ public enum DerivativesBalance
     상한가 = 305,
     하한가 = 306
 }
-/// <summary>
-/// RealType : 잔고
-/// </summary>
+/// <summary>RealType : 잔고</summary>
 public enum Balance
 {
     계좌번호 = 9201,
@@ -58,9 +54,7 @@ public enum Balance
     담보대출수량 = 959,
     ExtraItem = 924
 }
-/// <summary>
-/// RealType : 주문체결
-/// </summary>
+/// <summary>RealType : 주문체결</summary>
 public enum OrderConclusion
 {
     계좌번호 = 9201,
@@ -95,9 +89,7 @@ public enum OrderConclusion
     신용구분 = 922,
     대출일 = 923
 }
-/// <summary>
-/// RealType : 장시작시간
-/// </summary>
+/// <summary>RealType : 장시작시간</summary>
 public enum MarketOperation
 {
     장시작전 = 0,

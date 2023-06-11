@@ -13,6 +13,10 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
     {
         get;
     }
+    /// <summary>deliver the TR code, can receive INPUT and OUTPUT returns.</summary>
+    /// <param name="code">see KOA Studio TR list.</param>
+    /// <returns><see cref="TR"></see></returns>
+    /// <exception cref="FileNotFoundException"></exception>
     public TR GetTrData(string code)
     {
         var tr = Array.Find(TrInventory, m => code.Equals(m.Code))
@@ -42,9 +46,7 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
         }
         return tr;
     }
-    /// <summary>
-    /// call the EnsureHandle method to inject it as a parameter.
-    /// </summary>
+    /// <summary>call the EnsureHandle method to inject it as a parameter.</summary>
     /// <param name="hWndParent"></param>
     public AxKHCoreAPI(nint hWndParent) : base(hWndParent)
     {

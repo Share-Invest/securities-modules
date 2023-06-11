@@ -6,10 +6,14 @@
         xmlns:local="clr-namespace:ShareInvest"
         mc:Ignorable="d"
         Style="{StaticResource app}"
-        d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True}">
+        d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True}"
+        Width="512"
+        Height="256"
+        MinWidth="512"
+        MinHeight="256">
 
     <Grid>
-        <Button x:Name="login_btn"
+        <Button x:Name="btn"
                 Content="Login"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -27,7 +31,7 @@
                  FontWeight="Bold"
                  Margin="0,0,0,36"
                  Padding="5,3,5,3"
-                 Width="128"/>
+                 Width="256"/>
     </Grid>
 
 </Window>
