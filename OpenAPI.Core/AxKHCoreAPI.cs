@@ -14,12 +14,12 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
         get;
     }
     /// <summary>deliver the TR code, can receive INPUT and OUTPUT returns.</summary>
-    /// <param name="code">see KOA Studio TR list.</param>
+    /// <param name="sTrCode">see KOA Studio TR list.</param>
     /// <returns><see cref="TR"></see></returns>
     /// <exception cref="FileNotFoundException"></exception>
-    public TR GetTrData(string code)
+    public TR GetTrData(string sTrCode)
     {
-        var tr = Array.Find(TrInventory, m => code.Equals(m.Code))
+        var tr = Array.Find(TrInventory, m => sTrCode.Equals(m.Code))
 
             ?? throw new FileNotFoundException(Resources.MODULE);
 
@@ -35,7 +35,7 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
                 {
                     foreach (var entry in zip.Entries)
                     {
-                        if (code.Equals(Path.GetFileNameWithoutExtension(entry.Name), StringComparison.OrdinalIgnoreCase) is false)
+                        if (sTrCode.Equals(Path.GetFileNameWithoutExtension(entry.Name), StringComparison.OrdinalIgnoreCase) is false)
                         {
                             continue;
                         }
