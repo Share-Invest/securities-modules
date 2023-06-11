@@ -1,17 +1,34 @@
 ﻿using ShareInvest.Kiwoom;
 using ShareInvest.Properties;
-using ShareInvest.Transactions;
 
 using System.IO.Compression;
 using System.Text;
 
 namespace ShareInvest;
 
-public sealed class AxKHCoreAPI : AxKHOpenAPI
+public sealed partial class AxKHCoreAPI : AxKHOpenAPI
 {
     public TR[] TrInventory
     {
         get;
+    }
+    /// <summary>insert a market code, the corresponding code list will be returned.</summary>
+    /// <param name="marketCode"><see cref="MarketCode"/></param>
+    /// <returns>code list</returns>
+    public IEnumerable<string> GetCodeListByMarket(MarketCode marketCode)
+    {
+        return GetCodeListByMarket(((int)marketCode).ToString()).Split(';');
+    }
+    /// <summary><see cref="Tr.OPTKWFID"/></summary>
+    /// <param name="sArrCode">Code Inventory</param>
+    /// <param name="nCodeCount">Code Inventory Count</param>
+    /// <param name="nTypeFlag">Stock:0, Futures:3</param>
+    /// <param name="sRQName">sRQName</param>
+    /// <param name="sScreenNo">sScreenNo</param>
+    /// <returns><see cref="Guide.Error"/>ErrorCode</returns>
+    public int CommKwRqData(string sArrCode, int nCodeCount, int nTypeFlag, string sRQName, string sScreenNo)
+    {
+        return CommKwRqData(sArrCode, 0, nCodeCount, nTypeFlag, sRQName, sScreenNo);
     }
     /// <summary>deliver the TR code, can receive INPUT and OUTPUT returns.</summary>
     /// <param name="sTrCode">see KOA Studio TR list.</param>
@@ -45,6 +62,24 @@ public sealed class AxKHCoreAPI : AxKHOpenAPI
             }
         }
         return tr;
+    }
+    /// <summary>should not be used to customize.</summary>
+    /// <param name="milliseconds"/>
+    /// <returns><see cref="Guide.Error"/></returns>
+    public bool CommConnect(int milliseconds)
+    {
+        OnReceiveChejanData += OnReceiveCoreChejanData;
+        OnReceiveRealData += OnReceiveCoreRealData;
+        OnReceiveTrData += OnReceiveCoreTrData;
+        OnEventConnect += OnEventCoreConnect;
+        OnReceiveMsg += OnReceiveCoreMessage;
+        OnReceiveConditionVer += OnReceiveCoreConditionVersion;
+        OnReceiveRealCondition += OnReceiveCoreRealCondition;
+        OnReceiveTrCondition += OnReceiveCoreTrCondition;
+
+        Delay.Instance.Milliseconds = milliseconds;
+
+        return CommConnect() == 0;
     }
     /// <summary>call the EnsureHandle method to inject it as a parameter.</summary>
     /// <param name="hWndParent"></param>

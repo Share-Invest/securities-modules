@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
+using ShareInvest.Tr;
+
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Interop;
@@ -32,7 +36,7 @@ public partial class Test : Window
                     data[tr.MultiData[i]] = axAPI.GetCommData(e.sTrCode, e.sRQName, cnt, tr.MultiData[i]).Trim();
                 }
             }
-            tb.Text = data.Count.ToString("N0");
+            var json = JsonConvert.SerializeObject(data, Formatting.Indented);
         };
         axAPI.OnEventConnect += (_, e) =>
         {
@@ -56,7 +60,7 @@ public partial class Test : Window
             }
             var result = axAPI.CommConnect();
 
-            tb.Text = Guide.ErrorCode[result];
+            tb.Text = Guide.Error[result];
         }
         else
         {
@@ -70,13 +74,20 @@ public partial class Test : Window
                 {
                     return;
                 }
-                for (int i = 0; i < tr.Input?.Length; i++)
-                {
-                    axAPI.SetInputValue(tr.Input[i], "005930");
-                }
-                var errCode = axAPI.CommRqData(tr.Name, tr.Code, 0, "1234");
+                var codeList = new List<string>(axAPI.GetCodeListByMarket(MarketCode.코스피));
 
-                tb.Text = Guide.ErrorCode[errCode];
+                codeList.AddRange(axAPI.GetCodeListByMarket(MarketCode.코스닥));
+
+                foreach (var inventory in OPTKWFID.GetCodeInventory(codeList))
+                {
+                    var s = new OPTKWFID
+                    {
+                        RQName = tr.Name
+                    };
+                    var errCode = axAPI.CommKwRqData(inventory.Item1, inventory.Item2, s.PrevNext, s.RQName, s.ScreenNo);
+
+                    tb.Text = Guide.Error[errCode];
+                }
             }
         }
     }

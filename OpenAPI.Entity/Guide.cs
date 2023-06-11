@@ -2,8 +2,7 @@
 
 public static class Guide
 {
-    /// <summary>각 함수에서 리턴값으로 성공여부와 오류메세지를 반환합니다.</summary>
-    public static Dictionary<int, string> ErrorCode
+    public static Dictionary<int, string> Error
     {
         get => new()
         {

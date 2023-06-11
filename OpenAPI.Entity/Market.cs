@@ -1,4 +1,4 @@
-﻿namespace ShareInvest.RealTypes;
+﻿namespace ShareInvest;
 
 /// <summary>장시작시간</summary>
 public enum MarketOperation
@@ -15,6 +15,20 @@ public enum MarketOperation
     시간외_단일가_매매종료 = 'd',
     선옵_장마감전_동시호가_시작 = 's',
     선옵_장마감전_동시호가_종료 = 'e'
+}
+/// <summary>market classification code used by Kiwoom Securities</summary>
+public enum MarketCode
+{
+    코스피 = 0,
+    코스닥 = 10,
+    ELW = 3,
+    ETF = 8,
+    KONEX = 50,
+    뮤추얼펀드 = 4,
+    신주인수권 = 5,
+    리츠 = 6,
+    하이얼펀드 = 9,
+    K_OTC = 30
 }
 public static class Market
 {
@@ -33,42 +47,5 @@ public static class Market
             }
         }
         return MarketOperation.장종료_시간외종료;
-    }
-    /// <summary>market classification code used by Kiwoom Securities</summary>
-    public static Dictionary<string, string> MarketCode
-    {
-        get => new()
-        {
-            {
-                "코스피", "0"
-            },
-            {
-                "코스닥", "10"
-            },
-            {
-                "ELW", "3"
-            },
-            {
-                "ETF", "8"
-            },
-            {
-                "KONEX", "50"
-            },
-            {
-                "뮤추얼펀드", "4"
-            },
-            {
-                "신주인수권", "5"
-            },
-            {
-                "리츠", "6"
-            },
-            {
-                "하이얼펀드", "9"
-            },
-            {
-                "K-OTC", "30"
-            }
-        };
     }
 }

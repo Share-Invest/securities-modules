@@ -1,4 +1,4 @@
-﻿namespace ShareInvest.Transactions;
+﻿namespace ShareInvest;
 
 public class TR
 {
