@@ -41,7 +41,7 @@ public partial class Test : Window
             }
         };
     }
-    public void CommRqData()
+    void CommRqData()
     {
         /// <param name="sTrCode">주식기본정보요청</param>
         var tr = axAPI.GetTrData("opt10001");
