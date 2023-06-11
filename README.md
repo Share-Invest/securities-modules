@@ -94,13 +94,15 @@ public partial class Test : Window
 
         codeList.AddRange(axAPI.GetCodeListByMarket(MarketCode.코스닥));
 
-        foreach (var inventory in OPTKWFID.GetCodeInventory(codeList))
+        foreach (var i in OPTKWFID.GetCodeInventory(codeList))
         {
             var s = new OPTKWFID
                     {
                         RQName = tr.Name
                     };
-            int errCode = axAPI.CommKwRqData(inventory.Item1, inventory.Item2, s.PrevNext, s.RQName, s.ScreenNo);
+            int errCode =
+            
+                axAPI.CommKwRqData(i.Item1, i.Item2, s.PrevNext, s.RQName, s.ScreenNo);
 
             string errMsg = Guide.Error[errCode];
         }
