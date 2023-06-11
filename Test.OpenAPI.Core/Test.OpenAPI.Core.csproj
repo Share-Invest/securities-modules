@@ -12,15 +12,11 @@
 		<Company>ShareInvest Corp.</Company>
 		<Product>Algorithmic-Trading</Product>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-		<Version>1.0.0.3</Version>
+		<Version>1.0.0.4</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Content Include="kiwoom_logo.ico" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>ShareInvest.OpenAPI.Entity</AssemblyName>
+		<RootNamespace>ShareInvest</RootNamespace>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>OpenAPI-Entity</Title>
+		<Company>ShareInvest Corp.</Company>
+		<Product>Algorithmic-Trading</Product>
+		<PackageProjectUrl>https://github.com/Share-Invest/securities-modules</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageTags>OpenAPI;KHOpenAPI;Kiwoom;API;Stock;Entity</PackageTags>
+		<Description>convenient library of Kiwoom OpenAPI</Description>
+		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<Authors>cyberprophet</Authors>
+		<PackageIcon>LOGO.png</PackageIcon>
+		<Version>1.0.0.0</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="J:\Images\LOGO.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+</Project>
