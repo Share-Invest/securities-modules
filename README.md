@@ -30,13 +30,17 @@ public partial class Test : Window
 
             for (int i = 0; i < tr.SingleData?.Length; i++)
             {
-                data[tr.SingleData[i]] = axAPI.GetCommData(e.sTrCode, e.sRQName, 0, tr.SingleData[i]).Trim();
+                data[tr.SingleData[i]] =
+                
+                    axAPI.GetCommData(e.sTrCode, e.sRQName, 0, tr.SingleData[i]).Trim();
             }
             for (int cnt = 0; cnt < axAPI.GetRepeatCnt(e.sTrCode, e.sRecordName); cnt++)
             {
                 for (int i = 0; i < tr.MultiData?.Length; i++)
                 {
-                    data[tr.MultiData[i]] = axAPI.GetCommData(e.sTrCode, e.sRQName, cnt, tr.MultiData[i]).Trim();
+                    data[tr.MultiData[i]] =
+                    
+                        axAPI.GetCommData(e.sTrCode, e.sRQName, cnt, tr.MultiData[i]).Trim();
                 }
             }
         };
