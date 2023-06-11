@@ -12,7 +12,7 @@
 		<Company>ShareInvest Corp.</Company>
 		<Product>Algorithmic-Trading</Product>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-		<Version>1.0.0.2</Version>
+		<Version>1.0.0.3</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,7 +20,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ShareInvest.OpenAPI.Core" Version="1.0.2.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\OpenAPI.Core\OpenAPI.Core.csproj" />
 	</ItemGroup>
 
 </Project>

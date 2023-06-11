@@ -9,14 +9,6 @@
         <Style TargetType="Window"
                x:Key="app">
 
-            <Setter Property="Height"
-                    Value="215">
-            </Setter>
-
-            <Setter Property="Width"
-                    Value="310">
-            </Setter>
-
             <Setter Property="ResizeMode"
                     Value="CanResizeWithGrip">
             </Setter>

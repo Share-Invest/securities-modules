@@ -2,7 +2,6 @@
 using ShareInvest.Interface;
 using ShareInvest.Properties;
 
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 
@@ -543,9 +542,6 @@ public class AxKHOpenAPI
                 }
             }
         }
-#if DEBUG
-        Debug.WriteLine(clsid);
-#endif
     }
     internal void RaiseOnOnReceiveTrData(object sender, _DKHOpenAPIEvents_OnReceiveTrDataEvent e)
     {
