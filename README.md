@@ -63,4 +63,48 @@ public partial class Test : Window
     readonly ShareInvest.AxKHCoreAPI axAPI;
 }
 ```
+### · How to use CommKwRqData in [![IDE](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://learn.microsoft.com/en-us/visualstudio/releases/2022)
+```C#
+public partial class Test : Window
+{
+    public Test()
+    {
+        ...
+        
+        axAPI.OnReceiveTrData += (object sender, _DKHOpenAPIEvents_OnReceiveTrDataEvent e) =>
+        {
+            ... 
+            
+            /*
+                코스피, 코스닥 전종목에 대한 정보와 실시간 수신등록
+                
+                요청시 등록한 화면번호를 재사용하거나 200개이상 사용시 실시간 수신해제
+            */
+            var json = JsonConvert.SerializeObject(data, Formatting.Indented);
+        }
+    }
+    void CommKwRqData()
+    {
+        /// <param name="sTrCode">관심종목정보요청</param>
+        var tr = axAPI.GetTrData("OPTKWFID");
+        
+        ...
+        
+        var codeList = new List<string>(axAPI.GetCodeListByMarket(MarketCode.코스피));
+
+        codeList.AddRange(axAPI.GetCodeListByMarket(MarketCode.코스닥));
+
+        foreach (var inventory in OPTKWFID.GetCodeInventory(codeList))
+        {
+            var s = new OPTKWFID
+                    {
+                        RQName = tr.Name
+                    };
+            int errCode = axAPI.CommKwRqData(inventory.Item1, inventory.Item2, s.PrevNext, s.RQName, s.ScreenNo);
+
+            string errMsg = Guide.Error[errCode];
+        }
+    }
+}
+```
 ### ☞ [![OPENAPI CORE](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml/badge.svg?branch=NET7&event=push)](https://github.com/Share-Invest/securities-modules/actions/workflows/open-api-core.yml) is also available in AnyCPU.
