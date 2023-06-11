@@ -12,7 +12,7 @@ public class TR
     {
         get; internal set;
     }
-    /// <summary>Input sID</summary>
+    /// <summary>INPUT sID</summary>
     public string[]? Input
     {
         get; internal set;
