@@ -35,7 +35,7 @@ jobs:
       working-directory: ${{ env.working-directory }}
       
     - name: Install dependencies
-      run: dotnet restore Test.OpenAPI.Core.csproj
+      run: dotnet restore Test.OpenDart.csproj
       working-directory: ${{ env.working-directory }}
       
     - name: Build
