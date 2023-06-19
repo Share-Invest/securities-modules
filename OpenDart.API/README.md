@@ -61,7 +61,7 @@ using (var api = new OpenDart("YOUR_OPEN_DART_API_KEY"))
     {
         ...
         
-        DartDisclousure[]? disclousures = api.GetDisclousureInventoryAsync(e.CorpCode);
+        DartDisclousure[]? disclousures = await api.GetDisclousureInventoryAsync(e.CorpCode);
     }
 }
 ```
