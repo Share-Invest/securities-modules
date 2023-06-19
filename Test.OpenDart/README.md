@@ -65,4 +65,4 @@ using (var api = new OpenDart("YOUR_OPEN_DART_API_KEY"))
     }
 }
 ```
-### ☞ library for convenient of [![OPEN DART API](https://github.com/cyberprophet/securities-modules/actions/workflows/open-dart-api.yml/badge.svg?event=push)](https://github.com/cyberprophet/securities-modules/actions/workflows/open-dart-api.yml).
+### · library for convenient of [![OPEN DART API](https://github.com/cyberprophet/securities-modules/actions/workflows/open-dart-api.yml/badge.svg?event=push)](https://github.com/cyberprophet/securities-modules/actions/workflows/open-dart-api.yml).
