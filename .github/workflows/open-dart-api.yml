@@ -30,15 +30,16 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet-version }}
 
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.1
-
     - name: Display .NET version
       run: dotnet --version
       working-directory: ${{ env.working-directory }}
       
     - name: Install dependencies
       run: dotnet restore Test.OpenAPI.Core.csproj
+      working-directory: ${{ env.working-directory }}
+      
+    - name: Build
+      run: dotnet build
       working-directory: ${{ env.working-directory }}
       
     - name: Execute unit tests
