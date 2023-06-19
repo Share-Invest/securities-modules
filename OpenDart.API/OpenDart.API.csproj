@@ -17,7 +17,8 @@
 		<RepositoryUrl>https://github.com/Share-Invest/securities-modules</RepositoryUrl>
 		<PackageTags>OPENDART;DART;API;Securities;ShareInvest</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<Version>1.0.0.1</Version>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<Version>1.0.1.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
