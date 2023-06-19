@@ -35,6 +35,17 @@ using (var api = new OpenDart(KEY))
         }
         await Task.Delay(0x50);
 
+        var arr = await api.GetDisclousureInventoryAsync(dart.CorpCode);
 
+        if (arr == null)
+        {
+            continue;
+        }
+        foreach (var disclousure in arr)
+        {
+            var json = JsonConvert.SerializeObject(disclousure, Formatting.Indented);
+
+            Console.WriteLine(json);
+        }
     }
 }
