@@ -1,111 +1,53 @@
 # The [![NuGet](https://img.shields.io/badge/NuGet-004880?style=plastic&logoColor=white&logo=nuget)](https://nuget.org) package is [![NuGet](https://img.shields.io/nuget/v/ShareInvest.OpenDart.API?label=ShareInvest.OpenDart.API&style=plastic&logo=nuget&color=004880)](https://www.nuget.org/packages/ShareInvest.OPENDART.API).
-### · How to initailize in WPF [![Windows](https://img.shields.io/badge/Windows-0078D6?style=plastic&logoColor=white&logo=windows)](https://www.microsoft.com/en-us/windows) [![Platform](https://img.shields.io/badge/dotnet-512BD4?style=plastic&logoColor=white&logo=.NET)](https://dotnet.microsoft.com/) [![Language](https://img.shields.io/badge/CSharp-239120?style=plastic&logoColor=white&logo=C%20Sharp)](https://learn.microsoft.com/en-us/dotnet/csharp/) [![IDE](https://img.shields.io/badge/Visual%20Studio-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://visualstudio.microsoft.com)
+### · How to initailize in [![Platform](https://img.shields.io/nuget/v/Microsoft.NETCore.Platforms?label=CSharp&style=plastic&logo=.NET&color=512BD4)](https://versionsof.net) [![IDE](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://learn.microsoft.com/en-us/visualstudio/releases/2022)
 ```C#
-public partial class Test : Window
+using (var api = new OpenDart("YOUR_OPEN_DART_API_KEY"))
 {
-    public Test()
+    var res = await api.GetCorpCodeAsync();
+
+    Console.WriteLine(new
     {
-        nint handle = new WindowInteropHelper(Application.Current.MainWindow).EnsureHandle();
-
-        InitializeComponent();
-
-        axAPI = new ShareInvest.AxKHCoreAPI(handle);
-    }
-    readonly ShareInvest.AxKHCoreAPI axAPI;
+        message = res.Item2,
+        StatusCode = res.Item1
+    });
+    /// OPEN DART CorpCode가 JsonArray로 반환되면 초기화 성공
 }
 ```
-### · How to use CommRqData in [![Platform](https://img.shields.io/nuget/v/Microsoft.NETCore.Platforms?label=.NET&style=plastic&logo=windows&color=512BD4)](https://versionsof.net)
+### · How to use GetCorpCode in [![Platform](https://img.shields.io/nuget/v/Microsoft.NETCore.Platforms?label=CSharp&style=plastic&logo=.NET&color=512BD4)](https://versionsof.net) [![IDE](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://learn.microsoft.com/en-us/visualstudio/releases/2022)
 ```C#
-public partial class Test : Window
+using (var api = new OpenDart("YOUR_OPEN_DART_API_KEY"))
 {
-    public Test()
+    var res = await api.GetCorpCodeAsync();
+
+    var corpCodes = JsonConvert.DeserializeObject<DartCode[]>(res.Item2);
+
+    /// or
+
+    await foreach (DartCode e in api.GetEnumerableCorpCodeAsync())
     {
         ...
-        
-        axAPI.OnReceiveTrData += (object sender, _DKHOpenAPIEvents_OnReceiveTrDataEvent e) =>
-        {
-            var tr = axAPI.GetTrData(e.sTrCode);
-
-            var data = new Dictionary<string, string>();
-
-            for (int i = 0; i < tr.SingleData?.Length; i++)
-            {
-                data[tr.SingleData[i]] =
-                
-                    axAPI.GetCommData(e.sTrCode, e.sRQName, 0, tr.SingleData[i]).Trim();
-            }
-            for (int cnt = 0; cnt < axAPI.GetRepeatCnt(e.sTrCode, e.sRecordName); cnt++)
-            {
-                for (int i = 0; i < tr.MultiData?.Length; i++)
-                {
-                    data[tr.MultiData[i]] =
-                    
-                        axAPI.GetCommData(e.sTrCode, e.sRQName, cnt, tr.MultiData[i]).Trim();
-                }
-            }
-        };
     }
-    void CommRqData()
-    {
-        /// <param name="sTrCode">주식기본정보요청</param>
-        var tr = axAPI.GetTrData("opt10001");
-
-        for (int i = 0; i < tr.Input?.Length; i++)
-        {
-            /// <param name="sValue">삼성전자</param>
-            axAPI.SetInputValue(tr.Input[i], "005930");
-        }
-        /// <param name="sScreenNo">화면번호</param>
-        int errCode = axAPI.CommRqData(tr.Name, tr.Code, 0, "8080");
-
-        string errMsg = Market.Error[errCode];
-    }
-    readonly ShareInvest.AxKHCoreAPI axAPI;
 }
 ```
-### · How to use CommKwRqData in [![IDE](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://learn.microsoft.com/en-us/visualstudio/releases/2022)
+### · How to use GetCompany in [![Platform](https://img.shields.io/nuget/v/Microsoft.NETCore.Platforms?label=CSharp&style=plastic&logo=.NET&color=512BD4)](https://versionsof.net) [![IDE](https://img.shields.io/badge/Visual%20Studio-2022-5C2D91?style=plastic&logoColor=white&logo=visualstudio)](https://learn.microsoft.com/en-us/visualstudio/releases/2022)
 ```C#
-public partial class Test : Window
+using (var api = new OpenDart("YOUR_OPEN_DART_API_KEY"))
 {
-    public Test()
+    ...
+    
+    await foreach (DartCode e in api.GetEnumerableCorpCodeAsync())
     {
-        ...
-        
-        axAPI.OnReceiveTrData += (object sender, _DKHOpenAPIEvents_OnReceiveTrDataEvent e) =>
+        if (string.IsNullOrEmpty(e.CorpCode))
         {
-            ... 
-            
-            /*
-                코스피, 코스닥 전종목에 대한 정보와 실시간 수신등록
-                
-                요청시 등록한 화면번호를 재사용하거나 200개이상 사용시 실시간 수신해제
-            */
-            var json = JsonConvert.SerializeObject(data, Formatting.Indented);
+            continue;
         }
-    }
-    void CommKwRqData()
-    {
-        /// <param name="sTrCode">관심종목정보요청</param>
-        var tr = axAPI.GetTrData("OPTKWFID");
-        
-        ...
-        
-        var codeList = new List<string>(axAPI.GetCodeListByMarket(MarketCode.코스피));
+        DartCompany? company = await api.GetCompanyAsync(e.CorpCode);
 
-        codeList.AddRange(axAPI.GetCodeListByMarket(MarketCode.코스닥));
-
-        foreach (var i in OPTKWFID.GetCodeInventory(codeList))
+        if (company != null)
         {
-            var s = new OPTKWFID
-                    {
-                        RQName = tr.Name
-                    };
-            int errCode =
-            
-                axAPI.CommKwRqData(i.Item1, i.Item2, s.PrevNext, s.RQName, s.ScreenNo);
-
-            string errMsg = Guide.Error[errCode];
+            ...
         }
+        await Task.Delay(0x50);
     }
 }
 ```
