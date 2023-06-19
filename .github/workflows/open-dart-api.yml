@@ -1,0 +1,54 @@
+name: OPENAPI CORE
+
+on:
+  push:
+    branches: [ 'NET7' ]
+    
+    paths:
+      - 'Test.OpenDart/**'
+
+jobs:
+  build:
+
+    env:
+      working-directory: ./Test.OpenDart
+      
+    strategy:
+      matrix:
+        targetplatform: [ x64 ]
+        dotnet-version: [ '6.0.x', '7.0.x' ]
+        os: [ windows-latest, ubuntu-latest ]
+
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+    
+    - uses: actions/checkout@v3
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.1
+
+    - name: Display .NET version
+      run: dotnet --version
+      working-directory: ${{ env.working-directory }}
+      
+    - name: Install dependencies
+      run: dotnet restore Test.OpenAPI.Core.csproj
+      working-directory: ${{ env.working-directory }}
+      
+    - name: Execute unit tests
+      run: dotnet test --logger trx --results-directory "packages-results-${{ matrix.targetplatform }}-${{ matrix.dotnet-version }}-${{ matrix.os }}"
+      working-directory: ${{ env.working-directory }}
+    
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v3      
+      with:
+        name: dotnet-results-${{ matrix.targetplatform }}-${{ matrix.dotnet-version }}-${{ matrix.os }}
+        path: ./Test.OpenDart-results-${{ matrix.targetplatform }}-${{ matrix.dotnet-version }}-${{ matrix.os }}
+        
+      if: ${{ always() }}
