@@ -3,7 +3,6 @@ using Newtonsoft.Json.Linq;
 
 using ShareInvest.Entities;
 
-using System.Diagnostics;
 using System.IO.Compression;
 using System.Text;
 
@@ -91,10 +90,7 @@ static class Resource
             }
             catch (Exception ex)
             {
-#if DEBUG
-                Debug.WriteLine(ex.Message);
-#endif
-                return GetMessage(content ?? string.Empty);
+                return GetMessage(content ?? ex.Message);
             }
         }
     }
@@ -131,6 +127,6 @@ static class Resource
             }
             return node.InnerText;
         }
-        return string.Empty;
+        return message;
     }
 }

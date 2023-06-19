@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ShareInvest.OpenDart.API" Version="1.0.0" />
+		<PackageReference Include="ShareInvest.OpenDart.API" Version="1.0.0.1" />
 	</ItemGroup>
 
 </Project>
