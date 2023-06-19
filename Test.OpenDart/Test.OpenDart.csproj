@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>ShareInvest.OPENDART</AssemblyName>
+		<RootNamespace>ShareInvest</RootNamespace>
+		<ApplicationIcon>DART.ico</ApplicationIcon>
+		<Authors>cyberprophet</Authors>
+		<Company>ShareInvest Corp.</Company>
+		<Product>Algorithmic-Trading</Product>
+		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
+		<PackageIcon>DART.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="DART.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="J:\Images\DART.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ShareInvest.OpenDart.API" Version="1.0.0" />
+	</ItemGroup>
+
+</Project>
