@@ -11,6 +11,44 @@ namespace ShareInvest;
 
 static class Resource
 {
+    internal static IEnumerable<DartCode> GetEnumerator(byte[] rawBytes)
+    {
+        using (var stream = new MemoryStream(rawBytes ?? Array.Empty<byte>()))
+        {
+            using (var compress = new ZipArchive(stream, ZipArchiveMode.Read))
+            {
+                var list = new Stack<DartCode>();
+
+                foreach (var entry in compress.Entries)
+                {
+                    using (var sr = new StreamReader(entry.Open()))
+                    {
+                        var xml = new System.Xml.XmlDocument();
+
+                        xml.LoadXml(sr.ReadToEnd());
+
+                        foreach (System.Xml.XmlNode node in xml.GetElementsByTagName(nameof(list)))
+                        {
+                            if (string.IsNullOrEmpty(node["stock_code"]?.InnerText))
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                yield return new DartCode
+                                {
+                                    StockCode = node["stock_code"]?.InnerText,
+                                    CorpCode = node["corp_code"]?.InnerText,
+                                    CorpName = node["corp_name"]?.InnerText,
+                                    ModifyDate = node["modify_date"]?.InnerText
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     internal static string ToJson(byte[]? rawBytes, string? content)
     {
         using (var stream = new MemoryStream(rawBytes ?? Array.Empty<byte>()))
@@ -53,8 +91,9 @@ static class Resource
             }
             catch (Exception ex)
             {
+#if DEBUG
                 Debug.WriteLine(ex.Message);
-
+#endif
                 return GetMessage(content ?? string.Empty);
             }
         }
