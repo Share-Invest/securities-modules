@@ -1,6 +1,8 @@
 ﻿using ShareInvest;
 
-using (var api = new OpenDart("YOUR_OPENDART_API_KEY"))
+using System.Net;
+
+using (var api = new OpenDart("YOUR_OPEN_DART_API_KEY"))
 {
     var res = await api.GetCorpCodeAsync();
 
@@ -9,4 +11,8 @@ using (var api = new OpenDart("YOUR_OPENDART_API_KEY"))
         message = res.Item2,
         StatusCode = res.Item1
     });
+    if (HttpStatusCode.OK == res.Item1)
+    {
+
+    }
 }
