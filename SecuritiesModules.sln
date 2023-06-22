@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenDart.API", "OpenDart.AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.OpenDart", "Test.OpenDart\Test.OpenDart.csproj", "{DAFCF3B6-9AF7-442F-954F-729CAA101D97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAPI.Control", "OpenAPI.Control\OpenAPI.Control.csproj", "{501644B7-178B-4DEB-B296-40195F4B96E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.Control", "OpenAPI.Control\OpenAPI.Control.csproj", "{501644B7-178B-4DEB-B296-40195F4B96E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
