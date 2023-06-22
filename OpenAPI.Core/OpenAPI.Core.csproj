@@ -18,7 +18,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageIcon>LOGO.png</PackageIcon>
-		<Version>1.0.4.1</Version>
+		<Version>1.0.5.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,11 +33,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ShareInvest.OpenAPI" Version="1.0.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\OpenAPI.Entity\OpenAPI.Entity.csproj" />
+		<ProjectReference Include="..\OpenAPI.NET\OpenAPI.NET.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

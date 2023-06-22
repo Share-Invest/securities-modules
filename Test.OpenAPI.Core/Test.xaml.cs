@@ -17,7 +17,7 @@ public partial class Test : Window
 
         InitializeComponent();
 
-        axAPI = new AxKHCoreAPI(handle);
+        axAPI = new AxKHCoreAPI(handle, Process.x86);
 
         axAPI.OnReceiveTrData += (_, e) =>
         {
