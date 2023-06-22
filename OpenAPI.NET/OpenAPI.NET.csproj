@@ -17,7 +17,7 @@
 		<PackageTags>Share;Invest;cyberprophet</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageIcon>LOGO.png</PackageIcon>
-		<Version>1.0.0.1</Version>
+		<Version>1.0.1.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

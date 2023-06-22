@@ -10,6 +10,7 @@ public sealed partial class AxKHCoreAPI
     }
     void OnReceiveCoreMessage(object sender, _DKHOpenAPIEvents_OnReceiveMsgEvent e)
     {
+
     }
     void OnReceiveCoreTrData(object sender, _DKHOpenAPIEvents_OnReceiveTrDataEvent e)
     {

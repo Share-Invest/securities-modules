@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.OpenAPI.Core", "Test.O
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.Entity", "OpenAPI.Entity\OpenAPI.Entity.csproj", "{AA1D4EFA-C3C2-476F-9B4D-C84E763834B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDart.API", "OpenDart.API\OpenDart.API.csproj", "{90C8AEC0-A138-43D8-AFE5-2618D9371431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenDart.API", "OpenDart.API\OpenDart.API.csproj", "{90C8AEC0-A138-43D8-AFE5-2618D9371431}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.OpenDart", "Test.OpenDart\Test.OpenDart.csproj", "{DAFCF3B6-9AF7-442F-954F-729CAA101D97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.OpenDart", "Test.OpenDart\Test.OpenDart.csproj", "{DAFCF3B6-9AF7-442F-954F-729CAA101D97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAPI.Control", "OpenAPI.Control\OpenAPI.Control.csproj", "{501644B7-178B-4DEB-B296-40195F4B96E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,18 @@ Global
 		{DAFCF3B6-9AF7-442F-954F-729CAA101D97}.Release|x64.Build.0 = Release|Any CPU
 		{DAFCF3B6-9AF7-442F-954F-729CAA101D97}.Release|x86.ActiveCfg = Release|Any CPU
 		{DAFCF3B6-9AF7-442F-954F-729CAA101D97}.Release|x86.Build.0 = Release|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Debug|x64.Build.0 = Debug|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Debug|x86.Build.0 = Debug|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Release|x64.ActiveCfg = Release|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Release|x64.Build.0 = Release|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Release|x86.ActiveCfg = Release|Any CPU
+		{501644B7-178B-4DEB-B296-40195F4B96E6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -36,7 +36,7 @@ public sealed partial class AxKHCoreAPI : AxKHOpenAPI
     /// <exception cref="FileNotFoundException"></exception>
     public TR GetTrData(string sTrCode)
     {
-        var tr = Array.Find(TrInventory, m => sTrCode.Equals(m.Code))
+        var tr = Array.Find(TrInventory, m => sTrCode.Equals(m.Code, StringComparison.OrdinalIgnoreCase))
 
             ?? throw new FileNotFoundException(Resources.MODULE);
 
@@ -73,19 +73,20 @@ public sealed partial class AxKHCoreAPI : AxKHOpenAPI
         OnReceiveTrData += OnReceiveCoreTrData;
         OnEventConnect += OnEventCoreConnect;
         OnReceiveMsg += OnReceiveCoreMessage;
+#if DEBUG
         OnReceiveConditionVer += OnReceiveCoreConditionVersion;
         OnReceiveRealCondition += OnReceiveCoreRealCondition;
         OnReceiveTrCondition += OnReceiveCoreTrCondition;
-
+#endif
         Delay.Instance.Milliseconds = milliseconds;
 
         return CommConnect() == 0;
     }
     /// <summary>call the EnsureHandle method to inject it as a parameter.</summary>
     /// <param name="hWndParent"></param>
-    public AxKHCoreAPI(nint hWndParent) : base(hWndParent)
+    public AxKHCoreAPI(nint hWndParent, Process process = Process.x64) : base(hWndParent, process)
     {
-        path = Path.Combine(GetAPIModulePath(), "Data");
+        path = Path.Combine(GetAPIModulePath(), Resources.DATA);
 
         if (Directory.Exists(path))
         {

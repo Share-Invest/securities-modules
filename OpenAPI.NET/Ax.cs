@@ -1,10 +1,14 @@
 ﻿using ShareInvest.Properties;
 
-using System.Diagnostics;
 using System.IO.Compression;
 
 namespace ShareInvest
 {
+    public enum Process
+    {
+        x64 = '@',
+        x86 = 'V'
+    }
     public static class Ax
     {
         public static void Install()
@@ -23,9 +27,9 @@ namespace ShareInvest
 
             ZipFile.ExtractToDirectory(fileFullName, path, true);
 
-            using (var process = new Process
+            using (var process = new System.Diagnostics.Process
             {
-                StartInfo = new ProcessStartInfo
+                StartInfo = new System.Diagnostics.ProcessStartInfo
                 {
                     FileName = Resources.INSTALL,
                     WorkingDirectory = path,

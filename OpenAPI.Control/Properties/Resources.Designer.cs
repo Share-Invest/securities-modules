@@ -61,74 +61,41 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
-        ///   Data과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static string DATA {
+        internal static System.Drawing.Icon bright {
             get {
-                return ResourceManager.GetString("DATA", resourceCulture);
+                object obj = ResourceManager.GetObject("bright", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   *.enc과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   Copyright ⓒ 2023, ShareInvest Corp.과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        internal static string ENC {
+        internal static string COPYRIGHT {
             get {
-                return ResourceManager.GetString("ENC", resourceCulture);
+                return ResourceManager.GetString("COPYRIGHT", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   @END_과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static string END {
+        internal static System.Drawing.Icon dark {
             get {
-                return ResourceManager.GetString("END", resourceCulture);
+                object obj = ResourceManager.GetObject("dark", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   [INPUT]과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static string INPUT {
+        internal static System.Drawing.Icon disable {
             get {
-                return ResourceManager.GetString("INPUT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   https://www1.kiwoom.com/h/customer/download/VOpenApiInfoView과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string MODULE {
-            get {
-                return ResourceManager.GetString("MODULE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   [OUTPUT]과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string OUTPUT {
-            get {
-                return ResourceManager.GetString("OUTPUT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   *,*,*과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string SINGLE {
-            get {
-                return ResourceManager.GetString("SINGLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   @START_과(와) 유사한 지역화된 문자열을 찾습니다.
-        /// </summary>
-        internal static string START {
-            get {
-                return ResourceManager.GetString("START", resourceCulture);
+                object obj = ResourceManager.GetObject("disable", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }
