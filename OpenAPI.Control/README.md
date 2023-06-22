@@ -12,4 +12,16 @@
 
 </Window>
 ```
+### or
+```C#
+public partial class Test : Window
+{
+    public Test()
+    {
+        Content = new ShareInvest.AxKHCoreAPIControl();
+
+        InitializeComponent();
+    }
+}
+```
 ### library for controlling information received from Kiwoom OpenAPI.
