@@ -117,28 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DATA" xml:space="preserve">
-    <value>Data</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="bright" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kiwoom_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ENC" xml:space="preserve">
-    <value>*.enc</value>
+  <data name="COPYRIGHT" xml:space="preserve">
+    <value>Copyright ⓒ 2023, ShareInvest Corp.</value>
   </data>
-  <data name="END" xml:space="preserve">
-    <value>@END_</value>
+  <data name="dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dark_mode_kiwoom_logo.ico;System.Drawing.Icon, System.Drawing,  Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="INPUT" xml:space="preserve">
-    <value>[INPUT]</value>
-  </data>
-  <data name="MODULE" xml:space="preserve">
-    <value>https://www1.kiwoom.com/h/customer/download/VOpenApiInfoView</value>
-  </data>
-  <data name="OUTPUT" xml:space="preserve">
-    <value>[OUTPUT]</value>
-  </data>
-  <data name="SINGLE" xml:space="preserve">
-    <value>*,*,*</value>
-  </data>
-  <data name="START" xml:space="preserve">
-    <value>@START_</value>
+  <data name="disable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\disabled_kiwoom_logo.ico;System.Drawing.Icon, System.Drawing,  Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

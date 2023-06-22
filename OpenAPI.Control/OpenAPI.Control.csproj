@@ -1,24 +1,27 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Title>OpenAPI-Core</Title>
+		<UseWPF>True</UseWPF>
+		<UseWindowsForms>True</UseWindowsForms>
+		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
+		<AssemblyName>ShareInvest.$(MSBuildProjectName)</AssemblyName>
+		<RootNamespace>ShareInvest</RootNamespace>
+		<PlatformTarget>x86</PlatformTarget>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>OpenAPI-Control</Title>
 		<Authors>cyberprophet</Authors>
 		<Company>ShareInvest Corp.</Company>
 		<Product>Algorithmic-Trading</Product>
-		<RootNamespace>ShareInvest</RootNamespace>
-		<AssemblyName>ShareInvest.OpenAPI.Core</AssemblyName>
+		<Description>library for controlling information received from Kiwoom OpenAPI</Description>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Description>library for AnyCPU use and convenient of Kiwoom OpenAPI</Description>
 		<PackageProjectUrl>https://github.com/Share-Invest/securities-modules</PackageProjectUrl>
-		<PackageTags>OpenAPI;KHOpenAPI;Kiwoom;API;Stock</PackageTags>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageIcon>ShareLogo.png</PackageIcon>
+		<PackageTags>Kiwoom;OpenAPI;Control;Share;Invest;Trading;Algorithmic;Core;API</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageIcon>LOGO.png</PackageIcon>
-		<Version>1.0.5.1</Version>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<TargetFrameworks>net7.0-windows10.0.17763.0</TargetFrameworks>
+		<Version>1.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,18 +29,14 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="J:\Images\LOGO.png">
+		<None Include="J:\Images\ShareLogo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ShareInvest.OpenAPI" Version="1.0.1.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\OpenAPI.Entity\OpenAPI.Entity.csproj" />
+		<ProjectReference Include="..\OpenAPI.Core\OpenAPI.Core.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
