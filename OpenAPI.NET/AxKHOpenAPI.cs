@@ -499,13 +499,13 @@ public class AxKHOpenAPI
     /// call the EnsureHandle method to inject it as a parameter.
     /// </summary>
     /// <param name="hWndParent"></param>
-    public AxKHOpenAPI(IntPtr hWndParent)
+    public AxKHOpenAPI(IntPtr hWndParent, Process process = Process.x64)
     {
-        string clsid = Environment.Is64BitProcess ? Resources.X64 : Resources.X86;
+        var clsid = Process.x64 == process ? Resources.X64 : Resources.X86;
 
         if (!Created && AtlAxWinInit())
         {
-            hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, (IntPtr)9001, IntPtr.Zero, IntPtr.Zero);
+            hWndContainer = CreateWindowEx(0, "AtlAxWin", clsid, WS_VISIBLE | WS_CHILD, -100, -100, 20, 20, hWndParent, 9001, IntPtr.Zero, IntPtr.Zero);
 
             if (hWndContainer != IntPtr.Zero)
             {
