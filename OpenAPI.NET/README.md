@@ -17,7 +17,7 @@ public partial class Test : Window
 
         InitializeComponent();
 
-        axAPI = new ShareInvest.AxKHCoreAPI(handle, Process.x86);
+        axAPI = new ShareInvest.AxKHCoreAPI(handle, ShareInvest.Process.x86);
     }
     readonly ShareInvest.AxKHCoreAPI axAPI;
 }
