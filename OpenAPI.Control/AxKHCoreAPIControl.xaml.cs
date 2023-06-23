@@ -35,24 +35,43 @@ public partial class AxKHCoreAPIControl : UserControl
             Icon = icons[^1],
             BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info
         };
-        timer.Tick += (sender, e) =>
-        {
-            var now = DateTime.Now;
+        timer.Tick += OnReceiveTick;
 
-            if (IsConnected)
-            {
-                notifyIcon.Icon = icons[now.Second % 2];
-            }
-            else
-            {
-                notifyIcon.Icon = icons[^1];
-            }
-        };
         InitializeComponent();
 
         notifyIcon.Text = Properties.Resources.COPYRIGHT;
 
         axAPI = new AxKHCoreAPI(handle, Process.x86);
+
+        timer.Start();
+    }
+    void OnReceiveTick(object? _, EventArgs e)
+    {
+        var now = DateTime.Now;
+
+        if (IsConnected)
+        {
+            notifyIcon.Icon = icons[now.Second % 2];
+        }
+        else
+        {
+            if (now.Second == 0x3A && now.Minute % 2 == 0 && IsNotInspectionTime(now))
+            {
+                IsConnected = axAPI.CommConnect(0x259);
+
+                if (IsConnected)
+                {
+                    Delay.Instance.Run();
+                }
+            }
+            notifyIcon.Icon = icons[^1];
+        }
+    }
+    bool IsNotInspectionTime(DateTime now)
+    {
+        return (now.Hour == 5 || now.Hour == 6 && now.Minute < 0x35) is false &&
+            System.Diagnostics.Process.GetProcessesByName("opstarter").Length == 0 &&
+            axAPI.GetConnectState() == 0;
     }
     bool IsConnected
     {
