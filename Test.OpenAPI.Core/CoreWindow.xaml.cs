@@ -6,7 +6,9 @@ public partial class CoreWindow : Window
 {
     public CoreWindow()
     {
-        Content = new AxKHCoreAPIControl();
+        var control = new AxKHCoreAPIControl();
+
+        Content = control;
 
         InitializeComponent();
 

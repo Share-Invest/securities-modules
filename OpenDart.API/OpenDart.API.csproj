@@ -13,12 +13,12 @@
 		<Product>Algorithmic-Trading</Product>
 		<Description>library for convenient of OPEN DART</Description>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-		<PackageIcon>LOGO.png</PackageIcon>
+		<PackageIcon>RoundLogo.png</PackageIcon>
 		<RepositoryUrl>https://github.com/Share-Invest/securities-modules</RepositoryUrl>
 		<PackageTags>OPENDART;DART;API;Securities;ShareInvest</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.0.1.1</Version>
+		<Version>1.1.1.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,7 +26,7 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="J:\Images\LOGO.png">
+		<None Include="J:\Images\RoundLogo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

@@ -17,8 +17,8 @@
 		<PackageTags>OpenAPI;KHOpenAPI;Kiwoom;API;Stock</PackageTags>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageIcon>LOGO.png</PackageIcon>
-		<Version>1.0.5.1</Version>
+		<PackageIcon>RoundLogo.png</PackageIcon>
+		<Version>1.1.5.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -26,14 +26,14 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="J:\Images\LOGO.png">
+		<None Include="J:\Images\RoundLogo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ShareInvest.OpenAPI" Version="1.0.1.1" />
+		<PackageReference Include="ShareInvest.OpenAPI" Version="1.1.1.2" />
 	</ItemGroup>
 
 	<ItemGroup>
