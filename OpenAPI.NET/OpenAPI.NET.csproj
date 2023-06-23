@@ -16,8 +16,9 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageTags>Share;Invest;cyberprophet</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-		<PackageIcon>LOGO.png</PackageIcon>
-		<Version>1.0.1.1</Version>
+		<PackageIcon>RoundLogo.png</PackageIcon>
+		<Version>1.1.1.2</Version>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,7 +26,7 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="J:\Images\LOGO.png">
+		<None Include="J:\Images\RoundLogo.png">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
