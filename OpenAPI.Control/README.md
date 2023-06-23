@@ -24,4 +24,4 @@ public partial class Test : Window
     }
 }
 ```
-### library for controlling information received from Kiwoom OpenAPI.
+### [![NuGet](https://img.shields.io/nuget/v/ShareInvest.OpenAPI.Control?label=ShareInvest.OpenAPI.Control&style=plastic&logo=nuget&color=004880)](https://www.nuget.org/packages/ShareInvest.OpenAPI.Control) for controlling information received from Kiwoom OpenAPI.
