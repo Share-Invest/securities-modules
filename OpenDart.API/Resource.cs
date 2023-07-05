@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using ShareInvest.Entities;
+using ShareInvest.Entities.Dart;
 
 using System.IO.Compression;
 using System.Text;
@@ -10,13 +10,13 @@ namespace ShareInvest;
 
 static class Resource
 {
-    internal static IEnumerable<DartCode> GetEnumerator(byte[] rawBytes)
+    internal static IEnumerable<Code> GetEnumerator(byte[] rawBytes)
     {
         using (var stream = new MemoryStream(rawBytes ?? Array.Empty<byte>()))
         {
             using (var compress = new ZipArchive(stream, ZipArchiveMode.Read))
             {
-                var list = new Stack<DartCode>();
+                var list = new Stack<Code>();
 
                 foreach (var entry in compress.Entries)
                 {
@@ -34,7 +34,7 @@ static class Resource
                             }
                             else
                             {
-                                yield return new DartCode
+                                yield return new Code
                                 {
                                     StockCode = node["stock_code"]?.InnerText,
                                     CorpCode = node["corp_code"]?.InnerText,
@@ -56,7 +56,7 @@ static class Resource
             {
                 using (var compress = new ZipArchive(stream, ZipArchiveMode.Read))
                 {
-                    var list = new Stack<DartCode>();
+                    var list = new Stack<Code>();
 
                     foreach (var entry in compress.Entries)
                     {
@@ -74,7 +74,7 @@ static class Resource
                                 }
                                 else
                                 {
-                                    list.Push(new DartCode
+                                    list.Push(new Code
                                     {
                                         StockCode = node["stock_code"]?.InnerText,
                                         CorpCode = node["corp_code"]?.InnerText,

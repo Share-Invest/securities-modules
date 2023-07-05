@@ -2,9 +2,9 @@
 
 using System.Runtime.Serialization;
 
-namespace ShareInvest.Entities;
+namespace ShareInvest.Entities.Dart;
 
-public class DartCode
+public class Code
 {
     [DataMember, JsonProperty("corp_code")]
     public virtual string? CorpCode

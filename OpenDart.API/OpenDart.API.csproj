@@ -18,7 +18,7 @@
 		<PackageTags>OPENDART;DART;API;Securities;ShareInvest</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.1.1.1</Version>
+		<Version>1.2.1.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -35,6 +35,10 @@
 	<ItemGroup>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Entities\Naver\" />
 	</ItemGroup>
 
 </Project>
