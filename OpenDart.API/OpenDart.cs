@@ -2,9 +2,7 @@
 using Newtonsoft.Json.Linq;
 
 using RestSharp;
-
-using ShareInvest.Entities;
-
+using ShareInvest.Entities.Dart;
 using System.Net;
 
 namespace ShareInvest;
@@ -15,8 +13,8 @@ public class OpenDart : RestClient
     /// <param name="corpCode">Corp Code</param>
     /// <param name="inquiryDate">yyyyMMdd</param>
     /// <param name="pageCount">100 is the maximum</param>
-    /// <returns><see cref="DartDisclousure"/></returns>
-    public async Task<DartDisclousure[]?> GetDisclousureInventoryAsync(string corpCode, string? inquiryDate = null, int pageCount = 100)
+    /// <returns><see cref="Disclousure"/></returns>
+    public async Task<Disclousure[]?> GetDisclousureInventoryAsync(string corpCode, string? inquiryDate = null, int pageCount = 100)
     {
         var resource = Resource.Get("api/list.json", token: JToken.FromObject(new
         {
@@ -31,7 +29,7 @@ public class OpenDart : RestClient
         {
             return null;
         }
-        var disclousure = JsonConvert.DeserializeObject<DartDisclousureInventory>(res.Content);
+        var disclousure = JsonConvert.DeserializeObject<DisclousureInventory>(res.Content);
 
         var status = Convert.ToInt32(disclousure?.Status);
 
@@ -39,9 +37,9 @@ public class OpenDart : RestClient
         {
             return disclousure?.Inventory;
         }
-        return Array.Empty<DartDisclousure>();
+        return Array.Empty<Disclousure>();
     }
-    public async Task<DartCompany?> GetCompanyAsync(string corpCode)
+    public async Task<Company?> GetCompanyAsync(string corpCode)
     {
         var resource = Resource.Get("api/company.json", token: JToken.FromObject(new
         {
@@ -54,9 +52,9 @@ public class OpenDart : RestClient
         {
             return null;
         }
-        return string.IsNullOrEmpty(res.Content) ? null : JsonConvert.DeserializeObject<DartCompany>(res.Content);
+        return string.IsNullOrEmpty(res.Content) ? null : JsonConvert.DeserializeObject<Company>(res.Content);
     }
-    public async IAsyncEnumerable<DartCode> GetEnumerableCorpCodeAsync()
+    public async IAsyncEnumerable<Code> GetEnumerableCorpCodeAsync()
     {
         var resource = Resource.Get("api/corpCode.xml", token: JToken.FromObject(new
         {

@@ -3,9 +3,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace ShareInvest.Entities;
+namespace ShareInvest.Entities.Dart;
 
-public class DartDisclousure
+public class Disclousure
 {
     [DataMember, JsonProperty("rcept_no"), StringLength(0xE)]
     public string? SerialNumber

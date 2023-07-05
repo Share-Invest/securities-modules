@@ -3,9 +3,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace ShareInvest.Entities;
+namespace ShareInvest.Entities.Dart;
 
-public class DartCompany : DartCode
+public class Company : Code
 {
     [DataMember, JsonProperty("status")]
     public string? Status

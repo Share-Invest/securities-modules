@@ -2,9 +2,9 @@
 
 using System.Runtime.Serialization;
 
-namespace ShareInvest.Entities;
+namespace ShareInvest.Entities.Dart;
 
-public class DartDisclousureInventory
+public class DisclousureInventory
 {
     [DataMember, JsonProperty("status")]
     public string? Status
@@ -37,7 +37,7 @@ public class DartDisclousureInventory
         get; set;
     }
     [DataMember, JsonProperty("list")]
-    public DartDisclousure[]? Inventory
+    public Disclousure[]? Inventory
     {
         get; set;
     }
