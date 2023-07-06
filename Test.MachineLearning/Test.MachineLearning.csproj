@@ -33,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\CoreAPI.ML.NET\CoreAPI.ML.NET.csproj" />
+		<ProjectReference Include="..\CoreAPI.ML.NET\CoreAPI.ML.NET.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

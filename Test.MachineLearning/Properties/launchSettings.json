@@ -1,9 +1,12 @@
 {
-  "profiles": {
-    "Test.MachineLearning": {
+  "profiles":
+  {
+    "Test.MachineLearning":
+    {
       "commandName": "Project"
     },
-    "WSL": {
+    "WSL":
+    {
       "commandName": "WSL2",
       "distributionName": ""
     }
