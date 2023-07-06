@@ -1,13 +1,28 @@
 ﻿using Microsoft.Extensions.Configuration;
 
 using ShareInvest;
+using ShareInvest.Infrastructure;
 using ShareInvest.Properties;
 
-using System.Media;
+using System.Runtime.Versioning;
 
-var url = Extensions.Configuration.GetConnectionString(Resources.URI);
+[assembly: SupportedOSPlatform("windows")]
 
-using (var sp = new SoundPlayer(Resources.MARIO))
+var route = Extensions.Configuration.GetConnectionString(Resources.ROUTE) ?? string.Empty;
+
+if (Extensions.Configuration.GetConnectionString(Resources.URI) is string url)
 {
-    sp.PlaySync();
+    if (PlatformID.Win32NT == Environment.OSVersion.Platform)
+    {
+        using (var sp = new System.Media.SoundPlayer(Resources.MARIO))
+        {
+            sp.PlaySync();
+        }
+    }
+    var api = new TacticianClient(url);
+
+    foreach (var code in await api.GetCodeInventoryAsync(route))
+    {
+        Console.WriteLine(code);
+    }
 }

@@ -70,6 +70,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   Route과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ROUTE {
+            get {
+                return ResourceManager.GetString("ROUTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   appsettings.json과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string SETTINGS {

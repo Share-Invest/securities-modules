@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net7.0-windows10.0.17763.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<AssemblyName>MachineLearning</AssemblyName>
@@ -14,7 +14,6 @@
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<SupportedOSPlatformVersion>8.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -31,6 +30,10 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="System.Windows.Extensions" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CoreAPI.ML.NET\CoreAPI.ML.NET.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -121,6 +121,9 @@
   <data name="MARIO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mario.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="ROUTE" xml:space="preserve">
+    <value>Route</value>
+  </data>
   <data name="SETTINGS" xml:space="preserve">
     <value>appsettings.json</value>
   </data>

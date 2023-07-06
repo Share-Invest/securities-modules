@@ -4,21 +4,17 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<AssemblyName>ShareInvest.$(MSBuildProjectName)</AssemblyName>
+		<AssemblyName>ShareInvest.CoreAPI.ML.NET</AssemblyName>
 		<RootNamespace>ShareInvest</RootNamespace>
-		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Title>OPEN-DART-API</Title>
+		<Title>Algorithmic-Trading</Title>
 		<Authors>cyberprophet</Authors>
 		<Company>ShareInvest Corp.</Company>
 		<Product>Algorithmic-Trading</Product>
-		<Description>library for convenient of OPEN DART</Description>
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
-		<PackageIcon>RoundLogo.png</PackageIcon>
-		<RepositoryUrl>https://github.com/Share-Invest/securities-modules</RepositoryUrl>
-		<PackageTags>OPENDART;DART;API;Securities;ShareInvest</PackageTags>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>1.2.1.1</Version>
+		<PackageIcon>RoundLogo.png</PackageIcon>
+		<Version>1.0.0.1</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,8 +29,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="RestSharp" Version="110.2.0" />
+	  <PackageReference Include="RestSharp" Version="110.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CoreAPI.Entity\CoreAPI.Entity.csproj" />
 	</ItemGroup>
 
 </Project>
