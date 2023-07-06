@@ -61,11 +61,29 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   DailyChartRoute과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string CHART {
+            get {
+                return ResourceManager.GetString("CHART", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   System.IO.MemoryStream과(와) 유사한 System.IO.UnmanagedMemoryStream 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream MARIO {
             get {
                 return ResourceManager.GetStream("MARIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Route과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string ROUTE {
+            get {
+                return ResourceManager.GetString("ROUTE", resourceCulture);
             }
         }
         
