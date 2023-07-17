@@ -30,6 +30,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.ML" Version="2.0.1" />
+		<PackageReference Include="Microsoft.ML.TimeSeries" Version="2.0.1" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
 	</ItemGroup>
 

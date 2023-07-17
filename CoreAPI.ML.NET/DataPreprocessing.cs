@@ -11,7 +11,7 @@ public class DataPreprocessing
     {
         this.list = list;
     }
-    public void StartProcess()
+    public void StartProcess(double riseRate)
     {
         while (list.Count > 125)
         {
@@ -56,11 +56,13 @@ public class DataPreprocessing
                 DateTimes = new double[inputCharts.Length],
                 Volumes = new double[inputCharts.Length]
             };
-            Normalization np = new(maxPrice, (double)minPrice), nv = new(maxVolume, (double)minVolume), nt = new(Convert.ToInt32(maxDateTime), (double)Convert.ToInt32(minDateTime));
+            Normalization np = new(maxPrice, (double)minPrice),
+                          nv = new(maxVolume, (double)minVolume),
+                          nt = new(Convert.ToInt32(maxDateTime), (double)Convert.ToInt32(minDateTime));
 
             for (int i = 0; i < forecastedCharts.Length; i++)
             {
-                if (forecastedCharts[i].Current > inputCharts[^1].Current * 1.15 && forecastedCharts[i].High > forecastedCharts[i].Current)
+                if (forecastedCharts[i].Current > inputCharts[^1].Current * riseRate)
                 {
                     conditionData.Satisfy = true;
 
