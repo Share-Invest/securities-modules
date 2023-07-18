@@ -37,6 +37,10 @@ if (PlatformID.Win32NT == Environment.OSVersion.Platform)
         sp.PlaySync();
     }
 }
+Console.WriteLine(new
+{
+    DateTime.Now
+});
 var codeInventory = await api.GetCodeInventoryAsync(route);
 
 foreach (var riseRate in new[] { 1.15 })
@@ -70,7 +74,8 @@ foreach (var riseRate in new[] { 1.15 })
 
     Console.WriteLine(new
     {
-        Satisfy = probability
+        Satisfy = probability,
+        DateTime.Now
     });
     if (PlatformID.Win32NT == Environment.OSVersion.Platform)
     {
