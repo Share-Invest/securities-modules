@@ -21,9 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAPI.Control", "OpenAPI.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.MachineLearning", "Test.MachineLearning\Test.MachineLearning.csproj", "{95E07895-DCA5-487F-AE29-0DE47BB71D8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAPI.ML.NET", "CoreAPI.ML.NET\CoreAPI.ML.NET.csproj", "{03BCBE2E-F9C5-4D32-AC95-1DB14D341857}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreAPI.ML.NET", "CoreAPI.ML.NET\CoreAPI.ML.NET.csproj", "{03BCBE2E-F9C5-4D32-AC95-1DB14D341857}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAPI.Entity", "CoreAPI.Entity\CoreAPI.Entity.csproj", "{CE739860-4842-48F0-B059-EA5CB6793D68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreAPI.Entity", "CoreAPI.Entity\CoreAPI.Entity.csproj", "{CE739860-4842-48F0-B059-EA5CB6793D68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Share.Utility", "Share.Utility\Share.Utility.csproj", "{D8914866-1033-42F3-8AF6-6F4E89E30F27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +169,18 @@ Global
 		{CE739860-4842-48F0-B059-EA5CB6793D68}.Release|x64.Build.0 = Release|Any CPU
 		{CE739860-4842-48F0-B059-EA5CB6793D68}.Release|x86.ActiveCfg = Release|Any CPU
 		{CE739860-4842-48F0-B059-EA5CB6793D68}.Release|x86.Build.0 = Release|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Debug|x64.Build.0 = Debug|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Debug|x86.Build.0 = Debug|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Release|x64.Build.0 = Release|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Release|x86.ActiveCfg = Release|Any CPU
+		{D8914866-1033-42F3-8AF6-6F4E89E30F27}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
