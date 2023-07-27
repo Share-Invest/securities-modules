@@ -16,7 +16,7 @@ public class BinaryClassification
 
         return engine.Predict(data);
     }
-    public object Evaluate(ITransformer model, IDataView testSet)
+    public string Evaluate(ITransformer model, IDataView testSet)
     {
         var predictions = model.Transform(testSet);
 
@@ -24,7 +24,7 @@ public class BinaryClassification
 
         Console.WriteLine(JsonConvert.SerializeObject(metrics, Formatting.Indented));
 
-        return new
+        return JsonConvert.SerializeObject(new
         {
             metrics.Accuracy,
             metrics.AreaUnderRocCurve,
@@ -37,7 +37,7 @@ public class BinaryClassification
             metrics.PositiveRecall,
             metrics.NegativePrecision,
             metrics.NegativeRecall
-        };
+        });
     }
     public (ITransformer, IDataView) Learning(IEnumerable<HalfYearData> enumerable)
     {
@@ -47,8 +47,7 @@ public class BinaryClassification
                                                                           nameof(HalfYearData.HighPrices),
                                                                           nameof(HalfYearData.LowPrices),
                                                                           nameof(HalfYearData.OpenPrices),
-                                                                          nameof(HalfYearData.Volumes),
-                                                                          nameof(HalfYearData.DateTimes));
+                                                                          nameof(HalfYearData.Volumes));
 
         var splitDataView = context.Data.TrainTestSplit(dataView, testFraction: 0.2);
 

@@ -4,11 +4,6 @@ namespace ShareInvest.ML.Entities;
 
 public class HalfYearData
 {
-    [LoadColumn(0), VectorType(120)]
-    public float[]? DateTimes
-    {
-        get; set;
-    }
     [LoadColumn(1), VectorType(120)]
     public float[]? OpenPrices
     {
