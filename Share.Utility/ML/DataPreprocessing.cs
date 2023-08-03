@@ -8,11 +8,11 @@ public class DataPreprocessing
     {
         for (int y = 0; y < 5; y++)
         {
-            var inputCharts = new InputStockChart[120];
+            var inputCharts = new InputStockChart[124];
 
             for (int i = list.Count - 1; i >= 0; i--)
             {
-                if (i >= list.Count - 120)
+                if (i > list.Count - 125)
                 {
                     inputCharts[inputCharts.Length - list.Count + i] = list[i - y];
 
@@ -38,40 +38,37 @@ public class DataPreprocessing
                 ClosePrices = new float[inputCharts.Length],
                 Volumes = new float[inputCharts.Length]
             };
-            Normalization np = new(maxPrice, (float)minPrice), nv = new(maxVolume, (float)minVolume);
+            Normalization np = new(maxPrice, (double)minPrice), nv = new(maxVolume, (double)minVolume);
 
             for (int i = 0; i < inputCharts.Length; i++)
             {
-                conditionData.ClosePrices[i] = np.Normalize(inputCharts[i].Current);
-                conditionData.LowPrices[i] = np.Normalize(inputCharts[i].Low);
-                conditionData.HighPrices[i] = np.Normalize(inputCharts[i].High);
-                conditionData.OpenPrices[i] = np.Normalize(inputCharts[i].Start);
-                conditionData.Volumes[i] = nv.Normalize(inputCharts[i].Volume);
+                conditionData.ClosePrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].Current));
+                conditionData.LowPrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].Low));
+                conditionData.HighPrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].High));
+                conditionData.OpenPrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].Start));
+                conditionData.Volumes[i] = Convert.ToSingle(nv.Normalize(inputCharts[i].Volume));
             }
             yield return (maxDateTime, conditionData);
         }
     }
-    public IEnumerable<object> StartTrainSetProcess(double riseRate)
+    public IEnumerable<HalfYearData> StartTrainSetProcess()
     {
         while (list.Count > 125)
         {
-            var forecastedCharts = new InputStockChart[5];
-            var inputCharts = new InputStockChart[120];
+            InputStockChart? forecastedChart = null;
 
-            for (int i = list.Count - 1; i >= 0; i--)
+            var inputCharts = new InputStockChart[124];
+
+            for (int i = list.Count - 2; i >= 0; i--)
             {
-                if (i >= list.Count - 5)
-                {
-                    forecastedCharts[forecastedCharts.Length - list.Count + i] = list[i];
-
-                    continue;
-                }
                 if (i >= list.Count - 125)
                 {
-                    inputCharts[inputCharts.Length - list.Count + i + 5] = list[i];
+                    inputCharts[inputCharts.Length - list.Count + i + 1] = list[i];
 
                     continue;
                 }
+                forecastedChart = list[^1];
+
                 break;
             }
             int maxPrice = inputCharts.Max(s => s.High), minPrice = inputCharts.Min(s => s.Low);
@@ -85,42 +82,35 @@ public class DataPreprocessing
             }
             var conditionData = new HalfYearData
             {
-                Satisfy = false,
+                Satisfy = forecastedChart != null && IsSatisfied(forecastedChart, inputCharts[^1]),
                 HighPrices = new float[inputCharts.Length],
                 OpenPrices = new float[inputCharts.Length],
                 LowPrices = new float[inputCharts.Length],
                 ClosePrices = new float[inputCharts.Length],
                 Volumes = new float[inputCharts.Length]
             };
-            Normalization np = new(maxPrice, (float)minPrice), nv = new(maxVolume, (float)minVolume);
+            Normalization np = new(maxPrice, (double)minPrice), nv = new(maxVolume, (double)minVolume);
 
-            for (int i = 0; i < forecastedCharts.Length; i++)
-            {
-                if (forecastedCharts[i].Current > inputCharts[^1].Current * riseRate)
-                {
-                    conditionData.Satisfy = true;
-
-                    break;
-                }
-            }
-            if (conditionData.Satisfy && Environment.ProcessorCount < 8 && inputCharts[^1].DateTime is string referenceDate)
-            {
-                yield return referenceDate;
-            }
             for (int i = 0; i < inputCharts.Length; i++)
             {
-                conditionData.ClosePrices[i] = np.Normalize(inputCharts[i].Current);
-                conditionData.LowPrices[i] = np.Normalize(inputCharts[i].Low);
-                conditionData.HighPrices[i] = np.Normalize(inputCharts[i].High);
-                conditionData.OpenPrices[i] = np.Normalize(inputCharts[i].Start);
-                conditionData.Volumes[i] = nv.Normalize(inputCharts[i].Volume);
+                conditionData.ClosePrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].Current));
+                conditionData.LowPrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].Low));
+                conditionData.HighPrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].High));
+                conditionData.OpenPrices[i] = Convert.ToSingle(np.Normalize(inputCharts[i].Start));
+                conditionData.Volumes[i] = Convert.ToSingle(nv.Normalize(inputCharts[i].Volume));
             }
             yield return conditionData;
         }
     }
-    public DataPreprocessing(List<InputStockChart> list)
+    public DataPreprocessing(List<InputStockChart> list, double riseRate = 1.15)
     {
         this.list = list;
+        this.riseRate = riseRate;
+    }
+    bool IsSatisfied(InputStockChart forecastedChart, InputStockChart inputChart)
+    {
+        return forecastedChart.Current > inputChart.Current * riseRate;
     }
     readonly List<InputStockChart> list;
+    readonly double riseRate;
 }
