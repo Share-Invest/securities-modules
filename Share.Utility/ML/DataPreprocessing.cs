@@ -4,7 +4,7 @@ namespace ShareInvest.ML;
 
 public class DataPreprocessing
 {
-    public IEnumerable<(string, HalfYearData)> StartTestSetProcess()
+    public IEnumerable<(string referenceDate, HalfYearData data)> StartTestSetProcess()
     {
         for (int y = 0; y < 5; y++)
         {
