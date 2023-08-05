@@ -55,7 +55,7 @@ public class BinaryClassification
 
         return (pipeline.Fit(splitDataView.TrainSet), splitDataView.TestSet);
     }
-    public BinaryClassification(int? seed = null, int? gpuDeviceId = null, int multiple = 1)
+    public BinaryClassification(int? seed = null, int? gpuDeviceId = null)
     {
         options = new SdcaLogisticRegressionBinaryTrainer.Options
         {
@@ -63,7 +63,7 @@ public class BinaryClassification
 #if DEBUG
                                         default
 #else
-                                        0x800 * multiple
+                                        0x800
 #endif
                                         ,
             LabelColumnName = Resources.LABEL,
