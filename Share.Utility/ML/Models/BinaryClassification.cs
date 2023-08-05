@@ -39,7 +39,7 @@ public class BinaryClassification
             metrics.NegativeRecall
         });
     }
-    public (ITransformer model, IDataView testSet) Learning(IEnumerable<HalfYearData> enumerable)
+    public (ITransformer model, IDataView testSet, DataViewSchema schema) Learn(IEnumerable<HalfYearData> enumerable)
     {
         IDataView dataView = context.Data.LoadFromEnumerable(enumerable);
 
@@ -53,7 +53,21 @@ public class BinaryClassification
 
         var pipeline = estimator.Append(context.BinaryClassification.Trainers.SdcaLogisticRegression(options));
 
-        return (pipeline.Fit(splitDataView.TrainSet), splitDataView.TestSet);
+        return (pipeline.Fit(splitDataView.TrainSet), splitDataView.TestSet, splitDataView.TrainSet.Schema);
+    }
+    public IDataView LearnMore(IEnumerable<HalfYearData> enumerable)
+    {
+        return context.Data.LoadFromEnumerable(enumerable);
+    }
+    public MemoryStream SaveModel(ITransformer model, DataViewSchema schema, MemoryStream stream)
+    {
+        context.Model.Save(model, schema, stream);
+
+        return stream;
+    }
+    public ITransformer LoadModel(Stream stream)
+    {
+        return context.Model.Load(stream, out DataViewSchema _);
     }
     public BinaryClassification(int? seed = null, int? gpuDeviceId = null)
     {
@@ -67,7 +81,8 @@ public class BinaryClassification
 #endif
                                         ,
             LabelColumnName = Resources.LABEL,
-            FeatureColumnName = Resources.FEATURE
+            FeatureColumnName = Resources.FEATURE,
+            Shuffle = false
         };
         context = seed != null ? new MLContext(seed) : new MLContext();
 
