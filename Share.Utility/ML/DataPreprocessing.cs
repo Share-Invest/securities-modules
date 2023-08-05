@@ -109,7 +109,10 @@ public class DataPreprocessing
     }
     bool IsSatisfied(InputStockChart forecastedChart, InputStockChart inputChart)
     {
-        return forecastedChart.Current > inputChart.Current * riseRate;
+        var isBullsih = forecastedChart.Start * (1 + (riseRate - 1) * 0.5) < forecastedChart.High;
+        var isSatisfied = forecastedChart.Current > inputChart.Current * riseRate;
+
+        return isBullsih && isSatisfied;
     }
     readonly List<InputStockChart> list;
     readonly double riseRate;
