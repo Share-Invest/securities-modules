@@ -39,7 +39,7 @@ public class BinaryClassification
             metrics.NegativeRecall
         });
     }
-    public (ITransformer, IDataView) Learning(IEnumerable<HalfYearData> enumerable)
+    public (ITransformer model, IDataView testSet) Learning(IEnumerable<HalfYearData> enumerable)
     {
         IDataView dataView = context.Data.LoadFromEnumerable(enumerable);
 
