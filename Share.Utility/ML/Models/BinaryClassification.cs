@@ -65,6 +65,12 @@ public class BinaryClassification
 
         return stream;
     }
+    public MemoryStream Save(ITransformer model, IDataLoader<HalfYearData> loader, MemoryStream stream)
+    {
+        context.Model.Save(model, loader, stream);
+
+        return stream;
+    }
     public ITransformer LoadModel(Stream stream)
     {
         return context.Model.Load(stream, out DataViewSchema _);
