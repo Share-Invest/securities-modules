@@ -51,7 +51,7 @@ public class DataPreprocessing
             yield return (maxDateTime, conditionData);
         }
     }
-    public IEnumerable<HalfYearData> StartTrainSetProcess()
+    public IEnumerable<object?> StartTrainSetProcess()
     {
         while (list.Count > 125)
         {
@@ -80,9 +80,15 @@ public class DataPreprocessing
             {
                 continue;
             }
+            var isSatisfied = forecastedChart != null && IsSatisfied(forecastedChart, inputCharts[^1]);
+
+            if (isSatisfied)
+            {
+                yield return forecastedChart?.DateTime;
+            }
             var conditionData = new HalfYearData
             {
-                Satisfy = forecastedChart != null && IsSatisfied(forecastedChart, inputCharts[^1]),
+                Satisfy = isSatisfied,
                 HighPrices = new float[inputCharts.Length],
                 OpenPrices = new float[inputCharts.Length],
                 LowPrices = new float[inputCharts.Length],
