@@ -8,5 +8,5 @@ public interface IFileService : IDisposable
 
     Task<FileInfo?> Save(FileVersionInfo fileVersionInfo);
 
-    (string?, FileVersionInfo?) CheckFileVersions(string app, string name, string path);
+    Task<FileVersionInfo?> CheckFileVersions(string app, string name, string path);
 }

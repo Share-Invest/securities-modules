@@ -8,5 +8,5 @@ public interface IFileVersionInfoRepository : IDisposable
 
     int Save(FileVersionInfo fileVersionInfo);
 
-    (string?, FileVersionInfo?) CheckFileVersions(string app, string name, string path);
+    FileVersionInfo? CheckFileVersions(string app, string name, string path);
 }
