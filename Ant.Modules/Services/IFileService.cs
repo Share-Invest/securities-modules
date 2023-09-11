@@ -6,7 +6,7 @@ public interface IFileService : IDisposable
 {
     IEnumerable<FileVersionInfo>? GetFileVersions(string app);
 
-    string Save(FileVersionInfo fileVersionInfo);
+    Task<FileInfo?> Save(FileVersionInfo fileVersionInfo);
 
     (string?, FileVersionInfo?) CheckFileVersions(string app, string name, string path);
 }

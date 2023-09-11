@@ -19,6 +19,18 @@ public static partial class Parameter
         }
         return string.Empty;
     }
+    public static void CreateDirectoryIsNotExist(string path)
+    {
+        if (Path.GetDirectoryName(path) is string directory)
+        {
+            DirectoryInfo di = new(directory);
+
+            if (di.Exists is false)
+            {
+                di.Create();
+            }
+        }
+    }
     [GeneratedRegex("-([a-z])")]
     private static partial Regex TransformRegex();
 }
