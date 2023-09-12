@@ -6,7 +6,7 @@ public interface IFileVersionInfoRepository : IDisposable
 {
     IEnumerable<FileVersionInfo>? GetFileVersions(string app);
 
-    string Save(FileVersionInfo fileVersionInfo);
+    int Save(FileVersionInfo fileVersionInfo);
 
-    (string?, FileVersionInfo?) CheckFileVersions(string app, string name, string path);
+    FileVersionInfo? CheckFileVersions(string app, string name, string path);
 }
