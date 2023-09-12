@@ -1,9 +1,28 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Diagnostics;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace ShareInvest;
 
 public static partial class Parameter
 {
+    public static string? CompanyName
+    {
+        get
+        {
+            var location = Assembly.GetExecutingAssembly().Location;
+
+            return FileVersionInfo.GetVersionInfo(location).CompanyName;
+        }
+    }
+    [Conditional("DEBUG")]
+    public static void GetProperites<T>(T property) where T : class
+    {
+        foreach (var propertyInfo in property.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
+        {
+            Debug.WriteLine($"{propertyInfo.Name}: {propertyInfo.GetValue(property)}");
+        }
+    }
     public static string TransformOutbound(string route)
     {
         return Regex.Replace(route, "([a-z])([A-Z])", "$1-$2", RegexOptions.CultureInvariant, TimeSpan.FromMilliseconds(0x64))
