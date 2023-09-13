@@ -1,15 +1,16 @@
 ﻿using Newtonsoft.Json;
 
+using RestSharp;
+
 using System.Diagnostics;
+using System.Net;
 
 namespace ShareInvest.Utilities;
 
-public class Publish
+public class Publish : RestClient
 {
-    public async Task ExecuteAsync(string program, string commandLine)
+    public async Task ExecuteAsync(string program)
     {
-        CommandLine = commandLine;
-
         foreach (var info in GetVersionInfo(program))
         {
             var index = info.FileName.IndexOf(nameof(Publish).ToLowerInvariant());
@@ -18,11 +19,59 @@ public class Publish
             {
                 continue;
             }
+            await ExecuteAsync(info.GetType().Name, new Entities.FileVersionInfo
+            {
+                App = program[..^4],
+                Path = Path.GetDirectoryName(info.FileName)?[index..],
+                FileName = Path.GetFileName(info.FileName),
+                CompanyName = info.CompanyName,
+                FileBuildPart = info.FileBuildPart,
+                FileDescription = info.FileDescription,
+                FileMajorPart = info.FileMajorPart,
+                FileMinorPart = info.FileMinorPart,
+                FilePrivatePart = info.FilePrivatePart,
+                FileVersion = info.FileVersion,
+                InternalName = info.InternalName,
+                OriginalFileName = info.OriginalFilename,
+                PrivateBuild = info.PrivateBuild,
+                ProductBuildPart = info.ProductBuildPart,
+                ProductMajorPart = info.ProductMajorPart,
+                ProductMinorPart = info.ProductMinorPart,
+                ProductName = info.ProductName,
+                ProductPrivatePart = info.ProductPrivatePart,
+                ProductVersion = info.ProductVersion,
+                Publish = DateTime.Now.Ticks,
+                File = await File.ReadAllBytesAsync(info.FileName)
+            });
         }
     }
-    public Publish(string path)
+    public string? CommandLine
     {
+        get; set;
+    }
+    public Publish(string path, string domain) : base(domain)
+    {
+        cts = new CancellationTokenSource();
         this.path = path;
+    }
+    async Task ExecuteAsync(string route, Entities.FileVersionInfo ctor)
+    {
+        var request = new RestRequest(Parameter.TransformOutbound(route), Method.Post);
+
+        request.AddJsonBody(JsonConvert.SerializeObject(ctor));
+
+        var response = await ExecuteAsync(request, cts.Token);
+
+        if (HttpStatusCode.OK != response.StatusCode)
+        {
+#if DEBUG
+            Debug.WriteLine(new
+            {
+                response.Content,
+                response.StatusCode
+            });
+#endif
+        }
     }
     IEnumerable<FileVersionInfo> GetVersionInfo(string fileName)
     {
@@ -102,9 +151,6 @@ public class Publish
             }
         }
     }
-    string? CommandLine
-    {
-        get; set;
-    }
     readonly string path;
+    readonly CancellationTokenSource cts;
 }
