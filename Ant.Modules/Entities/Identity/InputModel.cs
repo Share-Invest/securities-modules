@@ -2,7 +2,7 @@
 
 namespace ShareInvest.Entities.Identity;
 
-public class InputForgotPasswordModel
+public class InputModel
 {
     [Required, EmailAddress]
     public string? Email

@@ -2,13 +2,8 @@
 
 namespace ShareInvest.Entities.Identity;
 
-public class InputLogInModel
+public class InputLogInModel : InputModel
 {
-    [Required, EmailAddress]
-    public string? Email
-    {
-        get; set;
-    }
     [Required, DataType(DataType.Password)]
     public string? Password
     {
