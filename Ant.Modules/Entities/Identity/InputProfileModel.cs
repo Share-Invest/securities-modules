@@ -2,13 +2,8 @@
 
 namespace ShareInvest.Entities.Identity;
 
-public class InputProfileModel
+public class InputProfileModel : InputModel
 {
-    [Required, EmailAddress]
-    public string? Email
-    {
-        get; set;
-    }
     [Phone, Display(Name = "Phone number")]
     public string? PhoneNumber
     {
