@@ -12,12 +12,12 @@ public class KiwoomHub
     {
         get;
     }
-    public KiwoomHub(string url, string? token = null)
+    public KiwoomHub(string url, string? accessToken = null)
     {
         Hub = new HubConnectionBuilder()
             .WithUrl(url, configureHttpConnection =>
             {
-                configureHttpConnection.AccessTokenProvider = () => Task.FromResult(token);
+                configureHttpConnection.AccessTokenProvider = () => Task.FromResult(accessToken);
             })
             .AddNewtonsoftJsonProtocol(configure =>
             {
@@ -36,5 +36,8 @@ public class KiwoomHub
                 TimeSpan.FromSeconds(0x20)
             })
             .Build();
+
+        Hub.ServerTimeout = TimeSpan.FromSeconds(0x40);
+        Hub.HandshakeTimeout = TimeSpan.FromSeconds(0x20);
     }
 }
