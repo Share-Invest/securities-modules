@@ -60,7 +60,7 @@ public class Publish : RestClient
     {
         var request = new RestRequest(Parameter.TransformOutbound(route), Method.Post);
 
-        request.AddHeader(HeaderNames.Authorization, token);
+        request.AddHeader(HeaderNames.Authorization, string.Concat(Properties.Resources.BEARER, token));
         request.AddJsonBody(JsonConvert.SerializeObject(ctor));
 
         var response = await ExecuteAsync(request, cts.Token);
