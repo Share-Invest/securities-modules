@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\DelayTheTask\DelayTheTask.csproj" />
+		<ProjectReference Include="..\DelayTheTask\DelayTheTask.csproj" />
 	</ItemGroup>
 
 </Project>
