@@ -7,5 +7,7 @@ public interface ISecuritiesService : IDisposable
 {
     Task<int> RegisterUserAsync(Securities securities);
 
+    Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.OPTKWFID item);
+
     int RecordsCommunicationsWithSecuritiesCorp(OpenMessage message);
 }
