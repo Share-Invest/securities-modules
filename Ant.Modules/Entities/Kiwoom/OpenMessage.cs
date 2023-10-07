@@ -19,7 +19,7 @@ public class OpenMessage
     {
         get; set;
     }
-    [Required]
+    [Required, StringLength(0x40)]
     public string Title
     {
         set
