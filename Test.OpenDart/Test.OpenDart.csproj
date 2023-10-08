@@ -20,14 +20,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="J:\Images\DART.png">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
+		<PackageReference Include="ShareInvest.OpenDart.API" Version="1.0.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ShareInvest.OpenDart.API" Version="1.0.1.1" />
+		<ProjectReference Include="..\DelayTheTask\DelayTheTask.csproj" />
 	</ItemGroup>
 
 </Project>
