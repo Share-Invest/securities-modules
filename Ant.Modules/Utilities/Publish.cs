@@ -1,6 +1,4 @@
-﻿using Microsoft.Net.Http.Headers;
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 using RestSharp;
 
@@ -11,7 +9,7 @@ namespace ShareInvest.Utilities;
 
 public class Publish : RestClient
 {
-    public async Task ExecuteAsync(string program, string token)
+    public async Task ExecuteAsync(string program)
     {
         foreach (var info in GetVersionInfo(program))
         {
@@ -21,7 +19,7 @@ public class Publish : RestClient
             {
                 continue;
             }
-            await ExecuteAsync(info.GetType().Name, token, new Entities.FileVersionInfo
+            await ExecuteAsync(info.GetType().Name, new Entities.FileVersionInfo
             {
                 App = program[..^4],
                 Path = Path.GetDirectoryName(info.FileName)?[index..],
@@ -51,16 +49,18 @@ public class Publish : RestClient
     {
         get; set;
     }
-    public Publish(string path, string domain) : base(domain)
+    public Publish(string path, string baseUrl, string accessToken) : base(baseUrl, configureDefaultHeaders: headers =>
+    {
+        headers.Add(KnownHeaders.Authorization, $"Bearer {accessToken}");
+    })
     {
         cts = new CancellationTokenSource();
         this.path = path;
     }
-    async Task ExecuteAsync(string route, string token, Entities.FileVersionInfo ctor)
+    async Task ExecuteAsync(string route, Entities.FileVersionInfo ctor)
     {
         var request = new RestRequest(Parameter.TransformOutbound(route), Method.Post);
 
-        request.AddHeader(HeaderNames.Authorization, string.Concat(Properties.Resources.BEARER, token));
         request.AddJsonBody(JsonConvert.SerializeObject(ctor));
 
         var response = await ExecuteAsync(request, cts.Token);
