@@ -29,15 +29,12 @@ public class KiwoomHub
             })
             .WithAutomaticReconnect(new[]
             {
-                TimeSpan.FromSeconds(1),
-                TimeSpan.FromSeconds(4),
-                TimeSpan.FromSeconds(8),
-                TimeSpan.FromSeconds(0x10),
-                TimeSpan.FromSeconds(0x20)
+                TimeSpan.Zero,
+                TimeSpan.FromSeconds(3),
+                TimeSpan.FromSeconds(5),
+                TimeSpan.FromSeconds(7),
+                TimeSpan.FromSeconds(9)
             })
             .Build();
-
-        Hub.ServerTimeout = TimeSpan.FromSeconds(0x40);
-        Hub.HandshakeTimeout = TimeSpan.FromSeconds(0x20);
     }
 }

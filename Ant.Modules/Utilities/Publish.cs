@@ -9,9 +9,9 @@ namespace ShareInvest.Utilities;
 
 public class Publish : RestClient
 {
-    public async Task ExecuteAsync(string program)
+    public async Task ExecuteAsync(string program, string? exclusionPath = null)
     {
-        foreach (var info in GetVersionInfo(program))
+        foreach (var info in GetVersionInfo(program, exclusionPath))
         {
             var index = info.FileName.IndexOf(nameof(Publish).ToLowerInvariant());
 
@@ -55,6 +55,7 @@ public class Publish : RestClient
     })
     {
         cts = new CancellationTokenSource();
+
         this.path = path;
     }
     async Task ExecuteAsync(string route, Entities.FileVersionInfo ctor)
@@ -76,7 +77,7 @@ public class Publish : RestClient
 #endif
         }
     }
-    IEnumerable<FileVersionInfo> GetVersionInfo(string fileName)
+    IEnumerable<FileVersionInfo> GetVersionInfo(string fileName, string? exclusionPath = null)
     {
         string? dirName = string.Empty;
 
@@ -101,9 +102,13 @@ public class Publish : RestClient
         }
         foreach (var file in Directory.EnumerateFiles(dirName, "*", SearchOption.AllDirectories))
         {
+            if (string.IsNullOrEmpty(exclusionPath) is false && file.StartsWith(exclusionPath, StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
 #if DEBUG
             Debug.WriteLine(file);
-#endif
+#endif            
             yield return FileVersionInfo.GetVersionInfo(file);
         }
     }

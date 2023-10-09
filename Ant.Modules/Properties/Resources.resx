@@ -123,10 +123,16 @@
   <data name="BEARER" xml:space="preserve">
     <value>Bearer </value>
   </data>
+  <data name="CODENUMBER" xml:space="preserve">
+    <value>종목번호</value>
+  </data>
   <data name="CSPROJ" xml:space="preserve">
     <value>*.csproj</value>
   </data>
   <data name="POWERSHELL" xml:space="preserve">
     <value>pwsh</value>
+  </data>
+  <data name="STOCKCODE" xml:space="preserve">
+    <value>종목코드</value>
   </data>
 </root>

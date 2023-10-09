@@ -79,6 +79,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   종목번호과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string CODENUMBER {
+            get {
+                return ResourceManager.GetString("CODENUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   *.csproj과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string CSPROJ {
@@ -93,6 +102,15 @@ namespace ShareInvest.Properties {
         internal static string POWERSHELL {
             get {
                 return ResourceManager.GetString("POWERSHELL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   종목코드과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string STOCKCODE {
+            get {
+                return ResourceManager.GetString("STOCKCODE", resourceCulture);
             }
         }
     }

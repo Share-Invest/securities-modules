@@ -9,5 +9,7 @@ public interface ISecuritiesService : IDisposable
 
     Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.OPTKWFID item);
 
+    Task<int> RecordAssetStatusAsync(AccountBook assets);
+
     int RecordsCommunicationsWithSecuritiesCorp(OpenMessage message);
 }
