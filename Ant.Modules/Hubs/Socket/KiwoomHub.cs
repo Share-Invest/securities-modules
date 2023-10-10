@@ -4,6 +4,8 @@ using Microsoft.Extensions.Logging;
 
 using Newtonsoft.Json;
 
+using ShareInvest.Properties;
+
 namespace ShareInvest.Hubs.Socket;
 
 public class KiwoomHub
@@ -12,11 +14,15 @@ public class KiwoomHub
     {
         get;
     }
-    public KiwoomHub(string url, string? accessToken = null)
+    public KiwoomHub(string url, string? accessToken = null, string? serialKey = null)
     {
         Hub = new HubConnectionBuilder()
             .WithUrl(url, configureHttpConnection =>
             {
+                if (string.IsNullOrEmpty(serialKey) is false)
+                {
+                    _ = configureHttpConnection.Headers.TryAdd(Resources.KEY, serialKey);
+                }
                 configureHttpConnection.AccessTokenProvider = () => Task.FromResult(accessToken);
             })
             .AddNewtonsoftJsonProtocol(configure =>

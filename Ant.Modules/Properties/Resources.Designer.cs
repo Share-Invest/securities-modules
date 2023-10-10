@@ -97,6 +97,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   Securities과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string KEY {
+            get {
+                return ResourceManager.GetString("KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   pwsh과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string POWERSHELL {
