@@ -129,6 +129,9 @@
   <data name="CSPROJ" xml:space="preserve">
     <value>*.csproj</value>
   </data>
+  <data name="KEY" xml:space="preserve">
+    <value>Securities</value>
+  </data>
   <data name="POWERSHELL" xml:space="preserve">
     <value>pwsh</value>
   </data>
