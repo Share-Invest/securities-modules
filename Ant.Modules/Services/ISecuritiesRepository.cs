@@ -3,7 +3,7 @@ using ShareInvest.Entities.Kiwoom;
 
 namespace ShareInvest.Services;
 
-public interface ISecuritiesService : IDisposable
+public interface ISecuritiesRepository : IDisposable
 {
     Task<int> RegisterUserAsync(Securities securities);
 

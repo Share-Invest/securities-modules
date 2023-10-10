@@ -2,7 +2,7 @@
 
 public interface IKiwoomHubService
 {
-    void OnConnectedAsync(string userIdentifier, string serialKey);
+    Task OnConnectedAsync(string userIdentifier, string serialKey);
 
-    void OnDisconnectedAsync(string userIdentifier, string serialKey);
+    Task OnDisconnectedAsync(string userIdentifier, string serialKey);
 }
