@@ -64,7 +64,7 @@ public class MapHub : IEventHandler<MsgEventArgs>
 
     void OnReceiveHubMethod()
     {
-        Hub.On<string, string>(nameof(IHubs.TransmitConclusionInformation), (code, data) =>
+        _ = Hub.On<string, string>(nameof(IHubs.TransmitConclusionInformationAsync), (code, data) =>
         {
             Send?.Invoke(this, new HubMsgEventArgs(code, data.Split('\t')));
         });

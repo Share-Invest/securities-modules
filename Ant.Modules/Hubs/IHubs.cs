@@ -6,5 +6,5 @@ public interface IHubs
 
     Task RemoveFromGroupAsync(string groupName);
 
-    void TransmitConclusionInformation(string code, string data);
+    Task TransmitConclusionInformationAsync(string code, string data);
 }
