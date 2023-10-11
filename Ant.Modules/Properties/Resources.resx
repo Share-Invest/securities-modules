@@ -138,4 +138,7 @@
   <data name="STOCKCODE" xml:space="preserve">
     <value>종목코드</value>
   </data>
+  <data name="USER" xml:space="preserve">
+    <value>UserIdentifier</value>
+  </data>
 </root>

@@ -1,6 +1,6 @@
-﻿namespace ShareInvest.Services;
+﻿namespace ShareInvest.Hubs;
 
-public interface IKiwoomHubService
+public interface IKiwoomHub
 {
     Task OnConnectedAsync(string userIdentifier, string serialKey);
 
