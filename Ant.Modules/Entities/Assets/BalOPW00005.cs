@@ -23,7 +23,7 @@ public class BalOPW00005 : AccountBook
     {
         set
         {
-            lookup = value > Parameter.Epoch ? value - Parameter.Epoch : value;
+            lookup = value > Cache.Epoch ? value - Cache.Epoch : value;
         }
         get => lookup;
     }

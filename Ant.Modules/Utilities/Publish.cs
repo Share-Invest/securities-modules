@@ -85,7 +85,7 @@ public class Publish : RestClient
         {
             var info = FileVersionInfo.GetVersionInfo(file);
 
-            if (string.IsNullOrEmpty(Parameter.CompanyName) is false && Parameter.CompanyName.Equals(info.CompanyName))
+            if (string.IsNullOrEmpty(Cache.CompanyName) is false && Cache.CompanyName.Equals(info.CompanyName))
             {
                 dirName = Path.GetDirectoryName(info.FileName);
 

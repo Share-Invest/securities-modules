@@ -2,7 +2,7 @@
 
 namespace ShareInvest.Services;
 
-public interface IFileRepository : IDisposable
+public interface IFileService : IDisposable
 {
     IEnumerable<FileVersionInfo>? GetFileVersions(string app);
 

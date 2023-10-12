@@ -122,5 +122,14 @@ namespace ShareInvest.Properties {
                 return ResourceManager.GetString("STOCKCODE", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   UserIdentifier과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string USER {
+            get {
+                return ResourceManager.GetString("USER", resourceCulture);
+            }
+        }
     }
 }
