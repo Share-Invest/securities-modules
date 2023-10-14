@@ -24,6 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="FirebaseAdmin" Version="2.4.0" />
 		<PackageReference Include="Geocoding.Google" Version="4.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="7.0.10" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="7.0.10" />
