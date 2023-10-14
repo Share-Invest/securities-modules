@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using RestSharp;
 
 using ShareInvest.Entities.Dart;
 
 using System.IO.Compression;
+using System.Net;
 using System.Xml;
 
 namespace ShareInvest.Utilities;
@@ -51,6 +53,21 @@ public class OpenDart : RestClient
             }
         }
     }
+    public async Task<CompanyOverview?> GetCompanyOverviewAsync(string corpCode)
+    {
+        var query = Parameter.TransformQuery(JToken.FromObject(new
+        {
+            crtfc_key = openDartKey,
+            corp_code = corpCode
+        }));
+        var response = await ExecuteAsync(new RestRequest(string.Concat(company, query)), cts.Token);
+
+        if (HttpStatusCode.OK == response.StatusCode && string.IsNullOrEmpty(response.Content) is false)
+        {
+            return JsonConvert.DeserializeObject<CompanyOverview>(response.Content);
+        }
+        return null;
+    }
     public OpenDart(string openDartKey) : base("https://opendart.fss.or.kr")
     {
         this.openDartKey = openDartKey;
@@ -59,4 +76,5 @@ public class OpenDart : RestClient
     readonly string openDartKey;
 
     const string corpCode = "api/corpCode.xml";
+    const string company = "api/company.json";
 }
