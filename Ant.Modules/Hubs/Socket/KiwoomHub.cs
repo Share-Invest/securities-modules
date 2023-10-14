@@ -8,8 +8,15 @@ using ShareInvest.Properties;
 
 namespace ShareInvest.Hubs.Socket;
 
-public class KiwoomHub
+public class KiwoomHub : IAsyncDisposable
 {
+    public async ValueTask DisposeAsync()
+    {
+        await Hub.StopAsync();
+        await Hub.DisposeAsync();
+
+        GC.SuppressFinalize(this);
+    }
     public HubConnection Hub
     {
         get;
@@ -31,15 +38,7 @@ public class KiwoomHub
             })
             .ConfigureLogging(configureLogging =>
             {
-                configureLogging.SetMinimumLevel(LogLevel.Debug);
-            })
-            .WithAutomaticReconnect(new[]
-            {
-                TimeSpan.Zero,
-                TimeSpan.FromSeconds(3),
-                TimeSpan.FromSeconds(5),
-                TimeSpan.FromSeconds(7),
-                TimeSpan.FromSeconds(9)
+                configureLogging.SetMinimumLevel(LogLevel.Trace);
             })
             .Build();
     }
