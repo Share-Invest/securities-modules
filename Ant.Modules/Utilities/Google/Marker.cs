@@ -1,26 +1,37 @@
 ﻿using ShareInvest.Entities.Google;
 
+using System.Drawing;
+
 namespace ShareInvest.Utilities.Google;
 
 public static class Marker
 {
-    public static object MakeStockMarker(string? url, CoordinateStock stock)
+    public static object MakeStockMarker(CoordinateStock stock)
     {
+        var background = stock.CompareToPreviousSign switch
+        {
+            "2" or "1" => Color.Red,
+            "5" or "4" => Color.Blue,
+            _ => Color.Black
+        };
+        var borderColor = stock.CompareToPreviousSign switch
+        {
+            "2" or "1" => Color.Maroon,
+            "5" or "4" => Color.Navy,
+            _ => Color.Black
+        };
         return new
         {
+            background,
+            borderColor,
             position = new
             {
                 lat = stock.Latitude,
                 lng = stock.Longitude
             },
-            png = GetMarkerImageUrl(url, stock.CompareToPreviousSign switch
-            {
-                "1" or "2" => "red",
-                "4" or "5" => "blue",
-                _ => "black"
-            }),
-            code = stock.Code,
-            name = stock.Name
+            glyphColor = Color.WhiteSmoke,
+            name = stock.Name,
+            code = stock.Code
         };
     }
     public static string GetMarkerImageUrl(string? url, string color)
