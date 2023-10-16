@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+
+using Newtonsoft.Json;
 
 using RestSharp;
 
@@ -10,13 +12,20 @@ namespace ShareInvest.Utilities;
 
 public class Kakao : RestClient
 {
-    public async Task<Response[]> GetAddressAsync(string address)
+    public async Task<object> GetAddressAsync(string address)
     {
-        var response = await ExecuteAsync(new RestRequest(string.Concat(searchAddress, address)), cts.Token);
-
-        if (HttpStatusCode.OK == response.StatusCode && !string.IsNullOrEmpty(response.Content))
+        try
         {
-            return JsonConvert.DeserializeObject<LocalAddress>(response.Content).Document;
+            var response = await ExecuteAsync(new RestRequest(string.Concat(searchAddress, address)), cts.Token);
+
+            if (HttpStatusCode.OK == response.StatusCode && !string.IsNullOrEmpty(response.Content))
+            {
+                return JsonConvert.DeserializeObject<LocalAddress>(response.Content).Document;
+            }
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
         }
         return Array.Empty<Response>();
     }
