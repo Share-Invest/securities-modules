@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using NetTopologySuite.Geometries;
+
+using Newtonsoft.Json;
 
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -7,6 +9,10 @@ namespace ShareInvest.Entities.Dart;
 
 public class CompanyOverview : UniqueNumber
 {
+    public Point? Geometry
+    {
+        get; set;
+    }
     public DateTime Date
     {
         get; set;
