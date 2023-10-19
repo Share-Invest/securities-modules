@@ -4,19 +4,32 @@ using Microsoft.Extensions.Logging;
 
 using Newtonsoft.Json;
 
+using ShareInvest.Properties;
+
 namespace ShareInvest.Hubs.Socket;
 
-public class KiwoomHub
+public class KiwoomHub : IAsyncDisposable
 {
+    public async ValueTask DisposeAsync()
+    {
+        await Hub.StopAsync();
+        await Hub.DisposeAsync();
+
+        GC.SuppressFinalize(this);
+    }
     public HubConnection Hub
     {
         get;
     }
-    public KiwoomHub(string url, string? accessToken = null)
+    public KiwoomHub(string url, string? accessToken = null, string? serialKey = null)
     {
         Hub = new HubConnectionBuilder()
             .WithUrl(url, configureHttpConnection =>
             {
+                if (string.IsNullOrEmpty(serialKey) is false)
+                {
+                    _ = configureHttpConnection.Headers.TryAdd(Resources.KEY, serialKey);
+                }
                 configureHttpConnection.AccessTokenProvider = () => Task.FromResult(accessToken);
             })
             .AddNewtonsoftJsonProtocol(configure =>
@@ -25,15 +38,7 @@ public class KiwoomHub
             })
             .ConfigureLogging(configureLogging =>
             {
-                configureLogging.SetMinimumLevel(LogLevel.Debug);
-            })
-            .WithAutomaticReconnect(new[]
-            {
-                TimeSpan.Zero,
-                TimeSpan.FromSeconds(3),
-                TimeSpan.FromSeconds(5),
-                TimeSpan.FromSeconds(7),
-                TimeSpan.FromSeconds(9)
+                configureLogging.SetMinimumLevel(LogLevel.Trace);
             })
             .Build();
     }

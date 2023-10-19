@@ -10,7 +10,7 @@ public class OpenMessage
     {
         set
         {
-            lookup = value > Parameter.Epoch ? value - Parameter.Epoch : value;
+            lookup = value > Cache.Epoch ? value - Cache.Epoch : value;
         }
         get => lookup;
     }
@@ -19,7 +19,7 @@ public class OpenMessage
     {
         get; set;
     }
-    [Required, StringLength(0x40)]
+    [Required, StringLength(0x100)]
     public string Title
     {
         set

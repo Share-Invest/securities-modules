@@ -97,6 +97,24 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   yyyyMMdd과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DATE {
+            get {
+                return ResourceManager.GetString("DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Securities과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string KEY {
+            get {
+                return ResourceManager.GetString("KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   pwsh과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string POWERSHELL {
@@ -111,6 +129,15 @@ namespace ShareInvest.Properties {
         internal static string STOCKCODE {
             get {
                 return ResourceManager.GetString("STOCKCODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   UserIdentifier과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string USER {
+            get {
+                return ResourceManager.GetString("USER", resourceCulture);
             }
         }
     }
