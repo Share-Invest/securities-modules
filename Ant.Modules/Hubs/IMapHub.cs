@@ -9,6 +9,8 @@ public interface IMapHub
 
     Task<IEnumerable<CoordinateStock>> GetStocksAsync(MapStatus status, double farthest);
 
+    Task<IEnumerable<CoordinateStock>> GetStocksAsync(MapStatus cacheMapStatus, DistanceFromCenter cacheDistance, MapStatus mapStatus, DistanceFromCenter distance);
+
     void OnConnected(string userIdentifier);
 
     void OnDisconnected(string userIdentifier);
