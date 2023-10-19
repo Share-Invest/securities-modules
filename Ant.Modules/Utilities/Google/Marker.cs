@@ -1,4 +1,5 @@
 ﻿using ShareInvest.Entities.Google;
+using ShareInvest.Entities.Google.Maps;
 
 using System.Drawing;
 
@@ -37,5 +38,26 @@ public static class Marker
     public static string GetMarkerImageUrl(string? url, string color)
     {
         return Path.Combine(url ?? "http://share.enterprises", "images", "pins", $"pin_{color}.png");
+    }
+    public static bool HasCenterChanged(string eventName, MapStatus status)
+    {
+        if (Enum.TryParse(eventName, out MapEvent mapEvent) && MapEvent.zoom_changed == mapEvent)
+        {
+            return true;
+        }
+        var hasCenterChanged = (status.Center.Lng == Longitude && status.Center.Lat == Latitude) is false;
+
+        Longitude = status.Center.Lng;
+        Latitude = status.Center.Lat;
+
+        return hasCenterChanged;
+    }
+    static double Longitude
+    {
+        get; set;
+    }
+    static double Latitude
+    {
+        get; set;
     }
 }
