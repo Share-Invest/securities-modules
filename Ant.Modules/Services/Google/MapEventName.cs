@@ -1,6 +1,6 @@
-﻿namespace ShareInvest.Entities.Google.Maps;
+﻿namespace ShareInvest.Services.Google;
 
-public enum MapEvent
+public enum MapEventName
 {
     bounds_changed,
     center_changed,

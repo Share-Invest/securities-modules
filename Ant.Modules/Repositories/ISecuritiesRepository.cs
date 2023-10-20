@@ -8,6 +8,10 @@ namespace ShareInvest.Repositories;
 
 public interface ISecuritiesRepository : IDisposable
 {
+    Task<IEnumerable<string>> GetStocksAsync(Point point, double distance);
+
+    Task<IEnumerable<CoordinateStock>> GetStocksAsync(Point point, double currentDistance, double previousDistance);
+
     Task<int> RegisterUserAsync(Securities securities);
 
     Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.OPTKWFID item);
@@ -17,8 +21,6 @@ public interface ISecuritiesRepository : IDisposable
     Task<string> GetLatestDateAsync();
 
     IEnumerable<T> GetStocks<T>(string date) where T : struct;
-
-    IEnumerable<CoordinateStock> GetStocks(Point point, double farthest, string date);
 
     int RecordsCommunicationsWithSecuritiesCorp(OpenMessage message);
 }

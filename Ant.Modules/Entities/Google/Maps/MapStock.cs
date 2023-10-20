@@ -1,6 +1,6 @@
-﻿namespace ShareInvest.Entities.Google;
+﻿namespace ShareInvest.Entities.Google.Maps;
 
-public struct CoordinateStock
+public class MapStock
 {
     public double Longitude
     {
@@ -22,15 +22,19 @@ public struct CoordinateStock
     {
         get; set;
     }
-    public string Code
+    public string? Code
     {
         get; set;
     }
-    public string Name
+    public string? Name
     {
         get; set;
     }
-    public string CompareToPreviousSign
+    public string? CompareToPreviousSign
+    {
+        get; set;
+    }
+    public bool IsRendering
     {
         get; set;
     }
