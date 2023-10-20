@@ -1,5 +1,5 @@
-﻿using ShareInvest.Entities.Google;
-using ShareInvest.Entities.Google.Maps;
+﻿using ShareInvest.Entities.Google.Maps;
+using ShareInvest.Services.Google;
 
 using System.Drawing;
 
@@ -7,7 +7,7 @@ namespace ShareInvest.Utilities.Google;
 
 public static class Marker
 {
-    public static object MakeStockMarker(CoordinateStock stock)
+    public static object MakeStockMarker(MapStock stock)
     {
         var background = stock.CompareToPreviousSign switch
         {
@@ -39,25 +39,12 @@ public static class Marker
     {
         return Path.Combine(url ?? "http://share.enterprises", "images", "pins", $"pin_{color}.png");
     }
-    public static bool HasCenterChanged(string eventName, MapStatus status)
+    public static bool HasCenterChanged(MapEventName eventName, MapStatus currentMapStatus, MapStatus previousMapStatus)
     {
-        if (Enum.TryParse(eventName, out MapEvent mapEvent) && MapEvent.zoom_changed == mapEvent)
+        if (MapEventName.heading_changed == eventName || MapEventName.tilt_changed == eventName)
         {
             return true;
         }
-        var hasCenterChanged = (status.Center.Lng == Longitude && status.Center.Lat == Latitude) is false;
-
-        Longitude = status.Center.Lng;
-        Latitude = status.Center.Lat;
-
-        return hasCenterChanged;
-    }
-    static double Longitude
-    {
-        get; set;
-    }
-    static double Latitude
-    {
-        get; set;
+        return currentMapStatus.Center.Lng != previousMapStatus.Center.Lng || currentMapStatus.Center.Lat != previousMapStatus.Center.Lat;
     }
 }
