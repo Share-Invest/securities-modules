@@ -6,6 +6,7 @@ using RestSharp;
 using ShareInvest.Entities.Dart;
 using ShareInvest.Properties;
 
+using System.Diagnostics;
 using System.IO.Compression;
 using System.Net;
 using System.Xml;
@@ -66,16 +67,25 @@ public class OpenDart : RestClient
         }));
         var response = await ExecuteAsync(new RestRequest(string.Concat(corpCode, query)), cts.Token);
 
-        if (string.IsNullOrEmpty(response.Content) is false)
+        try
         {
-            var xml = new XmlDocument();
-
-            xml.LoadXml(response.Content);
-
-            if (int.TryParse(xml.GetElementsByTagName("status")[0]?.InnerText, out int statusCode) && 800 == statusCode)
+            if (string.IsNullOrEmpty(response.Content) is false)
             {
-                yield break;
+                var xml = new XmlDocument();
+
+                xml.LoadXml(response.Content);
+
+                if (int.TryParse(xml.GetElementsByTagName("status")[0]?.InnerText, out int statusCode) && 800 == statusCode)
+                {
+                    yield break;
+                }
             }
+        }
+        catch (Exception exception)
+        {
+#if DEBUG
+            Debug.WriteLine(exception.Message);
+#endif
         }
         if (response.RawBytes is byte[] rawBytes)
         {
