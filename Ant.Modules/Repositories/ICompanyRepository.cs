@@ -2,7 +2,7 @@
 
 namespace ShareInvest.Repositories;
 
-public interface ICompanyRepository : IDisposable
+public interface ICompanyRepository
 {
     Task<(bool isUnique, double latitude, double longitude)> IsUniqueAsync(string code, string address);
 

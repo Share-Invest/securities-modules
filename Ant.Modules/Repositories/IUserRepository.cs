@@ -1,6 +1,6 @@
 ﻿namespace ShareInvest.Repositories;
 
-public interface IUserRepository : IDisposable
+public interface IUserRepository
 {
     IEnumerable<string> GetPushKeys();
 
