@@ -7,6 +7,17 @@ namespace ShareInvest.Utilities.Google;
 
 public static class Marker
 {
+    public static string MakeSignAccording(string? compareToPreviousSign)
+    {
+        return compareToPreviousSign switch
+        {
+            "2" => "<span class=\"oi oi-caret-top oi-padding\" ></span>",
+            "5" => "<span class=\"oi oi-caret-bottom oi-padding\" ></span>",
+            "1" => "<span class=\"oi oi-arrow-thick-top oi-padding\" ></span>",
+            "4" => "<span class=\"oi oi-arrow-thick-bottom oi-padding\" ></span>",
+            _ => string.Empty
+        };
+    }
     public static object MakeStockMarker(MapStock stock)
     {
         var background = stock.CompareToPreviousSign switch
@@ -32,7 +43,10 @@ public static class Marker
             },
             glyphColor = Color.WhiteSmoke,
             name = stock.Name,
-            code = stock.Code
+            code = stock.Code,
+            html = string.Concat(MakeSignAccording(stock.CompareToPreviousSign), stock.CompareToPreviousDay.ToString("N0")),
+            after = stock.Current.ToString("N0"),
+            before = stock.Rate.ToString("P2")
         };
     }
     public static string GetMarkerImageUrl(string? url, string color)
