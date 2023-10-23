@@ -30,23 +30,23 @@ public static class Marker
         {
             "2" or "1" => Color.Maroon,
             "5" or "4" => Color.Navy,
-            _ => Color.Black
+            _ => Color.GhostWhite
         };
         return new
         {
-            background,
-            borderColor,
             position = new
             {
                 lat = stock.Latitude,
                 lng = stock.Longitude
             },
-            glyphColor = Color.WhiteSmoke,
+            background,
+            borderColor,
             name = stock.Name,
             code = stock.Code,
-            html = string.Concat(MakeSignAccording(stock.CompareToPreviousSign), stock.CompareToPreviousDay.ToString("N0")),
+            glyphColor = Color.WhiteSmoke,
+            before = stock.Rate.ToString("P2"),
             after = stock.Current.ToString("N0"),
-            before = stock.Rate.ToString("P2")
+            html = string.Concat(MakeSignAccording(stock.CompareToPreviousSign), stock.CompareToPreviousDay.ToString("N0"))
         };
     }
     public static string GetMarkerImageUrl(string? url, string color)

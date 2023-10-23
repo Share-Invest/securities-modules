@@ -54,19 +54,15 @@ public class MapHub : IEventHandler<MsgEventArgs>
             })
             .Build();
 
-        OnReceiveHubMethod();
+        TransmitConclusionInformation = Hub.On<string, string>(nameof(IHubs.TransmitConclusionInformationAsync), (code, data) => Send?.Invoke(this, new HubMsgEventArgs(code, data.Split('\t'))));
     }
     public HubConnection Hub
     {
         get;
     }
-    public event EventHandler<MsgEventArgs>? Send;
-
-    void OnReceiveHubMethod()
+    public IDisposable TransmitConclusionInformation
     {
-        _ = Hub.On<string, string>(nameof(IHubs.TransmitConclusionInformationAsync), (code, data) =>
-        {
-            Send?.Invoke(this, new HubMsgEventArgs(code, data.Split('\t')));
-        });
+        get;
     }
+    public event EventHandler<MsgEventArgs>? Send;
 }
