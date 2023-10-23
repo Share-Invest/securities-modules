@@ -18,7 +18,7 @@ public class HubMsgEventArgs : MsgEventArgs
         {
             Code = code,
             Current = Math.Abs(int.TryParse(elements[1], out int current) ? current : 0),
-            Rate = Math.Abs(double.TryParse(elements[3], out double rate) ? rate : 0),
+            Rate = Math.Abs(double.TryParse(elements[3], out double rate) ? rate * 1e-2 : 0),
             CompareToPreviousDay = Math.Abs(int.TryParse(elements[2], out int compareToPreviousDay) ? compareToPreviousDay : 0),
             CompareToPreviousSign = elements[elements.Length == 7 ? 6 : 0xC]
         };
