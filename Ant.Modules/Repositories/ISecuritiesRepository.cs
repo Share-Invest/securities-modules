@@ -6,7 +6,7 @@ using ShareInvest.Entities.Kiwoom;
 
 namespace ShareInvest.Repositories;
 
-public interface ISecuritiesRepository : IDisposable
+public interface ISecuritiesRepository
 {
     Task<IEnumerable<string>> GetStocksAsync(Point point, double distance);
 
