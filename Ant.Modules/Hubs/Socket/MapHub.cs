@@ -42,15 +42,15 @@ public class MapHub : IEventHandler<MsgEventArgs>
             })
             .ConfigureLogging(configureLogging =>
             {
-                configureLogging.SetMinimumLevel(LogLevel.Debug);
+                configureLogging.SetMinimumLevel(LogLevel.Trace);
             })
             .WithAutomaticReconnect(new[]
             {
                 TimeSpan.Zero,
                 TimeSpan.FromSeconds(3),
-                TimeSpan.FromSeconds(5),
-                TimeSpan.FromSeconds(7),
-                TimeSpan.FromSeconds(9)
+                TimeSpan.FromSeconds(9),
+                TimeSpan.FromSeconds(0x10),
+                TimeSpan.FromSeconds(0x20)
             })
             .Build();
 

@@ -8,15 +8,8 @@ using ShareInvest.Properties;
 
 namespace ShareInvest.Hubs.Socket;
 
-public class KiwoomHub : IAsyncDisposable
+public class KiwoomHub
 {
-    public async ValueTask DisposeAsync()
-    {
-        await Hub.StopAsync();
-        await Hub.DisposeAsync();
-
-        GC.SuppressFinalize(this);
-    }
     public HubConnection Hub
     {
         get;
