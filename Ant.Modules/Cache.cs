@@ -25,6 +25,10 @@ public static class Cache
             return FileVersionInfo.GetVersionInfo(location).CompanyName;
         }
     }
+    public static string? LatestDate
+    {
+        get; set;
+    }
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {
         stores[sScrNo] = constructor;
@@ -38,7 +42,7 @@ public static class Cache
         var typeName = string.Concat(typeof(TR).Namespace, '.', sTrCode);
 
         return Assembly.GetExecutingAssembly().CreateInstance(typeName, true) as TR;
-    }    
+    }
     public static Dictionary<int, string> Error => new()
     {
         {
