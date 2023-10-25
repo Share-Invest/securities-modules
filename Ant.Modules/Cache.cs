@@ -25,10 +25,6 @@ public static class Cache
             return FileVersionInfo.GetVersionInfo(location).CompanyName;
         }
     }
-    public static string? LatestDate
-    {
-        get; set;
-    }
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {
         stores[sScrNo] = constructor;
