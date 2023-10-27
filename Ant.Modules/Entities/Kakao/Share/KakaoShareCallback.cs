@@ -1,6 +1,4 @@
-﻿using ShareInvest.Entities.Google.Maps;
-
-namespace ShareInvest.Entities.Kakao.Share;
+﻿namespace ShareInvest.Entities.Kakao.Share;
 
 public struct KakaoShareCallback
 {
@@ -16,7 +14,7 @@ public struct KakaoShareCallback
     {
         get; set;
     }
-    public Coordinate Key
+    public string Coordinate
     {
         get; set;
     }
