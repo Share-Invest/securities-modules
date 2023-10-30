@@ -1,4 +1,4 @@
-﻿using ShareInvest.Entities.Kiwoom;
+﻿using ShareInvest.OpenAPI.Entity;
 using ShareInvest.Utilities.Kiwoom;
 
 using System.Diagnostics;
@@ -37,7 +37,7 @@ public static class Cache
         }
         var typeName = string.Concat(typeof(TR).Namespace, '.', sTrCode);
 
-        return Assembly.GetExecutingAssembly().CreateInstance(typeName, true) as TR;
+        return TrConstructor.Assembly.CreateInstance(typeName, true) as TR;
     }
     public static Dictionary<int, string> Error => new()
     {
