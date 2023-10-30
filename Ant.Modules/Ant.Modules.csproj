@@ -13,7 +13,7 @@
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>0.0.0.34</Version>
+		<Version>0.0.0.35</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,8 +30,11 @@
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="7.0.10" />
 		<PackageReference Include="Microsoft.Net.Http.Headers" Version="2.1.14" />
 		<PackageReference Include="NetTopologySuite" Version="2.5.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="RestSharp" Version="110.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\open-api-modules\OpenAPI.TR.Entity\OpenAPI.TR.Entity.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

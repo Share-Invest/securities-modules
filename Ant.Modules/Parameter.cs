@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-using ShareInvest.Entities.Kiwoom;
+using ShareInvest.OpenAPI.Entity;
 
 using System.Diagnostics;
 using System.Reflection;
