@@ -1,8 +1,8 @@
-﻿using ShareInvest.Entities;
+﻿using ShareInvest.OpenAPI.Entity;
 
 namespace ShareInvest.Services;
 
 public interface IKiwoomService
 {
-    Task<int> RecordAssetStatusAsync(AccountBook assets);
+    Task<int> RecordAssetStatusAsync(IAccountBook assets);
 }

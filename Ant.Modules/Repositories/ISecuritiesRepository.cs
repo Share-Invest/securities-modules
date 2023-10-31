@@ -2,7 +2,7 @@
 
 using ShareInvest.Entities;
 using ShareInvest.Entities.Google;
-using ShareInvest.Entities.Kiwoom;
+using ShareInvest.OpenAPI.Entity;
 
 namespace ShareInvest.Repositories;
 
@@ -14,13 +14,13 @@ public interface ISecuritiesRepository
 
     Task<int> RegisterUserAsync(Securities securities);
 
-    Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.OPTKWFID item);
+    Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.Kiwoom.OPTKWFID item);
 
-    Task<int> RecordAssetStatusAsync(AccountBook assets);
+    Task<int> RecordAssetStatusAsync(IAccountBook assets);
 
     Task<string> GetLatestDateAsync();
 
     IEnumerable<T> GetStocks<T>(string date) where T : struct;
 
-    int RecordsCommunicationsWithSecuritiesCorp(OpenMessage message);
+    int RecordsCommunicationsWithSecuritiesCorp(Entities.Kiwoom.OpenMessage message);
 }
