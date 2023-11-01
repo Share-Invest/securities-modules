@@ -14,6 +14,8 @@ public interface ISecuritiesRepository
 
     Task<int> RegisterUserAsync(Securities securities);
 
+    Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
+
     Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.Kiwoom.OPTKWFID item);
 
     Task<int> RecordAssetStatusAsync(IAccountBook assets);
@@ -23,4 +25,6 @@ public interface ISecuritiesRepository
     IEnumerable<T> GetStocks<T>(string date) where T : struct;
 
     int RecordsCommunicationsWithSecuritiesCorp(Entities.Kiwoom.OpenMessage message);
+
+    string? GetCodeToLookUpNext(string date);
 }
