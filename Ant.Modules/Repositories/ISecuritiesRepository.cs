@@ -20,6 +20,8 @@ public interface ISecuritiesRepository
 
     Task<int> RecordAssetStatusAsync(IAccountBook assets);
 
+    Task<bool> EventOccursInStockAsync(string code, string price);
+
     Task<string> GetLatestDateAsync();
 
     IEnumerable<T> GetStocks<T>(string date) where T : struct;
