@@ -20,7 +20,7 @@ public interface ISecuritiesRepository
 
     Task<int> RecordAssetStatusAsync(IAccountBook assets);
 
-    Task<bool> EventOccursInStockAsync(string code, string price);
+    Task<bool> EventOccursInStockAsync(string key, string code, string price);
 
     Task<string> GetLatestDateAsync();
 
