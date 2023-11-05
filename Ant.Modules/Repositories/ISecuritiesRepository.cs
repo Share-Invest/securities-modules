@@ -1,6 +1,7 @@
 ﻿using NetTopologySuite.Geometries;
 
 using ShareInvest.Entities;
+using ShareInvest.Entities.AnTalk;
 using ShareInvest.Entities.Google;
 using ShareInvest.OpenAPI.Entity;
 
@@ -25,6 +26,8 @@ public interface ISecuritiesRepository
     Task<string> GetLatestDateAsync();
 
     IEnumerable<T> GetStocks<T>(string date) where T : struct;
+
+    IEnumerable<AntStock> GetListByMarketCap(string latestDate);
 
     int RecordsCommunicationsWithSecuritiesCorp(Entities.Kiwoom.OpenMessage message);
 
