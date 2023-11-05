@@ -1,7 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 
-using ShareInvest.OpenAPI.Entity;
-
 using System.Diagnostics;
 using System.Reflection;
 using System.Text;
@@ -30,7 +28,22 @@ public static partial class Parameter
                 di.Create();
             }
         }
-    }    
+    }
+    public static string TransformQuery(JToken token, StringBuilder query)
+    {
+        query.Append('?');
+
+        foreach (var j in token.Children<JProperty>())
+
+            if (JTokenType.Null != j.Value.Type)
+            {
+                query.Append(j.Path);
+                query.Append('=');
+                query.Append(j.Value);
+                query.Append('&');
+            }
+        return TransformOutbound(query.Remove(query.Length - 1, 1).ToString());
+    }
     public static string TransformQuery(JToken token)
     {
         StringBuilder query = new("?");
