@@ -9,6 +9,8 @@ namespace ShareInvest.Repositories;
 
 public interface ISecuritiesRepository
 {
+    Task<(string name, AssetStatusTrend assetsTrend)?> GetPresumeKiwoomAssetAsync(string accNo);
+
     Task<IEnumerable<string>> GetStocksAsync(Point point, double distance);
 
     Task<IEnumerable<CoordinateStock>> GetStocksAsync(Point point, double currentDistance, double previousDistance);
@@ -32,4 +34,6 @@ public interface ISecuritiesRepository
     int RecordsCommunicationsWithSecuritiesCorp(Entities.Kiwoom.OpenMessage message);
 
     string? GetCodeToLookUpNext(string date);
+
+    AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 }
