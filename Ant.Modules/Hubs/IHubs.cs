@@ -7,4 +7,6 @@ public interface IHubs
     Task RemoveFromGroupAsync(string groupName);
 
     Task TransmitConclusionInformationAsync(string code, string data);
+
+    Task InstructToRenewAssetStatus(string accNo);
 }
