@@ -36,4 +36,6 @@ public interface ISecuritiesRepository
     string? GetCodeToLookUpNext(string date);
 
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
+
+    AssetStatusChart[] GetPresumeAssetTrend(string accNo);
 }
