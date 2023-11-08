@@ -27,9 +27,13 @@ public interface ISecuritiesRepository
 
     Task<string> GetLatestDateAsync();
 
+    Task<string?> GetStockNameAsync(string code);
+
     IEnumerable<T> GetStocks<T>(string date) where T : struct;
 
     IEnumerable<AntStock> GetListByMarketCap(string latestDate);
+
+    IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
     int RecordsCommunicationsWithSecuritiesCorp(Entities.Kiwoom.OpenMessage message);
 

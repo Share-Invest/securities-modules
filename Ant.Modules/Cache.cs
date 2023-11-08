@@ -1,6 +1,7 @@
 ﻿using ShareInvest.OpenAPI.Entity;
 using ShareInvest.Utilities.Kiwoom;
 
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -24,6 +25,14 @@ public static class Cache
 
             return FileVersionInfo.GetVersionInfo(location).CompanyName;
         }
+    }
+    public static string[] GetConclusion(string code)
+    {
+        return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
+    }
+    public static bool SetConclusion(string code, string data)
+    {
+        return stocksConclusion.TryAdd(code, data);
     }
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {
@@ -202,5 +211,6 @@ public static class Cache
             "종목코드 없음"
         }
     };
-    static readonly Dictionary<string, TR> stores = new();
+    static readonly ConcurrentDictionary<string, TR> stores = new();
+    static readonly ConcurrentDictionary<string, string> stocksConclusion = new();
 }
