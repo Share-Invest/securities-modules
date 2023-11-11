@@ -9,6 +9,18 @@ namespace ShareInvest.Utilities;
 
 public class Publish : RestClient
 {
+    public async Task ExecuteAsync(string program, string workingDirectory, string compile)
+    {
+        var fileVersionInfo = new Entities.FileVersionInfo
+        {
+            App = program[..^4],
+            Path = program[^3..],
+            FileName = program,
+            Publish = DateTime.Now.Ticks,
+            File = await File.ReadAllBytesAsync(Path.Combine(workingDirectory, compile, program))
+        };
+        await ExecuteAsync(fileVersionInfo.GetType().Name, fileVersionInfo);
+    }
     public async Task ExecuteAsync(string program, string? exclusionPath = null)
     {
         foreach (var info in GetVersionInfo(program, exclusionPath))
