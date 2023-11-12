@@ -1,5 +1,4 @@
 ﻿using ShareInvest.OpenAPI.Entity;
-using ShareInvest.Utilities.Kiwoom;
 
 using System.Collections.Concurrent;
 using System.Diagnostics;

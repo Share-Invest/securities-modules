@@ -11,26 +11,6 @@ public enum Revise
     감자 = 64,
     권리락 = 256
 }
-public enum ChartDuration
-{
-    DailyChart = 'D'
-}
-public enum MarketOperation
-{
-    장시작전 = 0,
-    장마감전_동시호가 = 2,
-    장시작 = 3,
-    장종료_예상지수종료 = 4,
-    장마감 = 8,
-    장종료_시간외종료 = 9,
-    시간외_종가매매_시작 = 'a',
-    시간외_종가매매_종료 = 'b',
-    시간외_단일가_매매시작 = 'c',
-    시간외_단일가_매매종료 = 'd',
-    선옵_장마감전_동시호가_시작 = 's',
-    선옵_장마감전_동시호가_종료 = 'e',
-    선옵_조기개장_알림 = 'f'
-}
 public enum RealType
 {
     주식시세 = 19,
@@ -57,12 +37,6 @@ public enum RealType
     VI발동_해제 = 19 + 'v',
     종목프로그램매매 = 17
 }
-public enum ChejanType
-{
-    주문체결 = 0x30,
-    잔고 = 49,
-    파생잔고 = 52
-}
 public enum OrderState
 {
     접수,
@@ -73,20 +47,4 @@ public enum OrderStatus
 {
     매도 = 1,
     매수 = 2
-}
-public static class Operation
-{
-    public static MarketOperation Get(string? arg)
-    {
-        if (arg?.Length == 1)
-        {
-            var index = char.IsDigit(arg[0]) ? Convert.ToInt32(arg) : Convert.ToChar(arg);
-
-            if (Enum.IsDefined(typeof(MarketOperation), index))
-            {
-                return (MarketOperation)index;
-            }
-        }
-        return MarketOperation.장종료_시간외종료;
-    }
 }
