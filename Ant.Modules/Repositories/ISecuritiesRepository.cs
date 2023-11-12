@@ -25,6 +25,8 @@ public interface ISecuritiesRepository
 
     Task<bool> EventOccursInStockAsync(string key, string code, string price);
 
+    Task<bool> AnyUserAsync(string userId);
+
     Task<string> GetLatestDateAsync();
 
     Task<string?> GetStockNameAsync(string code);
@@ -38,6 +40,10 @@ public interface ISecuritiesRepository
     int RecordsCommunicationsWithSecuritiesCorp(Entities.Kiwoom.OpenMessage message);
 
     string? GetCodeToLookUpNext(string date);
+
+    Log[]? GetOpenMessagesByUserId(string userId);
+
+    Log[]? GetOpenMessagesByUserId(string userId, long ticks);
 
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 
