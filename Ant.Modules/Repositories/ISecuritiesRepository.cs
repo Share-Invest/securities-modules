@@ -19,6 +19,8 @@ public interface ISecuritiesRepository
 
     Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
 
+    Task<int> RecordsCommunicationsWithSecuritiesCorpAsync(Entities.Kiwoom.OpenMessage message);
+
     Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.Kiwoom.OPTKWFID item);
 
     Task<int> RecordAssetStatusAsync(IAccountBook assets);
@@ -36,8 +38,6 @@ public interface ISecuritiesRepository
     IEnumerable<AntStock> GetListByMarketCap(string latestDate);
 
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
-
-    int RecordsCommunicationsWithSecuritiesCorp(Entities.Kiwoom.OpenMessage message);
 
     string? GetCodeToLookUpNext(string date);
 
