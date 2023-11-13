@@ -39,6 +39,5 @@ public class OpenMessage
         get; set;
     }
     long lookup;
-
     string? title;
 }

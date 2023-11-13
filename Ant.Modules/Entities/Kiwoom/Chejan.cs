@@ -31,7 +31,11 @@ public class Chejan
     [Column(Order = 1), Key]
     public virtual long Lookup
     {
-        get; set;
+        set
+        {
+            lookup = value > Cache.Epoch ? value - Cache.Epoch : value;
+        }
+        get => lookup;
     }
     [DataMember, JsonProperty("종목코드_업종코드"), StringLength(8), Key]
     public virtual string Code
@@ -40,5 +44,6 @@ public class Chejan
 
         set => code = 'A' == value[0] ? value[1..] : value;
     }
+    long lookup;
     string? code;
 }
