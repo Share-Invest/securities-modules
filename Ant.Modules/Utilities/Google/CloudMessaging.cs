@@ -6,13 +6,16 @@ using Newtonsoft.Json;
 
 using RestSharp;
 
+using ShareInvest.Entities.Google;
 using ShareInvest.Entities.Google.Firebase;
+
+using System.Net;
 
 namespace ShareInvest.Utilities.Google;
 
 public class CloudMessaging : RestClient
 {
-    public async Task<RestResponse> SendMessageAsync(CloudMessage message)
+    public async Task<ResFirebaseCloudMessage?> SendMessageAsync(CloudMessage message)
     {
         var json = JsonConvert.SerializeObject(new
         {
@@ -29,7 +32,9 @@ public class CloudMessaging : RestClient
                 Condition = message.Condition
             }
         });
-        return await ExecuteAsync(new RestRequest(route, Method.Post).AddJsonBody(json), cts.Token);
+        var response = await ExecuteAsync(json);
+
+        return response != null ? JsonConvert.DeserializeObject<ResFirebaseCloudMessage>(response) : null;
     }
     public async Task<string> SendAsync(CloudMessage cloudMessage)
     {
@@ -84,8 +89,33 @@ public class CloudMessaging : RestClient
         headers.Add(KnownHeaders.Authorization, $"Bearer {await credential.UnderlyingCredential.GetAccessTokenForRequestAsync(cancellationToken: cts.Token)}");
     })
     {
+        this.credential = credential;
+
         route = $"v1/projects/{((ServiceAccountCredential)credential.UnderlyingCredential).ProjectId}/messages:send";
     }
+    async Task<string?> ExecuteAsync(string json, string? accessToken = null)
+    {
+        var request = new RestRequest(route, Method.Post);
+
+        if (string.IsNullOrEmpty(accessToken) is false)
+        {
+            request.AddHeader(KnownHeaders.Authorization, accessToken);
+        }
+        var response = await ExecuteAsync(request.AddJsonBody(json), cts.Token);
+
+        if (HttpStatusCode.OK == response.StatusCode)
+        {
+            return response.Content;
+        }
+        if (HttpStatusCode.Unauthorized == response.StatusCode)
+        {
+            var token = $"Bearer {await credential.UnderlyingCredential.GetAccessTokenForRequestAsync(cancellationToken: cts.Token)}";
+
+            return await ExecuteAsync(json, token);
+        }
+        return null;
+    }
     readonly string route;
+    readonly GoogleCredential credential;
     readonly CancellationTokenSource cts = new();
 }
