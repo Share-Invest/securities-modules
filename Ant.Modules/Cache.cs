@@ -1,5 +1,4 @@
 ﻿using ShareInvest.OpenAPI.Entity;
-using ShareInvest.Utilities.Kiwoom;
 
 using System.Collections.Concurrent;
 using System.Diagnostics;
@@ -30,9 +29,9 @@ public static class Cache
     {
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
     }
-    public static bool SetConclusion(string code, string data)
+    public static void SetConclusion(string code, string data)
     {
-        return stocksConclusion.TryAdd(code, data);
+        stocksConclusion[code] = data;
     }
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {

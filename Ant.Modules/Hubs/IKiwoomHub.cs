@@ -10,5 +10,7 @@ public interface IKiwoomHub
 
     Task OnDisconnectedAsync(string userIdentifier, string serialKey);
 
+    Task CheckOneSAccountAsync();
+
     Task<object> CheckOneSAccountAsync(string userName);
 }

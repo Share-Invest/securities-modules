@@ -10,6 +10,8 @@ public interface IUserRepository
 
     Securities[] GetSecuritiesById(string userName);
 
+    Securities[] GetSecuritiesById();
+
     IEnumerable<string> GetPushKeys();
 
     IEnumerable<(string? securitiesId, string? pushKey)> GetPushKeys(string userId, string serialKey);
