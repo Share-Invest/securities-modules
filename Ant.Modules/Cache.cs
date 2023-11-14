@@ -12,6 +12,10 @@ public static class Cache
     {
         get; set;
     }
+    public static Queue<object>? Queue
+    {
+        get; set;
+    }
     public static long Epoch
     {
         get => 621_355_968_000_000_000;
