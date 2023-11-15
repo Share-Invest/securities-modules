@@ -50,7 +50,9 @@ public class KiwoomHub
             })
             .Build();
 
-        _ = Hub.On<string>(nameof(IHubs.InstructToRenewAssetStatus), accNo => Send?.Invoke(this, new AssetsEventArgs(accNo)));
+        _ = Hub.On<string>(nameof(IHubs.InstructToRenewAssetStatusAsync), accNo => Send?.Invoke(this, new AssetsEventArgs(accNo)));
+
+        _ = Hub.On<string>(nameof(IHubs.EventOccursInStockAsync), code => Send?.Invoke(this, new OccursInStockEventArgs(code)));
     }
     public event EventHandler<MsgEventArgs>? Send;
 }
