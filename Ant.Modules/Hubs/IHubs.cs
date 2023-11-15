@@ -8,5 +8,7 @@ public interface IHubs
 
     Task TransmitConclusionInformationAsync(string code, string data);
 
-    Task InstructToRenewAssetStatus(string accNo);
+    Task InstructToRenewAssetStatusAsync(string accNo);
+
+    Task EventOccursInStockAsync(string code);
 }
