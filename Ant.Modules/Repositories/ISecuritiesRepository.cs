@@ -27,6 +27,8 @@ public interface ISecuritiesRepository
 
     Task<bool> AnyUserAsync(string userId);
 
+    Task<bool> IsFirstContractAsync(string date, string accNo, string code);
+
     Task<bool> EventOccursInStockAsync(string key, string code, string price);
 
     Task<string> GetLatestDateAsync();
