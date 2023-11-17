@@ -8,6 +8,11 @@ namespace ShareInvest.Entities.Kiwoom;
 
 public class Chejan
 {
+    [NotMapped]
+    public string? CallerId
+    {
+        get; set;
+    }
     [DataMember, StringLength(0x10), JsonProperty("계좌번호"), Key]
     public virtual string? AccNo
     {

@@ -37,14 +37,3 @@ public enum RealType
     VI발동_해제 = 19 + 'v',
     종목프로그램매매 = 17
 }
-public enum OrderState
-{
-    접수,
-    체결,
-    취소
-}
-public enum OrderStatus
-{
-    매도 = 1,
-    매수 = 2
-}

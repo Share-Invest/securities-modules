@@ -112,6 +112,10 @@ public class Publish : RestClient
                 }
             }
         }
+        if (string.IsNullOrEmpty(dirName))
+        {
+            yield break;
+        }
         foreach (var file in Directory.EnumerateFiles(dirName, "*", SearchOption.AllDirectories))
         {
             if (string.IsNullOrEmpty(exclusionPath) is false && file.StartsWith(exclusionPath, StringComparison.OrdinalIgnoreCase))

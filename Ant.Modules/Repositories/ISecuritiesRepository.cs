@@ -3,6 +3,7 @@
 using ShareInvest.Entities;
 using ShareInvest.Entities.AnTalk;
 using ShareInvest.Entities.Google;
+using ShareInvest.Entities.Kiwoom;
 using ShareInvest.OpenAPI.Entity;
 
 namespace ShareInvest.Repositories;
@@ -27,6 +28,8 @@ public interface ISecuritiesRepository
 
     Task<bool> AnyUserAsync(string userId);
 
+    Task<bool> IsFirstContractAsync(string date, string accNo, string code);
+
     Task<bool> EventOccursInStockAsync(string key, string code, string price);
 
     Task<string> GetLatestDateAsync();
@@ -40,6 +43,8 @@ public interface ISecuritiesRepository
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
     string? GetCodeToLookUpNext(string date);
+
+    int LiquidateStocksHeld(ChejanBalance balance);
 
     Log[]? GetOpenMessagesByUserId(string userId);
 
