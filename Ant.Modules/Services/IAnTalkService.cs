@@ -10,4 +10,6 @@ public interface IAnTalkService
     Task<AntStock[]> GetStockAsync(Order order);
 
     DailyChart[] GetDailyChart(string code, string? date, int period);
+
+    void SendMessage(AntStockChat antChat);
 }
