@@ -37,7 +37,7 @@ public class GoogleUser
         get; set;
     }
     [DataMember, JsonProperty("picture")]
-    public string? Picture
+    public string? Image
     {
         get; set;
     }

@@ -20,7 +20,7 @@ public interface ISecuritiesRepository
 
     Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
 
-    Task<int> RecordsCommunicationsWithSecuritiesCorpAsync(Entities.Kiwoom.OpenMessage message);
+    Task<int> RecordsCommunicationsWithSecuritiesCorpAsync(OpenMessage message);
 
     Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.Kiwoom.OPTKWFID item);
 

@@ -11,4 +11,6 @@ public interface IHubs
     Task InstructToRenewAssetStatusAsync(string accNo);
 
     Task EventOccursInStockAsync(string code);
+
+    Task SendMessageAsync(string image, string name, long lookup, string message);
 }
