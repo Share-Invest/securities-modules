@@ -50,6 +50,10 @@ public interface ISecuritiesRepository
 
     Log[]? GetOpenMessagesByUserId(string userId, long ticks);
 
+    AntStockChat[] ContinuouslyViewChat(string code, long ticks);
+
+    AntStockChat[] ContinuouslyViewChat(string code);
+
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 
     AssetStatusChart[] GetPresumeAssetTrend(string accNo);
