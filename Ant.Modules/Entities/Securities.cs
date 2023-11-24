@@ -19,7 +19,7 @@ public class Securities
     {
         get; set;
     }
-    [StringLength(0x40)]
+    [StringLength(0x40), Key]
     public string? UserId
     {
         get; set;

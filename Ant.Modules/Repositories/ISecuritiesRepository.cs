@@ -36,9 +36,17 @@ public interface ISecuritiesRepository
 
     Task<string?> GetStockNameAsync(string code);
 
-    IEnumerable<T> GetStocks<T>(string date) where T : struct;
+    AntStock[] GetListByRate(string latestDate);
 
-    IEnumerable<AntStock> GetListByMarketCap(string latestDate);
+    AntStock[] GetListByListingDate(string latestDate);
+
+    AntStock[] GetListByCompareToPreviousVolume(string latestDate);
+
+    AntStock[] GetListByMarketCap(string latestDate);
+
+    AntStock[] GetListByVolume(string lastestDate);
+
+    IEnumerable<T> GetStocks<T>(string date) where T : struct;
 
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
