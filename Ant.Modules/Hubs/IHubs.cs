@@ -12,5 +12,5 @@ public interface IHubs
 
     Task EventOccursInStockAsync(string code);
 
-    Task SendMessageAsync(string image, string name, long lookup, string message);
+    Task SendMessageAsync(string image, string name, string dt, string message, string code, string token);
 }

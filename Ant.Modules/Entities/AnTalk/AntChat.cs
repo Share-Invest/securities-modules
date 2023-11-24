@@ -8,6 +8,11 @@ namespace ShareInvest.Entities.AnTalk;
 public class AntChat
 {
     [NotMapped]
+    public DateTime DateTime
+    {
+        get; set;
+    }
+    [NotMapped]
     public string? Image
     {
         get; set;
