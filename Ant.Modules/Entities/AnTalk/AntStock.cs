@@ -10,6 +10,10 @@ public struct AntStock
     {
         get; set;
     }
+    public string ListingDate
+    {
+        get; set;
+    }
     public int Current
     {
         get; set;
@@ -27,6 +31,10 @@ public struct AntStock
         get; set;
     }
     public long Volume
+    {
+        get; set;
+    }
+    public long PreviousTradingVolume
     {
         get; set;
     }

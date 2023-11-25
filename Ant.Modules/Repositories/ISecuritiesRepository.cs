@@ -36,11 +36,11 @@ public interface ISecuritiesRepository
 
     Task<string?> GetStockNameAsync(string code);
 
+    Task<AntStock[]> GetListByCompareToPreviousVolumeAsync(string latestDate);
+
     AntStock[] GetListByRate(string latestDate);
 
     AntStock[] GetListByListingDate(string latestDate);
-
-    AntStock[] GetListByCompareToPreviousVolume(string latestDate);
 
     AntStock[] GetListByMarketCap(string latestDate);
 
