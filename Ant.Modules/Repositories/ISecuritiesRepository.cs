@@ -20,6 +20,8 @@ public interface ISecuritiesRepository
 
     Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
 
+    Task<int> SaveChangesAsync(Entities.Kiwoom.Opt10004 stockQuote);
+
     Task<int> RecordsCommunicationsWithSecuritiesCorpAsync(OpenMessage message);
 
     Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.Kiwoom.OPTKWFID item);
@@ -50,7 +52,9 @@ public interface ISecuritiesRepository
 
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
-    string? GetCodeToLookUpNext(string date);
+    string? GetCodeToLookUpNextDailyChart(string date);
+
+    string? GetCodeToLookUpNextStockQuote(string date);
 
     int LiquidateStocksHeld(ChejanBalance balance);
 
