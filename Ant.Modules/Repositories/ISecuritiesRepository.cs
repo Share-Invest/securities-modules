@@ -38,6 +38,8 @@ public interface ISecuritiesRepository
 
     Task<string?> GetStockNameAsync(string code);
 
+    Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
+
     Task<AntStock[]> GetListByCompareToPreviousVolumeAsync(string latestDate);
 
     AntStock[] GetListByRate(string latestDate);

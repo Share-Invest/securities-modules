@@ -33,9 +33,17 @@ public static class Cache
     {
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
     }
+    public static string[] GetStockQuote(string code)
+    {
+        return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
+    }
     public static void SetConclusion(string code, string data)
     {
         stocksConclusion[code] = data;
+    }
+    public static void SetStockQuote(string code, string data)
+    {
+        stockQuotes[code] = data;
     }
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {
@@ -215,5 +223,6 @@ public static class Cache
         }
     };
     static readonly ConcurrentDictionary<string, TR> stores = new();
+    static readonly ConcurrentDictionary<string, string> stockQuotes = new();
     static readonly ConcurrentDictionary<string, string> stocksConclusion = new();
 }
