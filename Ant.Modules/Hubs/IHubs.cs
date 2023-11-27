@@ -8,6 +8,8 @@ public interface IHubs
 
     Task TransmitConclusionInformationAsync(string code, string data);
 
+    Task TransmitQuoteInformationAsync(string code, string data);
+
     Task InstructToRenewAssetStatusAsync(string accNo);
 
     Task EventOccursInStockAsync(string code);
