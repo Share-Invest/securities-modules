@@ -5,6 +5,8 @@ namespace ShareInvest.Services;
 
 public interface IAnTalkService
 {
+    Task SendMessageAsync(AntStockChat stockChat);
+
     Task<string?> GetStockNameAsync(string code);
 
     Task<AntStock[]> GetStockAsync(Order order);

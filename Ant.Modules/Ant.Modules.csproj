@@ -13,7 +13,7 @@
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>7.0.1.61</Version>
+		<Version>7.0.1.62</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
