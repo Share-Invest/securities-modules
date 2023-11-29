@@ -27,6 +27,11 @@ public class AntChat
     {
         get; set;
     }
+    [NotMapped]
+    public bool IsMyself
+    {
+        get; set;
+    }
     [Column(Order = 1), Key]
     public long Lookup
     {

@@ -1,5 +1,8 @@
 ﻿using ShareInvest.Entities.AnTalk;
 
+using System.Net.NetworkInformation;
+using System.Text;
+
 namespace ShareInvest;
 
 public static class Service
@@ -39,5 +42,29 @@ public static class Service
             minY = chart.Min(o => o.Asset),
             maxY = chart.Max(o => o.Asset)
         };
+    }
+    public static string GetMacAddress()
+    {
+        foreach (var net in NetworkInterface.GetAllNetworkInterfaces())
+        {
+            var mac = net.GetPhysicalAddress().ToString();
+
+            var sb = new StringBuilder();
+
+            for (int i = 0; i < mac.Length; i++)
+            {
+                sb.Append(mac[i]);
+
+                if (i % 2 == 1 && i < mac.Length - 1)
+                {
+                    sb.Append(':');
+                }
+            }
+            if (sb.Length == 0x11)
+            {
+                return sb.ToString();
+            }
+        }
+        return string.Empty;
     }
 }

@@ -18,6 +18,8 @@ public interface ISecuritiesRepository
 
     Task<int> RegisterUserAsync(Securities securities);
 
+    Task<int> RegisterPositionAsync(Securities securities);
+
     Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
 
     Task<int> SaveChangesAsync(Entities.Kiwoom.Opt10004 stockQuote);
@@ -64,9 +66,9 @@ public interface ISecuritiesRepository
 
     Log[]? GetOpenMessagesByUserId(string userId, long ticks);
 
-    AntStockChat[] ContinuouslyViewChat(string code, long ticks);
+    AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);
 
-    AntStockChat[] ContinuouslyViewChat(string code);
+    AntStockChat[] ContinuouslyViewChat(string? id, string code);
 
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 
