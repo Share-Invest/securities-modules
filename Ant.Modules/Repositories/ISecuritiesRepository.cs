@@ -18,6 +18,8 @@ public interface ISecuritiesRepository
 
     Task<int> RegisterUserAsync(Securities securities);
 
+    Task<int> RegisterPositionAsync(Securities securities);
+
     Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
 
     Task<int> SaveChangesAsync(Entities.Kiwoom.Opt10004 stockQuote);
