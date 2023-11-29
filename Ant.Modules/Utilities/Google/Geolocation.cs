@@ -10,9 +10,9 @@ namespace ShareInvest.Utilities.Google;
 
 public class Geolocation : RestClient
 {
-    public async Task<GeoResponse> ExecutePostAsync(GeoRequest obj, string? resource = null)
+    public async Task<GeoResponse> ExecutePostAsync(GeoRequest obj, string? key = null)
     {
-        var request = new RestRequest(resource ?? this.resource, Method.Post);
+        var request = new RestRequest($"geolocation/v1/geolocate?key={key ?? this.key}", Method.Post);
 
         var response = await ExecuteAsync(request.AddJsonBody(obj), cts.Token);
 
@@ -30,14 +30,14 @@ public class Geolocation : RestClient
         }
         return JsonConvert.DeserializeObject<GeoResponse>(response.Content);
     }
-    public Geolocation(string baseUrl) : base(baseUrl)
+    public Geolocation() : base("https://www.googleapis.com")
     {
-        resource = string.Empty;
+        key = string.Empty;
     }
-    public Geolocation(string baseUrl, string resource) : base(baseUrl)
+    public Geolocation(string key) : base("https://www.googleapis.com")
     {
-        this.resource = resource;
+        this.key = key;
     }
-    readonly string resource;
+    readonly string key;
     readonly CancellationTokenSource cts = new();
 }
