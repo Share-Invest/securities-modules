@@ -18,7 +18,7 @@ public interface ISecuritiesRepository
 
     Task<int> RegisterUserAsync(Securities securities);
 
-    Task<int> RegisterPositionAsync(Securities securities);
+    Task<int> RegisterPositionAsync(Entities.Position position);
 
     Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
 
