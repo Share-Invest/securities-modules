@@ -12,9 +12,9 @@ public static class Cache
     {
         get; set;
     }
-    public static Queue<object>? Queue
+    public static int RemainingWorkCount
     {
-        get; set;
+        get => queueWorker.Count;
     }
     public static long Epoch
     {
@@ -29,6 +29,12 @@ public static class Cache
             return FileVersionInfo.GetVersionInfo(location).CompanyName;
         }
     }
+    public static (bool tryDequeue, object? task) GetTasksFromQueue()
+    {
+        var tryDequeue = queueWorker.TryDequeue(out object? task);
+
+        return (tryDequeue, task);
+    }
     public static string[] GetConclusion(string code)
     {
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
@@ -36,6 +42,13 @@ public static class Cache
     public static string[] GetStockQuote(string code)
     {
         return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
+    }
+    public static void SetTasksInQueue<T>(T task) where T : class
+    {
+        if (task != null)
+        {
+            queueWorker.Enqueue(task);
+        }
     }
     public static void SetConclusion(string code, string data)
     {
@@ -222,6 +235,7 @@ public static class Cache
             "종목코드 없음"
         }
     };
+    static readonly ConcurrentQueue<object> queueWorker = new();
     static readonly ConcurrentDictionary<string, TR> stores = new();
     static readonly ConcurrentDictionary<string, string> stockQuotes = new();
     static readonly ConcurrentDictionary<string, string> stocksConclusion = new();
