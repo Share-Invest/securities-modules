@@ -9,7 +9,7 @@ public class Position
     {
         get; set;
     }
-    [StringLength(0x40), Required]
+    [StringLength(0x40)]
     public string? UserId
     {
         get; set;
