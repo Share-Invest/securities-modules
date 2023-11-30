@@ -1,4 +1,5 @@
-﻿using ShareInvest.Entities.Google.Maps;
+﻿using ShareInvest.Entities.Google;
+using ShareInvest.Entities.Google.Maps;
 using ShareInvest.Services.Google;
 
 using System.Drawing;
@@ -16,6 +17,13 @@ public static class Marker
             "1" => "<span class=\"oi oi-arrow-thick-top oi-padding\" ></span>",
             "4" => "<span class=\"oi oi-arrow-thick-bottom oi-padding\" ></span>",
             _ => string.Empty
+        };
+    }
+    public static object MakeClientMarker(CoordinateUser user)
+    {
+        return new
+        {
+
         };
     }
     public static object MakeStockMarker(MapStock stock)

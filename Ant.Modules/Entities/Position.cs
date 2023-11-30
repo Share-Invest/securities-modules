@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using NetTopologySuite.Geometries;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace ShareInvest.Entities;
 
@@ -24,6 +26,10 @@ public class Position
         get; set;
     }
     public double Latitude
+    {
+        get; set;
+    }
+    public Point? Geometry
     {
         get; set;
     }

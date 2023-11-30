@@ -1,4 +1,5 @@
 ﻿using ShareInvest.Entities;
+using ShareInvest.Entities.Google;
 
 namespace ShareInvest.Repositories;
 
@@ -11,6 +12,8 @@ public interface IUserRepository
     Securities[] GetSecuritiesById(string userName);
 
     Securities[] GetSecuritiesById();
+
+    CoordinateUser[] GetClientCoordinates(string userName, string? imageUrl);
 
     IEnumerable<string> GetPushKeys();
 
