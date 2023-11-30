@@ -73,4 +73,6 @@ public interface ISecuritiesRepository
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 
     AssetStatusChart[] GetPresumeAssetTrend(string accNo);
+
+    CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null);
 }
