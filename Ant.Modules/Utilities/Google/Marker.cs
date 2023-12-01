@@ -23,7 +23,38 @@ public static class Marker
     {
         return new
         {
-
+            position = new
+            {
+                lat = user.Coordinate.Lat,
+                lng = user.Coordinate.Lng
+            },
+            before = new Func<string>(() =>
+            {
+                if (user.OpenMessage != null)
+                {
+                    return user.OpenMessage.Title;
+                }
+                return string.Empty;
+            })(),
+            after = new Func<string>(() =>
+            {
+                if (user.OpenMessage != null)
+                {
+                    return $"[{user.OpenMessage.Screen}] {user.OpenMessage.Code}";
+                }
+                return string.Empty;
+            })(),
+            html = new Func<string>(() =>
+            {
+                if (user.OpenMessage != null)
+                {
+                    return new DateTime(Cache.Epoch + user.OpenMessage.Lookup).ToString("g");
+                }
+                return string.Empty;
+            })(),
+            code = user.SerialKey,
+            imageUrl = user.Image,
+            name = user.Name,
         };
     }
     public static object MakeStockMarker(MapStock stock)
