@@ -1,4 +1,5 @@
 ﻿using ShareInvest.Entities.Google.Maps;
+using ShareInvest.Entities.Kiwoom;
 
 namespace ShareInvest.Entities.Google;
 
@@ -20,7 +21,15 @@ public class CoordinateUser
     {
         get; set;
     }
+    public string? MacAddress
+    {
+        get; set;
+    }
     public bool IsRendering
+    {
+        get; set;
+    }
+    public OpenMessage? OpenMessage
     {
         get; set;
     }

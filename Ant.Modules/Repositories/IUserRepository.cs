@@ -13,7 +13,7 @@ public interface IUserRepository
 
     Securities[] GetSecuritiesById();
 
-    CoordinateUser[] GetClientCoordinates(string userName, string? imageUrl);
+    CoordinateUser[] GetClientCoordinates(IEnumerable<string> imageUrl, string? userName = null);
 
     IEnumerable<string> GetPushKeys();
 
