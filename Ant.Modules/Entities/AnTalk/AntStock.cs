@@ -18,6 +18,10 @@ public struct AntStock
     {
         get; set;
     }
+    public int StockPrice
+    {
+        get; set;
+    }
     public double Rate
     {
         get; set;
