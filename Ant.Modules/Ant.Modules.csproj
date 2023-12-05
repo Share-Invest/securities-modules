@@ -34,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\open-api-modules\OpenAPI.TR.Entity\OpenAPI.TR.Entity.csproj" />
+		<ProjectReference Include="..\..\Kiwoom\OpenAPI.TR.Entity\OpenAPI.TR.Entity.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
