@@ -1,10 +1,13 @@
 ﻿using ShareInvest.Entities;
 using ShareInvest.Entities.Google;
+using ShareInvest.Entities.Kakao;
 
 namespace ShareInvest.Repositories;
 
 public interface IUserRepository
 {
+    int RegisterTheFriends(string userId, IEnumerable<KakaoFriend> friends);
+
     int SaveCallback(KakaoCallback callback);
 
     string[] GetAccountsById(string userName);
