@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kakao;
@@ -11,13 +12,18 @@ public struct KakaoFriendInventory
     {
         get; set;
     }
-    [DataMember, JsonProperty("totalCount")]
+    [DataMember, JsonProperty("total_count")]
     public int Count
     {
         get; set;
     }
-    [DataMember, JsonProperty("userId")]
+    [DataMember, JsonProperty("user_id")]
     public string? UserId
+    {
+        get; set;
+    }
+    [NotMapped]
+    public DateTime RegisteredTime
     {
         get; set;
     }
