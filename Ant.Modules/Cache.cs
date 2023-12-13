@@ -43,6 +43,22 @@ public static class Cache
     {
         return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
     }
+    public static IEnumerable<Entities.StockTheme> SetStockTheme(Entities.StockTheme e)
+    {
+        if (string.IsNullOrEmpty(e.ThemeCode) is false)
+        {
+            stockTheme[e.ThemeCode] = e;
+        }
+        if (stockTheme.Count <= 0x100)
+        {
+            return Enumerable.Empty<Entities.StockTheme>();
+        }
+        var stocks = from st in stockTheme
+                     orderby Convert.ToDouble(st.Value.RateCompareToPreviousDay) descending
+                     select st.Value;
+
+        return stocks.Take(3);
+    }
     public static void SetTasksInQueue<T>(T task) where T : class
     {
         if (task != null)
@@ -236,6 +252,7 @@ public static class Cache
         }
     };
     static readonly ConcurrentQueue<object> queueWorker = new();
+    static readonly ConcurrentDictionary<string, Entities.StockTheme> stockTheme = new();
     static readonly ConcurrentDictionary<string, TR> stores = new();
     static readonly ConcurrentDictionary<string, string> stockQuotes = new();
     static readonly ConcurrentDictionary<string, string> stocksConclusion = new();

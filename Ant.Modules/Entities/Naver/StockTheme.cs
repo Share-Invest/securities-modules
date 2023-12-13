@@ -15,6 +15,11 @@ public class StockTheme
     {
         get; set;
     }
+    [Key]
+    public long Ticks
+    {
+        get; set;
+    }
     [StringLength(8)]
     public string? RateCompareToPreviousDay
     {
@@ -52,6 +57,11 @@ public class StockTheme
     }
     [NotMapped, StringLength(8)]
     public string? SecondLeadingStockCode
+    {
+        get; set;
+    }
+    [NotMapped]
+    public IEnumerable<StockThemeDetail>? ThemeDetail
     {
         get; set;
     }

@@ -5,12 +5,17 @@ namespace ShareInvest.Entities;
 public class StockThemeDetail
 {
     [StringLength(8), Key]
-    public string? StockCode
+    public string? ThemeCode
     {
         get; set;
     }
     [StringLength(8), Key]
-    public string? ThemeCode
+    public string? StockCode
+    {
+        get; set;
+    }
+    [StringLength(8)]
+    public string? Date
     {
         get; set;
     }
