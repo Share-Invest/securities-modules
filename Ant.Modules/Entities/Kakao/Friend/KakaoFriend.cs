@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kakao;
@@ -13,7 +12,7 @@ public class KakaoFriend
     {
         get; set;
     }
-    [StringLength(0x30), Key]
+    [StringLength(0x30), JsonProperty("user_id"), Key]
     public string? UserId
     {
         get; set;
@@ -23,12 +22,12 @@ public class KakaoFriend
     {
         get; set;
     }
-    [DataMember, JsonProperty("profileNickname"), StringLength(0x10)]
+    [DataMember, JsonProperty("profile_nickname"), StringLength(0x10)]
     public string? NickName
     {
         get; set;
     }
-    [DataMember, JsonProperty("profileThumbnailImage"), StringLength(0x80)]
+    [DataMember, JsonProperty("profile_thumbnail_image"), StringLength(0x80)]
     public string? Image
     {
         get; set;
@@ -38,13 +37,8 @@ public class KakaoFriend
     {
         get; set;
     }
-    [DataMember, JsonProperty("allowedMsg")]
+    [DataMember, JsonProperty("allowed_msg")]
     public bool AllowedMsg
-    {
-        get; set;
-    }
-    [NotMapped]
-    public DateTime RegisteredTime
     {
         get; set;
     }
