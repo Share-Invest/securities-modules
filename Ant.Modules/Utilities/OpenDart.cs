@@ -85,6 +85,8 @@ public class OpenDart : RestClient
         {
 #if DEBUG
             Debug.WriteLine(exception.Message);
+#else
+            Console.WriteLine(exception.Message);
 #endif
         }
         if (response.RawBytes is byte[] rawBytes)
