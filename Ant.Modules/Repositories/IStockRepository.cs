@@ -4,7 +4,9 @@ namespace ShareInvest.Repositories;
 
 public interface IStockRepository
 {
-    TreeMapStock[] GetStocks(string latestDate);
+    Task<HighGrowthRateTheme[]> GetThemesWithHighGrowthRateAsync();
+
+    TreeMapStock[] GetStocksCategorizedByTheme(HighGrowthRateTheme[] themeGroup, string latestDate);
 
     int SaveStockTheme(IEnumerable<StockThemeDetail>? themes);
 
