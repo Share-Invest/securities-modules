@@ -1,20 +1,20 @@
 ﻿namespace ShareInvest.Entities;
 
-public class TreeMapStock
+public struct TreeMapStock
 {
-    public string? Code
+    public string Code
     {
         get; set;
     }
-    public string? Name
+    public string Name
     {
         get; set;
     }
-    public string[]? ThemeCode
+    public Dictionary<string, string> ThemeInventory
     {
         get; set;
     }
-    public double Rate
+    public double RateCompareToPreviousDay
     {
         get; set;
     }
@@ -34,7 +34,7 @@ public class TreeMapStock
     {
         get; set;
     }
-    public long PreviousTradingVolume
+    public double PreviousTradingVolume
     {
         get; set;
     }

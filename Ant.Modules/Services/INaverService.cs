@@ -4,7 +4,7 @@ namespace ShareInvest.Services;
 
 public interface INaverService
 {
-    Task<int> SaveStockThemeAsync(StockTheme theme);
+    int SaveStockTheme(StockTheme theme);
 
     void SaveStockTheme(StockThemeDetail theme);
 }

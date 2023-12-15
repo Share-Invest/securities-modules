@@ -4,9 +4,11 @@ namespace ShareInvest.Repositories;
 
 public interface IStockRepository
 {
-    Task<int> SaveStockThemeAsync(IEnumerable<StockThemeDetail>? themes);
+    Task<HighGrowthRateTheme[]> GetThemesWithHighGrowthRateAsync();
 
-    TreeMapStock[] GetStocks(string latestDate);
+    TreeMapStock[] GetStocksCategorizedByTheme(HighGrowthRateTheme[] themeGroup, string latestDate);
+
+    int SaveStockTheme(IEnumerable<StockThemeDetail>? themes);
 
     int SaveStockTheme(StockTheme theme);
 }
