@@ -6,7 +6,7 @@ public interface IStockRepository
 {
     Task<HighGrowthRateTheme[]> GetThemesWithHighGrowthRateAsync();
 
-    TreeMapStock[] GetStocksCategorizedByTheme(HighGrowthRateTheme[] themeGroup, string latestDate);
+    Task<TreeMapStock[]> GetStocksCategorizedByThemeAsync(HighGrowthRateTheme[] themeGroup);
 
     int SaveStockTheme(IEnumerable<StockThemeDetail>? themes);
 
