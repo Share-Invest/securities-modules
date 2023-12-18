@@ -15,5 +15,5 @@ public interface IAnTalkService
 
     AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);
 
-    DailyChart[] GetDailyChart(string code, string? date, int period);
+    DailyChart[] GetDailyChart(string code, int period, string? date = null);
 }
