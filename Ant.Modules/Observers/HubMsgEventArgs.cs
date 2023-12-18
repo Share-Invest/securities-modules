@@ -1,4 +1,5 @@
 ﻿using ShareInvest.Entities.Google;
+using ShareInvest.Entities.TradingView;
 
 namespace ShareInvest.Observers;
 
@@ -8,10 +9,28 @@ public class HubMsgEventArgs : MsgEventArgs
     {
         get;
     }
+    public OverviewCandleChart ChartData
+    {
+        get;
+    }
     public HubMsgEventArgs(string code, string[] elements)
     {
         Stock = convertFunc(code, elements);
+
+        ChartData = convertOverviewFunc(code, elements, Stock.Current);
     }
+    readonly Func<string, string[], int, OverviewCandleChart> convertOverviewFunc = (code, elements, close) =>
+    {
+        return new OverviewCandleChart
+        {
+            Date = DateTime.Now.ToString("d"),
+            Close = close,
+            Volume = elements.Length == 43 && int.TryParse(elements[7], out int vol) ? Math.Abs(vol) : 0,
+            Open = elements.Length == 43 && int.TryParse(elements[9], out int open) ? Math.Abs(open) : 0,
+            High = elements.Length == 43 && int.TryParse(elements[0xA], out int high) ? Math.Abs(high) : 0,
+            Low = elements.Length == 43 && int.TryParse(elements[0xB], out int low) ? Math.Abs(low) : 0
+        };
+    };
     readonly Func<string, string[], CoordinateStock> convertFunc = (code, elements) =>
     {
         return new CoordinateStock
