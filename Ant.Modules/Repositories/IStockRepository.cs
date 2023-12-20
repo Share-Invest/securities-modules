@@ -8,6 +8,8 @@ public interface IStockRepository
 
     Task<TreeMapStock[]> GetStocksCategorizedByThemeAsync(HighGrowthRateTheme[] themeGroup);
 
+    Task<Dictionary<string, StockTheme[]>> ExpressTheMarketByThemeAsync();
+
     int SaveStockTheme(IEnumerable<StockThemeDetail>? themes);
 
     int SaveStockTheme(StockTheme theme);
