@@ -18,11 +18,11 @@ public class JsonMsgEventArgs : MsgEventArgs
         Convey = tr switch
         {
             OPW00004 => deserializeOPW4(json),
-
             Opw00005 => deserializeOPW5(json),
 
             Opt10081 => JsonConvert.DeserializeObject<MultiOpt10081>(json),
 
+            Opt10080 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt10080>(json),
             Opt10004 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt10004>(json),
             OPTKWFID => JsonConvert.DeserializeObject<Entities.Kiwoom.OPTKWFID>(json),
 

@@ -22,6 +22,8 @@ public interface ISecuritiesRepository
 
     Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
 
+    Task<int> SaveChangesAsync(Entities.Kiwoom.Opt10080 minuteChart);
+
     Task<int> SaveChangesAsync(Entities.Kiwoom.Opt10004 stockQuote);
 
     Task<int> RecordsCommunicationsWithSecuritiesCorpAsync(OpenMessage message);
@@ -57,6 +59,8 @@ public interface ISecuritiesRepository
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
     string? GetCodeToLookUpNextDailyChart(string date);
+
+    string? GetCodeToLookUpNextMinuteChart(string date);
 
     string? GetCodeToLookUpNextStockQuote(string date);
 
