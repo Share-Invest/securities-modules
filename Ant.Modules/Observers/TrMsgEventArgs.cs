@@ -17,7 +17,7 @@ public class TrMsgEventArgs : MsgEventArgs
     {
         HubMethodName = tr switch
         {
-            OPTKWFID or Opt10004 => tr.GetType().Name,
+            OPTKWFID or Opt10004 or Opt50001 => tr.GetType().Name,
 
             OPW00004 => determineTheNameOPW4(json),
             Opw00005 => determineTheNameOPW5(json),

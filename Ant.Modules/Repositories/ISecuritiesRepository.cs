@@ -28,6 +28,8 @@ public interface ISecuritiesRepository
 
     Task<int> RecordStockInformationfromKiwoomSecuritiesAsync(Entities.Kiwoom.OPTKWFID item);
 
+    Task<int> RecordFuturesInformationfromKiwoomSecuritiesAsync(Entities.Kiwoom.Opt50001 item);
+
     Task<int> RecordAssetStatusAsync(IAccountBook assets);
 
     Task<bool> AnyUserAsync(string userId);
