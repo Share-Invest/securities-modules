@@ -1,5 +1,10 @@
 ﻿using ShareInvest.Entities.AnTalk;
+using ShareInvest.Properties;
 
+using Skender.Stock.Indicators;
+
+using System.Collections.Concurrent;
+using System.Globalization;
 using System.Net.NetworkInformation;
 using System.Text;
 
@@ -7,6 +12,34 @@ namespace ShareInvest;
 
 public static class Service
 {
+    public static void AnalyzeFuturesQuotes(string code, string[] futuresData)
+    {
+        _ = DateTime.TryParseExact(string.Concat(DateTime.Now.ToString(Resources.DATE), futuresData[0]), dateFormat, null, DateTimeStyles.None, out var time);
+
+        if (Cache.GetFuturesData(code) is ConcurrentStack<Quote> quotes)
+        {
+            if (quotes.TryPeek(out var latestQuote) && latestQuote.Date.Minute != time.Minute)
+            {
+                latestQuote.Close = Math.Abs(Convert.ToDecimal(futuresData[1]));
+                latestQuote.Open = Math.Abs(Convert.ToDecimal(futuresData[9]));
+                latestQuote.High = Math.Abs(Convert.ToDecimal(futuresData[10]));
+                latestQuote.Low = Math.Abs(Convert.ToDecimal(futuresData[11]));
+                latestQuote.Volume = Convert.ToDecimal(futuresData[7]);
+            }
+            else
+            {
+                quotes.Push(new Quote
+                {
+                    Date = time,
+                    Close = Math.Abs(Convert.ToDecimal(futuresData[1])),
+                    Open = Math.Abs(Convert.ToDecimal(futuresData[9])),
+                    High = Math.Abs(Convert.ToDecimal(futuresData[10])),
+                    Low = Math.Abs(Convert.ToDecimal(futuresData[11])),
+                    Volume = Convert.ToDecimal(futuresData[7])
+                });
+            }
+        }
+    }
     public static object? ProvideComparableChart(IEnumerable<AssetStatusChart> chart)
     {
         Queue<AssetStatusChart> previous = new(), present = new();
@@ -67,4 +100,5 @@ public static class Service
         }
         return string.Empty;
     }
+    const string dateFormat = "yyyyMMddHHmmss";
 }

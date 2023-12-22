@@ -1,5 +1,7 @@
 ﻿using ShareInvest.OpenAPI.Entity;
 
+using Skender.Stock.Indicators;
+
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Reflection;
@@ -35,6 +37,12 @@ public static class Cache
 
         return (tryDequeue, task);
     }
+    public static (bool tryDequeue, (string code, string data)) GetTasksFromFuturesQueue()
+    {
+        var tryDequeue = futuresQueueWorker.TryDequeue(out var task);
+
+        return (tryDequeue, task);
+    }
     public static string[] GetConclusion(string code)
     {
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
@@ -42,6 +50,10 @@ public static class Cache
     public static string[] GetStockQuote(string code)
     {
         return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : Array.Empty<string>();
+    }
+    public static ConcurrentStack<Quote>? GetFuturesData(string code)
+    {
+        return futuresRealTypeData.TryGetValue(code, out var quotes) ? quotes : null;
     }
     public static IEnumerable<Entities.StockTheme> SetStockTheme(Entities.StockTheme e)
     {
@@ -66,13 +78,41 @@ public static class Cache
             queueWorker.Enqueue(task);
         }
     }
+    public static void SetFuturesConclusion(string code, string data)
+    {
+        futuresQueueWorker.Enqueue((code, data));
+
+        futuresConclusion[code] = data;
+    }
+    public static void SetFuturesTheoreticalPrice(string code, string data)
+    {
+        futuresQueueWorker.Enqueue((code, data));
+    }
     public static void SetConclusion(string code, string data)
     {
         stocksConclusion[code] = data;
     }
+    public static void SetFuturesQuote(string code, string data)
+    {
+        futuresQueueWorker.Enqueue((code, data));
+
+        futuresQuotes[code] = data;
+    }
     public static void SetStockQuote(string code, string data)
     {
         stockQuotes[code] = data;
+    }
+    public static void InitializedFuturesQuotes(string code)
+    {
+        if (futuresRealTypeData.TryGetValue(code, out var quotes) && !quotes.IsEmpty)
+        {
+            futuresRealTypeData[code] = new ConcurrentStack<Quote>(from q in quotes
+                                                                   where q.Date > DateTime.Now.AddDays(-5)
+                                                                   orderby q.Date
+                                                                   select q);
+            return;
+        }
+        futuresRealTypeData[code] = new ConcurrentStack<Quote>();
     }
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {
@@ -251,9 +291,13 @@ public static class Cache
             "종목코드 없음"
         }
     };
+    static readonly ConcurrentQueue<(string code, string data)> futuresQueueWorker = new();
     static readonly ConcurrentQueue<object> queueWorker = new();
     static readonly ConcurrentDictionary<string, Entities.StockTheme> stockTheme = new();
     static readonly ConcurrentDictionary<string, TR> stores = new();
     static readonly ConcurrentDictionary<string, string> stockQuotes = new();
     static readonly ConcurrentDictionary<string, string> stocksConclusion = new();
+    static readonly ConcurrentDictionary<string, string> futuresConclusion = new();
+    static readonly ConcurrentDictionary<string, string> futuresQuotes = new();
+    static readonly ConcurrentDictionary<string, ConcurrentStack<Quote>> futuresRealTypeData = new();
 }
