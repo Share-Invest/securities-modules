@@ -20,8 +20,6 @@ public interface ISecuritiesRepository
 
     Task<int> RegisterPositionAsync(Entities.Position position);
 
-    Task<int> SaveChangesAsync(MultiOpt10081 dailyChart);
-
     Task<int> SaveChangesAsync(Entities.Kiwoom.Opt10004 stockQuote);
 
     Task<int> RecordsCommunicationsWithSecuritiesCorpAsync(OpenMessage message);
@@ -39,6 +37,8 @@ public interface ISecuritiesRepository
     Task<bool> EventOccursInStockAsync(string key, string code, string price);
 
     Task<string> GetLatestDateAsync();
+
+    Task<string> GetFuturesLatestDateAsync();
 
     Task<string?> GetStockNameAsync(string code);
 
@@ -58,13 +58,19 @@ public interface ISecuritiesRepository
 
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
+    string? GetCodeToLookupNextFuturesDayChart(string date);
+
+    string? GetCodeToLookupNextFuturesMinChart(string date);
+
     string? GetCodeToLookUpNextDailyChart(string date);
 
     string? GetCodeToLookUpNextMinuteChart(string date);
 
     string? GetCodeToLookUpNextStockQuote(string date);
 
-    int SaveChanges(IEnumerable<Entities.Kiwoom.Opt10080> minuteChart);
+    int SaveChanges<T>(T entity) where T : class;
+
+    int SaveChanges<T>(IEnumerable<T> entities) where T : class;
 
     int LiquidateStocksHeld(ChejanBalance balance);
 
