@@ -7,6 +7,8 @@ public interface IAnTalkService
 {
     Task SendMessageAsync(AntStockChat stockChat);
 
+    Task<string?> GetFuturesCodeAsync();
+
     Task<string?> GetStockNameAsync(string code);
 
     Task<AntStock[]> GetStockAsync(Order order);
@@ -16,4 +18,8 @@ public interface IAnTalkService
     AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);
 
     DailyChart[] GetDailyChart(string code, int period, string? date = null);
+    /// <summary>
+    /// <param name="dateTime">dateTimeFormat: yyyyMMddHHmmss</param>
+    /// </summary>
+    IEnumerable<T> GetFuturesMinuteChart<T>(string code, string? dateTime = null, int period = 0x400) where T : class;
 }
