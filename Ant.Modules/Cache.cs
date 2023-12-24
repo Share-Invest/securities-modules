@@ -102,6 +102,22 @@ public static class Cache
     {
         stockQuotes[code] = data;
     }
+    public static void SetIndicators(string code, IEnumerable<MacdResult> indicator)
+    {
+        indicators[code].Macd = indicator;
+    }
+    public static void SetIndicators(string code, IEnumerable<SuperTrendResult> indicator)
+    {
+        indicators[code].SuperTrend = indicator;
+    }
+    public static void SetIndicators(string code, IEnumerable<SlopeResult> indicator)
+    {
+        indicators[code].Slope = indicator;
+    }
+    public static void SetIndicators(string code, IEnumerable<AtrStopResult> indicator)
+    {
+        indicators[code].AtrStop = indicator;
+    }
     public static void InitializedFuturesQuotes(string code)
     {
         if (futuresRealTypeData.TryGetValue(code, out var quotes) && !quotes.IsEmpty)
@@ -300,4 +316,5 @@ public static class Cache
     static readonly ConcurrentDictionary<string, string> futuresConclusion = new();
     static readonly ConcurrentDictionary<string, string> futuresQuotes = new();
     static readonly ConcurrentDictionary<string, ConcurrentStack<Quote>> futuresRealTypeData = new();
+    static readonly ConcurrentDictionary<string, Entities.Indicators> indicators = new();
 }
