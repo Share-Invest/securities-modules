@@ -106,6 +106,15 @@ namespace ShareInvest.Properties {
         }
         
         /// <summary>
+        ///   yyyyMMddHHmmss과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        internal static string DATETIME {
+            get {
+                return ResourceManager.GetString("DATETIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Securities과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         internal static string KEY {
