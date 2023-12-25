@@ -7,6 +7,8 @@ public interface IAnTalkService
 {
     Task SendMessageAsync(AntStockChat stockChat);
 
+    Task<string?> GetLatestDateAsync();
+
     Task<string?> GetFuturesCodeAsync();
 
     Task<string?> GetStockNameAsync(string code);

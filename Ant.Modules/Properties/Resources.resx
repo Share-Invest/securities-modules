@@ -132,6 +132,9 @@
   <data name="DATE" xml:space="preserve">
     <value>yyyyMMdd</value>
   </data>
+  <data name="DATETIME" xml:space="preserve">
+    <value>yyyyMMddHHmmss</value>
+  </data>
   <data name="KEY" xml:space="preserve">
     <value>Securities</value>
   </data>

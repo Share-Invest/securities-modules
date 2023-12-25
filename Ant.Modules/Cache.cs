@@ -31,6 +31,13 @@ public static class Cache
             return FileVersionInfo.GetVersionInfo(location).CompanyName;
         }
     }
+    public static IEnumerable<KeyValuePair<string, ConcurrentQueue<string>>> GetTempStorageEnumerator()
+    {
+        foreach (var kv in tempStorage)
+        {
+            yield return kv;
+        }
+    }
     public static (bool tryDequeue, object? task) GetTasksFromQueue()
     {
         var tryDequeue = queueWorker.TryDequeue(out object? task);
@@ -54,6 +61,20 @@ public static class Cache
     public static ConcurrentStack<Quote>? GetFuturesData(string code)
     {
         return futuresRealTypeData.TryGetValue(code, out var quotes) ? quotes : null;
+    }
+    public static Entities.Indicators? GetIndicators(string code)
+    {
+        return indicators.TryGetValue(code, out var value) ? value : null;
+    }
+    public static void SetTempStorage(string code, string data)
+    {
+        if (tempStorage.TryGetValue(code, out ConcurrentQueue<string>? queue))
+        {
+            queue.Enqueue(data);
+
+            return;
+        }
+        tempStorage[code] = new ConcurrentQueue<string>(new[] { data });
     }
     public static IEnumerable<Entities.StockTheme> SetStockTheme(Entities.StockTheme e)
     {
@@ -118,17 +139,36 @@ public static class Cache
     {
         indicators[code].AtrStop = indicator;
     }
-    public static void InitializedFuturesQuotes(string code)
+    public static bool InitializedFuturesQuotes(string code)
     {
-        if (futuresRealTypeData.TryGetValue(code, out var quotes) && !quotes.IsEmpty)
+        if (futuresRealTypeData.TryGetValue(code, out var quotes) && quotes.IsEmpty is false)
         {
-            futuresRealTypeData[code] = new ConcurrentStack<Quote>(from q in quotes
-                                                                   where q.Date > DateTime.Now.AddDays(-5)
-                                                                   orderby q.Date
-                                                                   select q);
-            return;
+            var carryForwardQuotes = quotes.OrderByDescending(ks => ks.Date).Take(0x400);
+
+            InitializedFuturesQuotes(code, carryForwardQuotes);
         }
-        futuresRealTypeData[code] = new ConcurrentStack<Quote>();
+        return quotes == null || quotes.IsEmpty;
+    }
+    public static void InitializedFuturesQuotes(string code, IEnumerable<Quote> quotes)
+    {
+        if (indicators.TryGetValue(code, out var value))
+        {
+            value.Macd = quotes.GetMacd().Condense().RemoveWarmupPeriods();
+            value.Slope = quotes.GetSlope(14).Condense().RemoveWarmupPeriods();
+            value.SuperTrend = quotes.GetSuperTrend().Condense().RemoveWarmupPeriods();
+            value.AtrStop = quotes.GetAtrStop().Condense().RemoveWarmupPeriods();
+        }
+        else
+        {
+            indicators[code] = new Entities.Indicators
+            {
+                AtrStop = quotes.GetAtrStop().Condense().RemoveWarmupPeriods(),
+                Macd = quotes.GetMacd().Condense().RemoveWarmupPeriods(),
+                Slope = quotes.GetSlope(14).Condense().RemoveWarmupPeriods(),
+                SuperTrend = quotes.GetSuperTrend().Condense().RemoveWarmupPeriods()
+            };
+        }
+        futuresRealTypeData[code] = new ConcurrentStack<Quote>(quotes.OrderBy(ks => ks.Date));
     }
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {
@@ -316,5 +356,6 @@ public static class Cache
     static readonly ConcurrentDictionary<string, string> futuresConclusion = new();
     static readonly ConcurrentDictionary<string, string> futuresQuotes = new();
     static readonly ConcurrentDictionary<string, ConcurrentStack<Quote>> futuresRealTypeData = new();
+    static readonly ConcurrentDictionary<string, ConcurrentQueue<string>> tempStorage = new();
     static readonly ConcurrentDictionary<string, Entities.Indicators> indicators = new();
 }
