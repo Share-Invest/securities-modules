@@ -113,6 +113,70 @@ public class MinuteChart : Chart
         });
         return (macdData, macdSignalData, macdHistogramData);
     }
+    public override (Series atrStop, Series superTrend, object indicator) UpdateFuturesIndicator(string code)
+    {
+        var indicator = Cache.GetIndicators(code);
+
+        var futuresMacd = indicator?.Macd?.ToArray();
+        var futuresSlope = indicator?.Slope?.ToArray();
+        var futuresAtrStop = indicator?.AtrStop?.ToArray();
+        var futuresSuperTrend = indicator?.SuperTrend?.ToArray();
+
+        long? macdTime = (futuresMacd?[^1].Date.Ticks - Cache.Epoch) / 10_000 / 1_000,
+              slopeTime = (futuresSlope?[^1].Date.Ticks - Cache.Epoch) / 10_000 / 1_000,
+              atrStopTime = (futuresAtrStop?[^1].Date.Ticks - Cache.Epoch) / 10_000 / 1_000,
+              superTrendTime = (futuresSuperTrend?[^1].Date.Ticks - Cache.Epoch) / 10_000 / 1_000;
+
+        return (new Series
+        {
+            ObjData = new
+            {
+                time = atrStopTime,
+                value = futuresAtrStop?[^1].AtrStop
+            },
+            IsBullish = futuresAtrStop?[^1].SellStop != null,
+            Create = futuresAtrStop?[^1].BuyStop != null != (futuresAtrStop?[^2].BuyStop != null)
+        },
+        new Series
+        {
+            ObjData = new
+            {
+                time = superTrendTime,
+                value = futuresSuperTrend?[^1].SuperTrend
+            },
+            IsBullish = futuresSuperTrend?[^1].UpperBand != null,
+            Create = futuresSuperTrend?[^1].UpperBand != null != (futuresSuperTrend?[^2].UpperBand != null)
+        },
+        new
+        {
+            macdHistogramData = new
+            {
+                color = futuresMacd?[^2].Histogram < futuresMacd?[^1].Histogram ? (futuresMacd[^1].Histogram > 0 ? "#F00" : "#00BFFF") : (futuresMacd?[^1].Histogram > 0 ? "#800000" : "#00F"),
+                value = futuresMacd?[^1].Histogram,
+                time = macdTime
+            },
+            macdData = new
+            {
+                value = futuresMacd?[^1].Macd,
+                time = macdTime
+            },
+            macdSignalData = new
+            {
+                value = futuresMacd?[^1].Signal,
+                time = macdTime
+            },
+            slopeData = new
+            {
+                value = futuresSlope?[^1].Slope,
+                time = slopeTime
+            },
+            linearData = futuresSlope?.Where(e => e.Line != null).Select(e => new
+            {
+                time = (e.Date.Ticks - Cache.Epoch) / 10_000 / 1_000,
+                value = e.Line
+            })
+        });
+    }
     public MinuteChart(string code) : base(code)
     {
 
