@@ -44,6 +44,8 @@ public interface ISecuritiesRepository
 
     Task<string?> GetStockNameAsync(string code);
 
+    Task<string> GetSimulationDataAsync(string code, string date);
+
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
     Task<AntStock[]> GetListByCompareToPreviousVolumeAsync(string latestDate);
@@ -57,6 +59,8 @@ public interface ISecuritiesRepository
     AntStock[] GetListByVolume(string lastestDate);
 
     IEnumerable<T> GetStocks<T>(string date) where T : struct;
+
+    IEnumerable<string> GetSimulationDateList(string code);
 
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
@@ -88,6 +92,6 @@ public interface ISecuritiesRepository
 
     AssetStatusChart[] GetPresumeAssetTrend(string accNo);
     CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null);
-    
+
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string? dateTime, int period = 0x400);
 }

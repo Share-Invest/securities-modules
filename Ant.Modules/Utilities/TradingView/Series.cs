@@ -2,7 +2,7 @@
 
 public struct Series
 {
-    public bool Create
+    public bool Order
     {
         get; set;
     }

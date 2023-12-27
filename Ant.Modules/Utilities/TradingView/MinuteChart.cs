@@ -1,14 +1,16 @@
-﻿using Skender.Stock.Indicators;
+﻿using ShareInvest.Entities;
+
+using Skender.Stock.Indicators;
 
 namespace ShareInvest.Utilities.TradingView;
 
 public class MinuteChart : Chart
 {
-    public override IEnumerable<(bool isBullish, object superTrend)> InitializedSuperTrendEnumerator()
+    public override IEnumerable<(bool isBullish, object superTrend)> InitializedSuperTrendEnumerator(SuperTrendResult[]? superTrend = null)
     {
         Queue<object> data = new();
 
-        var superTrend = Cache.GetIndicators(code)?.SuperTrend?.ToArray();
+        superTrend ??= Cache.GetIndicators(code)?.SuperTrend?.ToArray();
 
         for (int index = 0; index < superTrend?.Length; index++)
         {
@@ -28,11 +30,11 @@ public class MinuteChart : Chart
         }
         yield return (superTrend?[^1].UpperBand == null, data);
     }
-    public override IEnumerable<(bool isBullish, object atrStop)> InitializedAtrStopEnumerator()
+    public override IEnumerable<(bool isBullish, object atrStop)> InitializedAtrStopEnumerator(AtrStopResult[]? atrStop = null)
     {
         Queue<object> data = new();
 
-        var atrStop = Cache.GetIndicators(code)?.AtrStop?.ToArray();
+        atrStop ??= Cache.GetIndicators(code)?.AtrStop?.ToArray();
 
         for (int index = 0; index < atrStop?.Length; index++)
         {
@@ -75,9 +77,9 @@ public class MinuteChart : Chart
             color = index > 0 && quoteArr[index - 1].Volume < e.Volume ? "#F00" : "#00F"
         });
     }
-    public override (object? linear, object? slope) InitializedSlopeData()
+    public override (object? linear, object? slope) InitializedSlopeData(IEnumerable<SlopeResult>? slope = null)
     {
-        var slope = Cache.GetIndicators(code)?.Slope;
+        slope ??= Cache.GetIndicators(code)?.Slope;
 
         var linearData = slope?.Where(e => e.Line != null).Select(e => new
         {
@@ -91,9 +93,9 @@ public class MinuteChart : Chart
         });
         return (linearData, slopeData);
     }
-    public override (object? macd, object? signal, object? histogram) InitializedMacdData()
+    public override (object? macd, object? signal, object? histogram) InitializedMacdData(MacdResult[]? macd = null)
     {
-        var macd = Cache.GetIndicators(code)?.Macd?.ToArray();
+        macd ??= Cache.GetIndicators(code)?.Macd?.ToArray();
 
         var macdHistogramData = macd?.Select((e, index) => new
         {
@@ -113,9 +115,9 @@ public class MinuteChart : Chart
         });
         return (macdData, macdSignalData, macdHistogramData);
     }
-    public override (Series atrStop, Series superTrend, object indicator) UpdateFuturesIndicator(string code)
+    public override (Series atrStop, Series superTrend, object indicator) UpdateFuturesIndicator(string code, Indicators? indicator = null)
     {
-        var indicator = Cache.GetIndicators(code);
+        indicator ??= Cache.GetIndicators(code);
 
         var futuresMacd = indicator?.Macd?.ToArray();
         var futuresSlope = indicator?.Slope?.ToArray();
@@ -134,8 +136,8 @@ public class MinuteChart : Chart
                 time = atrStopTime,
                 value = futuresAtrStop?[^1].AtrStop
             },
-            IsBullish = futuresAtrStop?[^1].SellStop != null,
-            Create = futuresAtrStop?[^1].BuyStop != null != (futuresAtrStop?[^2].BuyStop != null)
+            IsBullish = futuresAtrStop?[^1].BuyStop != null,
+            Order = futuresAtrStop?[^1].SellStop != null
         },
         new Series
         {
@@ -144,8 +146,8 @@ public class MinuteChart : Chart
                 time = superTrendTime,
                 value = futuresSuperTrend?[^1].SuperTrend
             },
-            IsBullish = futuresSuperTrend?[^1].UpperBand != null,
-            Create = futuresSuperTrend?[^1].UpperBand != null != (futuresSuperTrend?[^2].UpperBand != null)
+            IsBullish = futuresSuperTrend?[^1].LowerBand != null,
+            Order = futuresSuperTrend?[^1].LowerBand != null
         },
         new
         {
