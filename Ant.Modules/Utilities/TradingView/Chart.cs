@@ -6,7 +6,7 @@ namespace ShareInvest.Utilities.TradingView;
 
 public abstract class Chart
 {
-    public abstract (Series atrStop, Series superTrend, object indicator) UpdateFuturesIndicator(string code, Indicators? indicator = null);
+    public abstract (Series atrStop, Series superTrend, object indicator, double histogram, double slope) UpdateFuturesIndicator(string code, Indicators? indicator = null);
 
     public abstract (object? macd, object? signal, object? histogram) InitializedMacdData(MacdResult[]? macd = null);
 
