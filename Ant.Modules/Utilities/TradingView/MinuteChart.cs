@@ -115,7 +115,7 @@ public class MinuteChart : Chart
         });
         return (macdData, macdSignalData, macdHistogramData);
     }
-    public override (Series atrStop, Series superTrend, object indicator, double histogram, double slope) UpdateFuturesIndicator(string code, Indicators? indicator = null)
+    public override (Series atrStop, Series superTrend, object indicator) UpdateFuturesIndicator(string code, Indicators? indicator = null)
     {
         indicator ??= Cache.GetIndicators(code);
 
@@ -177,9 +177,7 @@ public class MinuteChart : Chart
                 time = (e.Date.Ticks - Cache.Epoch) / 10_000 / 1_000,
                 value = e.Line
             })
-        },
-        futuresMacd?[^1].Histogram ?? double.NaN,
-        futuresSlope?[^1].Slope ?? double.NaN);
+        });
     }
     public MinuteChart(string code) : base(code)
     {
