@@ -12,7 +12,7 @@ public struct Strategics
     }
     public int Position
     {
-        get; set;
+        get; private set;
     }
     public IEnumerable<double> Histogram
     {
