@@ -6,6 +6,10 @@ public struct Strategics
     {
         get; set;
     }
+    public DateTime JustBefore
+    {
+        get; set;
+    }
     public int Position
     {
         get; set;
@@ -40,15 +44,15 @@ public struct Strategics
         {
             Position = AtrStop + SuperTrend;
 
+            if (Position == 0 || (DateTime - JustBefore).TotalSeconds <= 1)
+            {
+                return false;
+            }
             IEnumerable<double>[] continuity = new[]
             {
                 Histogram,
                 Slope
             };
-            if (Position == 0)
-            {
-                return false;
-            }
             if (Position < 0)
             {
                 continuity = new[]

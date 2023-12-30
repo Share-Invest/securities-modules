@@ -20,7 +20,7 @@ public interface IAnTalkService
 
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
-    IAsyncEnumerable<(bool moreThanBefore, Quote quote, Indicators indicator)> GetSimulationDataAsync(string code, string date, IEnumerable<Quote> quotes, CancellationToken? stoppingToken = null);
+    IAsyncEnumerable<(DateTime dateTime, bool moreThanBefore, Quote quote, Indicators indicator)> GetSimulationDataAsync(string code, string date, IEnumerable<Quote> quotes, CancellationToken? stoppingToken = null);
 
     AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);
 
