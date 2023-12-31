@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using ShareInvest.Entities.Assets;
 using ShareInvest.OpenAPI.Entity;
 using ShareInvest.Properties;
 
@@ -19,6 +18,9 @@ public class JsonMsgEventArgs : MsgEventArgs
         {
             OPW00004 => deserializeOPW4(json),
             Opw00005 => deserializeOPW5(json),
+
+            Opw20007 => JsonConvert.DeserializeObject<Entities.Assets.Opw20007>(json),
+            OPW20010 => JsonConvert.DeserializeObject<Entities.Assets.OPW20010>(json),
 
             Opt10081 => JsonConvert.DeserializeObject<MultiOpt10081>(json),
 
@@ -40,12 +42,12 @@ public class JsonMsgEventArgs : MsgEventArgs
     {
         var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.STOCKCODE.Equals(predicate.Path));
 
-        return isExist ? JsonConvert.DeserializeObject<BalOPW00004>(json) : JsonConvert.DeserializeObject<AccOPW00004>(json);
+        return isExist ? JsonConvert.DeserializeObject<Entities.Assets.BalOPW00004>(json) : JsonConvert.DeserializeObject<Entities.Assets.AccOPW00004>(json);
     };
     readonly Func<string, IAccountBook?> deserializeOPW5 = json =>
     {
         var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.CODENUMBER.Equals(predicate.Path));
 
-        return isExist ? JsonConvert.DeserializeObject<BalOPW00005>(json) : JsonConvert.DeserializeObject<AccOPW00005>(json);
+        return isExist ? JsonConvert.DeserializeObject<Entities.Assets.BalOPW00005>(json) : JsonConvert.DeserializeObject<Entities.Assets.AccOPW00005>(json);
     };
 }

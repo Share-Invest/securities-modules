@@ -16,6 +16,11 @@ public class Simulation
         get; set;
     }
     [NotMapped]
+    public DateTime DateTime
+    {
+        get; set;
+    }
+    [NotMapped]
     public double CurrentPrice
     {
         get; set;
