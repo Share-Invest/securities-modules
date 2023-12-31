@@ -8,6 +8,8 @@ public interface IHubs
 
     Task RemoveFromGroupAsync(string groupName);
 
+    Task TransmitMarkerAsync(object marker);
+
     Task TransmitFuturesQuoteAsync(Quote quote, bool moreThanBefore);
 
     Task TransmitConclusionInformationAsync(string code, string data);
