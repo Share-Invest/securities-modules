@@ -4,7 +4,18 @@ namespace ShareInvest.Utilities.TradingView;
 
 public class Futures
 {
-    public FuturesBalance Balance
+    public int TransactionMultiplier
+    {
+        get
+        {
+            if (string.IsNullOrEmpty(Balance.Code))
+            {
+                return 0;
+            }
+            return Balance.Code[2] == '1' ? kospiTransactionMultiplier : kosdaqTransactionMultiplier;
+        }
+    }
+    public Simulation Balance
     {
         get;
     }
@@ -40,17 +51,18 @@ public class Futures
             }
             return double.NegativeZero;
         }
-        Balance.CumulativeRevenue += (long)(transactionMultiplier * liquidateReserves() - commission * transactionPrice * transactionMultiplier);
+        Balance.CumulativeRevenue += (long)(TransactionMultiplier * liquidateReserves() - commission * transactionPrice * TransactionMultiplier);
         Balance.HoldingQuantity += quantity;
     }
     public Futures(string code, string date)
     {
-        Balance = new FuturesBalance
+        Balance = new Simulation
         {
             Code = code,
             Date = date
         };
     }
-    const int transactionMultiplier = 250_000;
+    const int kospiTransactionMultiplier = 250_000;
+    const int kosdaqTransactionMultiplier = 10_000;
     const double commission = 3e-5;
 }

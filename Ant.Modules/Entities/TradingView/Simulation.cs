@@ -1,13 +1,11 @@
-﻿using Newtonsoft.Json;
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShareInvest.Entities.TradingView;
 
-public class FuturesBalance
+public class Simulation
 {
-    [StringLength(0x10), Required, Column(Order = 1)]
+    [StringLength(0x10), Key]
     public string? Date
     {
         get; set;
@@ -17,18 +15,22 @@ public class FuturesBalance
     {
         get; set;
     }
+    [NotMapped]
     public double CurrentPrice
     {
         get; set;
     }
+    [NotMapped]
     public double PurchasePrice
     {
         get; set;
     }
+    [NotMapped]
     public int HoldingQuantity
     {
         get; set;
     }
+    [Required]
     public long CumulativeRevenue
     {
         get; set;
