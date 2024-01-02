@@ -58,7 +58,7 @@ public class ChartHub : IEventHandler<MsgEventArgs>
 
         _ = Hub.On<Quote, bool>(nameof(IHubs.TransmitFuturesQuoteAsync), (quote, moreThanBefore) => Send?.Invoke(this, new HubQuoteArgs(quote, moreThanBefore)));
 
-        _ = Hub.On<object>(nameof(IHubs.TransmitMarkerAsync), marker => Send?.Invoke(this, new HubMarkerArgs(marker)));
+        _ = Hub.On<DateTime, bool>(nameof(IHubs.TransmitMarkerAsync), (dateTime, position) => Send?.Invoke(this, new HubMarkerArgs(dateTime, position)));
     }
     public HubConnection Hub
     {

@@ -16,6 +16,8 @@ public interface IUserRepository
 
     KakaoFriend[] BringFriends(string userId);
 
+    Securities[] RetrieveAccountsThatOwnFutures(string date);
+
     Securities[] GetSecuritiesById(string userName);
 
     Securities[] GetSecuritiesById();
