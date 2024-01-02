@@ -1,4 +1,6 @@
-﻿using Skender.Stock.Indicators;
+﻿using ShareInvest.OpenAPI;
+
+using Skender.Stock.Indicators;
 
 namespace ShareInvest.Hubs;
 
@@ -8,7 +10,7 @@ public interface IHubs
 
     Task RemoveFromGroupAsync(string groupName);
 
-    Task TransmitMarkerAsync(object marker);
+    Task TransmitMarkerAsync(DateTime dateTime, bool position);
 
     Task TransmitFuturesQuoteAsync(Quote quote, bool moreThanBefore);
 
@@ -23,4 +25,6 @@ public interface IHubs
     Task EventOccursInStockAsync(string code);
 
     Task SendMessageAsync(string image, string name, string dt, string message, string code, string token);
+
+    Task SendFuturesOrderAsync(OrderFO orderFO);
 }

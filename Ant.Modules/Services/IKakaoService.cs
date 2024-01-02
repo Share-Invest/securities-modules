@@ -9,5 +9,7 @@ public interface IKakaoService
 
     Task<int> RegisterTheFriendsAsync(KakaoFriendInventory inventory);
 
+    Securities[] RetrieveAccountsThatOwnFutures(string date);
+
     int SaveCallback(KakaoCallback callback);
 }

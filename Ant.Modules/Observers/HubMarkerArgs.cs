@@ -2,12 +2,17 @@
 
 public class HubMarkerArgs : MsgEventArgs
 {
-    public HubMarkerArgs(object marker)
+    public HubMarkerArgs(DateTime dateTime, bool position)
     {
-        Marker = marker;
+        DateTime = dateTime;
+        Position = position;
     }
-    public object Marker
+    public DateTime DateTime
     {
         get;
+    }
+    public bool Position
+    {
+        get; set;
     }
 }
