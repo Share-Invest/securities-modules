@@ -30,6 +30,8 @@ public interface IAnTalkService
     /// </summary>
     IEnumerable<T> GetFuturesMinuteChart<T>(string code, string? dateTime = null, int period = 0x400) where T : class;
 
+    IEnumerable<T> GetFuturesMinuteChart<T>(string code, DateTime startDate, DateTime endDate) where T : class;
+
     IEnumerable<string> GetSimulationDateList(string code);
 
     event EventHandler<MsgEventArgs> QuoteSend;
