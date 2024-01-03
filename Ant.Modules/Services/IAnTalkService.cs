@@ -10,11 +10,15 @@ public interface IAnTalkService
 {
     Task SendMessageAsync(AntStockChat stockChat);
 
+    Task<byte[]> GetSimulationDataFileAsync(string code, string date);
+
     Task<string?> GetLatestDateAsync();
 
     Task<string?> GetFuturesCodeAsync();
 
     Task<string?> GetStockNameAsync(string code);
+
+    Task<IEnumerable<AntFutures>> GetFuturesAsync();
 
     Task<AntStock[]> GetStockAsync(Order order);
 
