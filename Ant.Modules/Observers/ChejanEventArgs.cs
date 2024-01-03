@@ -1,15 +1,18 @@
-﻿using Newtonsoft.Json;
-
-namespace ShareInvest.Observers;
+﻿namespace ShareInvest.Observers;
 
 public class ChejanEventArgs : MsgEventArgs
 {
-    public ChejanEventArgs(Type type, string json)
-    {
-        Convey = JsonConvert.DeserializeObject(json, type);
-    }
-    public object? Convey
+    public ChejanType Type
     {
         get;
+    }
+    public Dictionary<string, string> Data
+    {
+        get;
+    }
+    public ChejanEventArgs(ChejanType type, Dictionary<string, string> data)
+    {
+        Type = type;
+        Data = data;
     }
 }

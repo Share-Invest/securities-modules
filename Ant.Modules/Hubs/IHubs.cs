@@ -1,6 +1,4 @@
-﻿using ShareInvest.OpenAPI;
-
-using Skender.Stock.Indicators;
+﻿using Skender.Stock.Indicators;
 
 namespace ShareInvest.Hubs;
 
@@ -26,5 +24,5 @@ public interface IHubs
 
     Task SendMessageAsync(string image, string name, string dt, string message, string code, string token);
 
-    Task SendFuturesOrderAsync(OrderFO orderFO);
+    Task SendFuturesOrderAsync(OpenAPI.OrderFO orderFO);
 }
