@@ -67,4 +67,29 @@ public static class Service
         }
         return string.Empty;
     }
+    public static double KospiConsignmentMarginRate
+    {
+        get => kospiConsignmentMarginRate;
+    }
+    public static double KosdaqConsignmentMarginRate
+    {
+        get => kosdaqConsignmentMarginRate;
+    }
+    public static int KospiTransactionMultiplier
+    {
+        get => kospiTransactionMultiplier;
+    }
+    public static int KosdaqTransactionMultiplier
+    {
+        get => kosdaqTransactionMultiplier;
+    }
+    public static double Commission
+    {
+        get => commission;
+    }
+    const double kospiConsignmentMarginRate = 9e-2;
+    const double kosdaqConsignmentMarginRate = 168e-3;
+    const int kospiTransactionMultiplier = 250_000;
+    const int kosdaqTransactionMultiplier = 10_000;
+    const double commission = 3e-5;
 }
