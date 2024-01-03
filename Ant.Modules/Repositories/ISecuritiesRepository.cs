@@ -46,9 +46,13 @@ public interface ISecuritiesRepository
 
     Task<string> GetSimulationDataAsync(string code, string date);
 
+    Task<byte[]> GetSimulationDataFileAsync(string code, string date);
+
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
     Task<AntStock[]> GetListByCompareToPreviousVolumeAsync(string latestDate);
+
+    AntFutures[] GetFutures(string latestDate);
 
     AntStock[] GetListByRate(string latestDate);
 
