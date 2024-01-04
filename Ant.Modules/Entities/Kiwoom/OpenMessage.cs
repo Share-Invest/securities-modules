@@ -33,7 +33,7 @@ public class OpenMessage
     {
         get; set;
     }
-    [Required, StringLength(4)]
+    [Required, StringLength(8)]
     public string? Screen
     {
         get; set;

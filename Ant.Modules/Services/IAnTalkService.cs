@@ -10,6 +10,8 @@ public interface IAnTalkService
 {
     Task SendMessageAsync(AntStockChat stockChat);
 
+    Task<int> SaveChangesAsync<T>(T entity) where T : class;
+
     Task<byte[]> GetSimulationDataFileAsync(string code, string date);
 
     Task<string?> GetLatestDateAsync();
