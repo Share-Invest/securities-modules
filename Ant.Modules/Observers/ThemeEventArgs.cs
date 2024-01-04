@@ -2,7 +2,7 @@
 
 namespace ShareInvest.Observers;
 
-public class ThemeEventArgs : EventArgs
+public class ThemeEventArgs : MsgEventArgs
 {
     public object Convey
     {

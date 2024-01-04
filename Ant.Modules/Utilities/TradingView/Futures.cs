@@ -54,12 +54,13 @@ public class Futures
         Balance.CumulativeRevenue += (long)(TransactionMultiplier * liquidateReserves() - Service.Commission * transactionPrice * TransactionMultiplier);
         Balance.HoldingQuantity += quantity;
     }
-    public Futures(string code, string date)
+    public Futures(string code, string date, string? strategics = null)
     {
         Balance = new Simulation
         {
             Code = code,
-            Date = date
+            Date = date,
+            Strategics = strategics ?? string.Empty
         };
     }
 }

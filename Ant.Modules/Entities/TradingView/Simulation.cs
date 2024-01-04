@@ -5,12 +5,17 @@ namespace ShareInvest.Entities.TradingView;
 
 public class Simulation
 {
-    [StringLength(0x10), Key]
+    [StringLength(0x10), Key, Column(Order = 1)]
+    public string? Strategics
+    {
+        get; set;
+    }
+    [StringLength(0x10), Key, Column(Order = 3)]
     public string? Date
     {
         get; set;
     }
-    [StringLength(8), Key]
+    [StringLength(8), Key, Column(Order = 2)]
     public string? Code
     {
         get; set;
@@ -35,7 +40,7 @@ public class Simulation
     {
         get; set;
     }
-    [Required]
+    [Column(Order = 4)]
     public long CumulativeRevenue
     {
         get; set;
