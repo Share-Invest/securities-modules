@@ -20,6 +20,8 @@ public interface IHubs
 
     Task InstructToRenewAssetStatusAsync(string accNo);
 
+    Task InstructToRenewBalanceAsync(string accNo);
+
     Task EventOccursInStockAsync(string code);
 
     Task SendMessageAsync(string image, string name, string dt, string message, string code, string token);
