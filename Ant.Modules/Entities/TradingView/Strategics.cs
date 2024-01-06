@@ -38,7 +38,7 @@ public struct Strategics
     {
         get; set;
     }
-    public bool DecideOnPosition(long seedMoney = 0)
+    public bool DecideOnPosition(long seedMoney = 0, int quantity = 0, double price = double.NaN, string? code = null)
     {
         Position = AtrStop + SuperTrend;
 
@@ -69,8 +69,30 @@ public struct Strategics
         }
         if (seedMoney > 0)
         {
+            double margin = double.MaxValue, commission = double.MaxValue;
 
+            switch (code?[..3])
+            {
+                case "101":
+                    margin = price * Service.KospiTransactionMultiplier * Service.KospiConsignmentMarginRate;
+                    commission = price * Service.KospiTransactionMultiplier * Service.Commission;
+                    break;
+
+                case "106":
+                    margin = price * Service.KosdaqTransactionMultiplier * Service.KosdaqConsignmentMarginRate;
+                    commission = price * Service.KosdaqTransactionMultiplier * Service.Commission;
+                    break;
+            }
+            if (margin + commission < seedMoney - Math.Abs(quantity * margin))
+            {
+                return Position != 0;
+            }
         }
-        return Position != 0;
+        return quantity switch
+        {
+            > 0 when Position > 0 => false,
+            < 0 when Position < 0 => false,
+            _ => Position != 0
+        };
     }
 }
