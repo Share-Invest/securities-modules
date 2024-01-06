@@ -98,6 +98,8 @@ public interface ISecuritiesRepository
 
     CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null);
 
+    Indicators[] GetStrategicsScenario();
+
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string? dateTime, int period = 0x400);
 
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string startDate, string endDate);
