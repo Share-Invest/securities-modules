@@ -38,38 +38,39 @@ public struct Strategics
     {
         get; set;
     }
-    public bool DecideOnPosition
+    public bool DecideOnPosition(long seedMoney = 0)
     {
-        get
-        {
-            Position = AtrStop + SuperTrend;
+        Position = AtrStop + SuperTrend;
 
-            if (Position == 0 || (DateTime - JustBefore).TotalSeconds <= 1)
-            {
-                return false;
-            }
-            IEnumerable<double>[] continuity = new[]
-            {
-                Histogram,
-                Slope
-            };
-            if (Position < 0)
-            {
-                continuity = new[]
-                {
-                    Histogram.Reverse(),
-                    Slope.Reverse()
-                };
-            }
-            foreach (var arr in continuity)
-            {
-                if (arr.Zip(arr.Skip(1), (current, next) => current < next).All(e => e))
-                {
-                    continue;
-                }
-                return false;
-            }
-            return Position != 0;
+        if (Position == 0 || (DateTime - JustBefore).TotalSeconds <= 1)
+        {
+            return false;
         }
+        IEnumerable<double>[] continuity = new[]
+        {
+            Histogram,
+            Slope
+        };
+        if (Position < 0)
+        {
+            continuity = new[]
+            {
+                Histogram.Reverse(),
+                Slope.Reverse()
+            };
+        }
+        foreach (var arr in continuity)
+        {
+            if (arr.Zip(arr.Skip(1), (current, next) => current < next).All(e => e))
+            {
+                continue;
+            }
+            return false;
+        }
+        if (seedMoney > 0)
+        {
+
+        }
+        return Position != 0;
     }
 }

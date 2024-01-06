@@ -30,6 +30,8 @@ public interface IAnTalkService
 
     AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);
 
+    Indicators[] GetStrategicsScenario();
+
     DailyChart[] GetDailyChart(string code, int period, string? date = null);
     /// <summary>
     /// <param name="dateTime">dateTimeFormat: yyyyMMddHHmmss</param>
