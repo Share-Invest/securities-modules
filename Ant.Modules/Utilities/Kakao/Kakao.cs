@@ -8,7 +8,10 @@ using System.Net;
 
 namespace ShareInvest.Utilities;
 
-public class Kakao : RestClient
+public class Kakao(string accessToken) : RestClient("https://dapi.kakao.com", configureDefaultHeaders: headers =>
+{
+    headers.Add(KnownHeaders.Authorization, $"KakaoAK {accessToken}");
+})
 {
     public async Task<object> GetAddressAsync(string address)
     {
@@ -27,14 +30,8 @@ public class Kakao : RestClient
         }
         return Array.Empty<Response>();
     }
-    public Kakao(string accessToken) : base("https://dapi.kakao.com", configureDefaultHeaders: headers =>
-    {
-        headers.Add(KnownHeaders.Authorization, $"KakaoAK {accessToken}");
-    })
-    {
-        cts = new CancellationTokenSource();
-    }
-    readonly CancellationTokenSource cts;
+
+    readonly CancellationTokenSource cts = new();
 
     const string searchAddress = "v2/local/search/address?query=";
 }
