@@ -17,6 +17,7 @@ public static partial class Parameter
             Debug.WriteLine($"{propertyInfo.Name}: {propertyInfo.GetValue(property)}");
         }
     }
+
     public static void CreateDirectoryIsNotExist(string path)
     {
         if (Path.GetDirectoryName(path) is string directory)
@@ -29,6 +30,7 @@ public static partial class Parameter
             }
         }
     }
+
     public static string TransformQuery(JToken token, StringBuilder query)
     {
         query.Append('?');
@@ -44,6 +46,7 @@ public static partial class Parameter
             }
         return TransformOutbound(query.Remove(query.Length - 1, 1).ToString());
     }
+
     public static string TransformQuery(JToken token)
     {
         StringBuilder query = new("?");
@@ -59,10 +62,12 @@ public static partial class Parameter
             }
         return query.Remove(query.Length - 1, 1).ToString();
     }
+
     public static string TransformOutbound(string route)
     {
         return Regex.Replace(route, "([a-z])([A-Z])", "$1-$2", RegexOptions.CultureInvariant, TimeSpan.FromMilliseconds(0x64)).ToLowerInvariant();
     }
+
     public static string TransformInbound(string? query)
     {
         if (string.IsNullOrEmpty(query) is false)
@@ -73,6 +78,7 @@ public static partial class Parameter
         }
         return string.Empty;
     }
+
     [GeneratedRegex("-([a-z])")]
     private static partial Regex TransformRegex();
 }

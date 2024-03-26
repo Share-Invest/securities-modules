@@ -10,6 +10,10 @@ public interface IStockRepository
 
     Task<Dictionary<string, StockTheme[]>> ExpressTheMarketByThemeAsync();
 
+    Task<bool> ExistFinancialStatementsAsync(FinancialStatements fs);
+
+    int SaveFinancialStatements(FinancialStatements fs);
+
     int SaveStockTheme(IEnumerable<StockThemeDetail>? themes);
 
     int SaveStockTheme(StockTheme theme);
