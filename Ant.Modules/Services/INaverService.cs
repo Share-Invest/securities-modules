@@ -7,4 +7,6 @@ public interface INaverService
     int SaveStockTheme(StockTheme theme);
 
     void SaveStockTheme(StockThemeDetail theme);
+
+    Task<int> SaveFinancialStatementsAsync(FinancialStatements fs);
 }
