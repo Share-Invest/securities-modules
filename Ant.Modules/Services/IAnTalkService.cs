@@ -1,4 +1,5 @@
 ﻿using ShareInvest.Entities;
+using ShareInvest.Entities.Analysis;
 using ShareInvest.Entities.AnTalk;
 using ShareInvest.Services.AnTalk;
 
@@ -23,6 +24,8 @@ public interface IAnTalkService
     Task<IEnumerable<AntFutures>> GetFuturesAsync();
 
     Task<AntStock[]> GetStockAsync(Order order);
+
+    Task<EstimatedStock[]> AnalyzeGrowthPotentialAsync();
 
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
