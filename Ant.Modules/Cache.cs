@@ -1,4 +1,5 @@
-﻿using ShareInvest.OpenAPI.Entity;
+﻿using ShareInvest.Entities.Analysis;
+using ShareInvest.OpenAPI.Entity;
 
 using Skender.Stock.Indicators;
 
@@ -19,12 +20,12 @@ public static class Cache
     {
         get => queueWorker.Count;
     }
-    
+
     public static long Epoch
     {
         get => 621_355_968_000_000_000;
     }
-    
+
     public static string? CompanyName
     {
         get
@@ -34,7 +35,7 @@ public static class Cache
             return FileVersionInfo.GetVersionInfo(location).CompanyName;
         }
     }
-    
+
     public static IEnumerable<KeyValuePair<string, ConcurrentQueue<string>>> GetTempStorageEnumerator()
     {
         foreach (var kv in tempStorage)
@@ -42,41 +43,62 @@ public static class Cache
             yield return kv;
         }
     }
-    
+
     public static (bool tryDequeue, object? task) GetTasksFromQueue()
     {
         var tryDequeue = queueWorker.TryDequeue(out object? task);
 
         return (tryDequeue, task);
     }
-    
+
     public static (bool tryDequeue, (string code, string data)) GetTasksFromFuturesQueue()
     {
         var tryDequeue = futuresQueueWorker.TryDequeue(out var task);
 
         return (tryDequeue, task);
     }
-    
+
     public static string[] GetConclusion(string code)
     {
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
-    
+
     public static string[] GetStockQuote(string code)
     {
         return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
-    
+
     public static ConcurrentStack<Quote>? GetFuturesData(string code)
     {
         return futuresRealTypeData.TryGetValue(code, out var quotes) ? quotes : null;
     }
-    
+
     public static Entities.Indicators? GetIndicators(string code)
     {
         return indicators.TryGetValue(code, out var value) ? value : null;
     }
-    
+
+    public static IEnumerable<(string code, string date)> GetEstimatedStock()
+    {
+        while (estimatedStock.TryDequeue(out var es))
+        {
+            yield return es;
+        }
+    }
+
+    public static void SetEstimatedStock(IEnumerable<EstimatedStock> estimatedStocks)
+    {
+        foreach (var stock in estimatedStocks)
+        {
+            foreach (var date in stock.Dates)
+            {
+                estimatedStock.Enqueue((stock.Code, date));
+
+                break;
+            }
+        }
+    }
+
     public static void SetTempStorage(string code, string data)
     {
         if (tempStorage.TryGetValue(code, out ConcurrentQueue<string>? queue))
@@ -87,7 +109,7 @@ public static class Cache
         }
         tempStorage[code] = new ConcurrentQueue<string>([data]);
     }
-    
+
     public static IEnumerable<Entities.StockTheme> SetStockTheme(Entities.StockTheme e)
     {
         if (string.IsNullOrEmpty(e.ThemeCode) is false)
@@ -104,7 +126,7 @@ public static class Cache
 
         return stocks.Take(3);
     }
-    
+
     public static void SetTasksInQueue<T>(T task) where T : class
     {
         if (task != null)
@@ -112,56 +134,56 @@ public static class Cache
             queueWorker.Enqueue(task);
         }
     }
-    
+
     public static void SetFuturesConclusion(string code, string data)
     {
         futuresQueueWorker.Enqueue((code, data));
 
         futuresConclusion[code] = data;
     }
-    
+
     public static void SetFuturesTheoreticalPrice(string code, string data)
     {
         futuresQueueWorker.Enqueue((code, data));
     }
-    
+
     public static void SetConclusion(string code, string data)
     {
         stocksConclusion[code] = data;
     }
-    
+
     public static void SetFuturesQuote(string code, string data)
     {
         futuresQueueWorker.Enqueue((code, data));
 
         futuresQuotes[code] = data;
     }
-    
+
     public static void SetStockQuote(string code, string data)
     {
         stockQuotes[code] = data;
     }
-    
+
     public static void SetIndicators(string code, IEnumerable<MacdResult> indicator)
     {
         indicators[code].Macd = indicator;
     }
-    
+
     public static void SetIndicators(string code, IEnumerable<SuperTrendResult> indicator)
     {
         indicators[code].SuperTrend = indicator;
     }
-    
+
     public static void SetIndicators(string code, IEnumerable<SlopeResult> indicator)
     {
         indicators[code].Slope = indicator;
     }
-    
+
     public static void SetIndicators(string code, IEnumerable<AtrStopResult> indicator)
     {
         indicators[code].AtrStop = indicator;
     }
-    
+
     public static bool InitializedFuturesQuotes(string code)
     {
         if (futuresRealTypeData.TryGetValue(code, out var quotes) && quotes.IsEmpty is false)
@@ -172,7 +194,7 @@ public static class Cache
         }
         return quotes == null || quotes.IsEmpty;
     }
-    
+
     public static void InitializedFuturesQuotes(string code, IEnumerable<Quote> quotes)
     {
         if (indicators.TryGetValue(code, out var value))
@@ -194,12 +216,12 @@ public static class Cache
         }
         futuresRealTypeData[code] = new ConcurrentStack<Quote>(quotes.OrderBy(ks => ks.Date));
     }
-    
+
     public static void SaveTemporarily(string sScrNo, TR constructor)
     {
         stores[sScrNo] = constructor;
     }
-    
+
     public static TR? GetConstructor(string sTrCode, string sScrNo)
     {
         if (stores.Remove(sScrNo, out TR? constructor))
@@ -210,7 +232,7 @@ public static class Cache
 
         return TrConstructor.Assembly.CreateInstance(typeName, true) as TR;
     }
-    
+
     public static Dictionary<int, string> Error => new()
     {
         {
@@ -374,6 +396,7 @@ public static class Cache
             "종목코드 없음"
         }
     };
+    static readonly ConcurrentQueue<(string code, string date)> estimatedStock = new();
     static readonly ConcurrentQueue<(string code, string data)> futuresQueueWorker = new();
     static readonly ConcurrentQueue<object> queueWorker = new();
     static readonly ConcurrentDictionary<string, Entities.StockTheme> stockTheme = new();

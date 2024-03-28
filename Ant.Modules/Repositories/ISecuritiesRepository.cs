@@ -1,6 +1,7 @@
 ﻿using NetTopologySuite.Geometries;
 
 using ShareInvest.Entities;
+using ShareInvest.Entities.Analysis;
 using ShareInvest.Entities.AnTalk;
 using ShareInvest.Entities.Google;
 using ShareInvest.Entities.Kiwoom;
@@ -95,6 +96,8 @@ public interface ISecuritiesRepository
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 
     AssetStatusChart[] GetPresumeAssetTrend(string accNo);
+
+    EstimatedStock[] CollectionToAnalyzeGrowthPotential();
 
     CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null);
 
