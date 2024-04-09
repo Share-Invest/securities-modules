@@ -13,6 +13,7 @@ public class TrMsgEventArgs : MsgEventArgs
         HubMethodName = hubMethodName;
         Json = json;
     }
+
     public TrMsgEventArgs(TR tr, string json)
     {
         HubMethodName = tr switch
@@ -26,20 +27,24 @@ public class TrMsgEventArgs : MsgEventArgs
         };
         Json = json;
     }
+
     public string HubMethodName
     {
         get;
     }
+
     public string Json
     {
         get;
     }
+
     readonly Func<string, string> determineTheNameOPW4 = json =>
     {
         var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.STOCKCODE.Equals(predicate.Path));
 
         return isExist ? nameof(BalOPW00004) : nameof(AccOPW00004);
     };
+
     readonly Func<string, string> determineTheNameOPW5 = json =>
     {
         var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.CODENUMBER.Equals(predicate.Path));

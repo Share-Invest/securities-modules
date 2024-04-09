@@ -15,11 +15,13 @@ public class AccOPW00004 : SingleOPW00004, IAccountBook
     {
         get; set;
     }
+
     [StringLength(10), Key]
     public string? Date
     {
         get; set;
     }
+
     [Column(Order = 1)]
     public long Lookup
     {

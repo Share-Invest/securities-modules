@@ -12,6 +12,7 @@ public class JsonMsgEventArgs : MsgEventArgs
     {
         get;
     }
+
     public JsonMsgEventArgs(TR tr, string json)
     {
         Convey = tr switch
@@ -34,16 +35,19 @@ public class JsonMsgEventArgs : MsgEventArgs
             _ => JsonConvert.DeserializeObject(json, tr.GetType())
         };
     }
+
     public JsonMsgEventArgs(TR tr)
     {
         Convey = tr;
     }
+
     readonly Func<string, IAccountBook?> deserializeOPW4 = json =>
     {
         var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.STOCKCODE.Equals(predicate.Path));
 
         return isExist ? JsonConvert.DeserializeObject<Entities.Assets.BalOPW00004>(json) : JsonConvert.DeserializeObject<Entities.Assets.AccOPW00004>(json);
     };
+
     readonly Func<string, IAccountBook?> deserializeOPW5 = json =>
     {
         var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.CODENUMBER.Equals(predicate.Path));
