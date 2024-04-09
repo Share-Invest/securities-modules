@@ -78,7 +78,7 @@ public static class Cache
         return indicators.TryGetValue(code, out var value) ? value : null;
     }
 
-    public static IEnumerable<(string code, string date)> GetEstimatedStock()
+    public static IEnumerable<(string code, string date, DateTime recordDate)> GetEstimatedStock()
     {
         while (estimatedStock.TryDequeue(out var es))
         {
@@ -88,13 +88,16 @@ public static class Cache
 
     public static void SetEstimatedStock(IEnumerable<EstimatedStock> estimatedStocks)
     {
-        foreach (var stock in estimatedStocks)
+        if (estimatedStock.IsEmpty)
         {
-            foreach (var date in stock.Dates)
+            foreach (var stock in estimatedStocks)
             {
-                estimatedStock.Enqueue((stock.Code, date));
+                foreach (var date in stock.Dates)
+                {
+                    estimatedStock.Enqueue((stock.Code, date.Item1, date.Item2));
 
-                break;
+                    break;
+                }
             }
         }
     }
@@ -396,7 +399,7 @@ public static class Cache
             "종목코드 없음"
         }
     };
-    static readonly ConcurrentQueue<(string code, string date)> estimatedStock = new();
+    static readonly ConcurrentQueue<(string code, string date, DateTime recordDate)> estimatedStock = new();
     static readonly ConcurrentQueue<(string code, string data)> futuresQueueWorker = new();
     static readonly ConcurrentQueue<object> queueWorker = new();
     static readonly ConcurrentDictionary<string, Entities.StockTheme> stockTheme = new();

@@ -7,7 +7,7 @@ public struct EstimatedStock
         get; set;
     }
 
-    public IEnumerable<string> Dates
+    public IEnumerable<Tuple<string, DateTime>> Dates
     {
         get; set;
     }

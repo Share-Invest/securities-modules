@@ -53,21 +53,7 @@ public interface ISecuritiesRepository
 
     Task<AntStock[]> GetListByCompareToPreviousVolumeAsync(string latestDate);
 
-    AntFutures[] GetFutures(string latestDate);
-
-    AntStock[] GetListByRate(string latestDate);
-
-    AntStock[] GetListByListingDate(string latestDate);
-
-    AntStock[] GetListByMarketCap(string latestDate);
-
-    AntStock[] GetListByVolume(string lastestDate);
-
-    IEnumerable<T> GetStocks<T>(string date) where T : struct;
-
-    IEnumerable<string> GetSimulationDateList(string code);
-
-    IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
+    string? GetGrowthRateRankLatestDate();
 
     string? GetCodeToLookupNextFuturesDayChart(string date);
 
@@ -99,7 +85,25 @@ public interface ISecuritiesRepository
 
     EstimatedStock[] CollectionToAnalyzeGrowthPotential();
 
+    AntFutures[] GetFutures(string latestDate);
+
+    AntStock[] GetListByRate(string latestDate);
+
+    AntStock[] GetListByListingDate(string latestDate);
+
+    AntStock[] GetListByMarketCap(string latestDate);
+
+    AntStock[] GetListByVolume(string lastestDate);
+
+    IEnumerable<T> GetStocks<T>(string date) where T : struct;
+
+    IEnumerable<string> GetSimulationDateList(string code);
+
+    IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
+
     CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null);
+
+    GrowthRateRank[] RecommendedAmongRankedStocks(string date);
 
     Indicators[] GetStrategicsScenario();
 
