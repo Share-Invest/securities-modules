@@ -36,6 +36,7 @@ public interface IAnTalkService
     Indicators[] GetStrategicsScenario();
 
     DailyChart[] GetDailyChart(string code, int period, string? date = null);
+
     /// <summary>
     /// <param name="dateTime">dateTimeFormat: yyyyMMddHHmmss</param>
     /// </summary>
@@ -44,6 +45,8 @@ public interface IAnTalkService
     IEnumerable<T> GetFuturesMinuteChart<T>(string code, DateTime startDate, DateTime endDate) where T : class;
 
     IEnumerable<string> GetSimulationDateList(string code);
+
+    IEnumerable<GrowthRateRank> RecommendedAmongRankedStocks(int count, bool inOrder);
 
     event EventHandler<MsgEventArgs> QuoteSend;
 }
