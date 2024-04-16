@@ -29,6 +29,8 @@ public interface IAnTalkService
 
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
+    Task<ResponseGrowthRateRank?> RecommendedAmongRankedStockAsync(GrowthRateRank stock);
+
     IAsyncEnumerable<(DateTime dateTime, bool moreThanBefore, Quote quote, Indicators indicator)> GetSimulationDataAsync(string code, string date, IEnumerable<Quote> quotes, CancellationToken? stoppingToken = null);
 
     AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);

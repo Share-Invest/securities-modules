@@ -51,6 +51,8 @@ public interface ISecuritiesRepository
 
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
+    Task<ResponseGrowthRateRank?> RecommendedAmongRankedStockAsync(GrowthRateRank stock);
+
     Task<AntStock[]> GetListByCompareToPreviousVolumeAsync(string latestDate);
 
     string? GetGrowthRateRankLatestDate();
