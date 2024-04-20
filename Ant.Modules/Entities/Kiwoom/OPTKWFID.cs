@@ -11,16 +11,19 @@ public class OPTKWFID : MultiOPTKWFID
     {
         get; set;
     }
+
     [StringLength(0x80)]
     public string? ConstructionSupervision
     {
         get; set;
     }
+    
     [StringLength(0x10)]
     public string? InvestmentCaution
     {
         get; set;
     }
+    
     [StringLength(8)]
     public string? ListingDate
     {

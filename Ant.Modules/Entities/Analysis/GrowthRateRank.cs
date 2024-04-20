@@ -34,6 +34,11 @@ public class GrowthRateRank
         get; set;
     }
 
+    public int MarketCapRank
+    {
+        get; set;
+    }
+
     [NotMapped]
     public string? Name
     {
