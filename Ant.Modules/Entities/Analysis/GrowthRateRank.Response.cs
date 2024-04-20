@@ -23,6 +23,12 @@ public class ResponseGrowthRateRank : GrowthRateRank
     }
 
     [NotMapped]
+    public int MarketCapChangeRank
+    {
+        get; set;
+    }
+
+    [NotMapped]
     public StockThemeDetail[]? Theme
     {
         get; set;
