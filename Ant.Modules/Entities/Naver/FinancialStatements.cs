@@ -26,7 +26,7 @@ public class FinancialStatements
         get; set;
     }
 
-    [DataMember, JsonProperty("SALES"), StringLength(0x10), Required]
+    [DataMember, JsonProperty("SALES"), StringLength(0x10)]
     public string? Sales
     {
         set
