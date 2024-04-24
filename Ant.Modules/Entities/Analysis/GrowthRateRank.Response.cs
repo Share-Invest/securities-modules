@@ -33,4 +33,22 @@ public class ResponseGrowthRateRank : GrowthRateRank
     {
         get; set;
     }
+
+    [NotMapped]
+    public int PerChangeRank
+    {
+        get; set;
+    }
+
+    [NotMapped]
+    public int PbrChangeRank
+    {
+        get; set;
+    }
+
+    [NotMapped]
+    public int RoeChangeRank
+    {
+        get; set;
+    }
 }

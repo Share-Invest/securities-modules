@@ -36,4 +36,19 @@ public struct EstimateStatements
     {
         get; set;
     }
+
+    public double PER
+    {
+        get; set;
+    }
+
+    public double PBR
+    {
+        get; set;
+    }
+
+    public double ROE
+    {
+        get; set;
+    }
 }

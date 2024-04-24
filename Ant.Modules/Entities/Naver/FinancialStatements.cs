@@ -26,7 +26,7 @@ public class FinancialStatements
         get; set;
     }
 
-    [DataMember, JsonProperty("SALES"), StringLength(0x10), Required]
+    [DataMember, JsonProperty("SALES"), StringLength(0x10)]
     public string? Sales
     {
         set
@@ -48,7 +48,7 @@ public class FinancialStatements
     }
     string? yoy;
 
-    [DataMember, JsonProperty("OP"), StringLength(0x10), Required]
+    [DataMember, JsonProperty("OP"), StringLength(0x10)]
     public string? OperatingProfit
     {
         set
@@ -59,7 +59,7 @@ public class FinancialStatements
     }
     string? op;
 
-    [DataMember, JsonProperty("NP"), StringLength(0x10), Required]
+    [DataMember, JsonProperty("NP"), StringLength(0x10)]
     public string? NetProfit
     {
         set

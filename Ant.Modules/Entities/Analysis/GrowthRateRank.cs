@@ -39,6 +39,21 @@ public class GrowthRateRank
         get; set;
     }
 
+    public int PerRank
+    {
+        get; set;
+    }
+
+    public int PbrRank
+    {
+        get; set;
+    }
+
+    public int RoeRank
+    {
+        get; set;
+    }
+
     [NotMapped]
     public string? Name
     {

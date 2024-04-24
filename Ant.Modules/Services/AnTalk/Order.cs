@@ -11,6 +11,9 @@ public enum Order
 
 public enum TypeOfRankToOrder
 {
+    PBR = 'B',
+    PER = 'E',
+    ROE = 'R',
     MarketCap = 'C',
     Sales = 'S',
     OperatingProfit = 'O',
