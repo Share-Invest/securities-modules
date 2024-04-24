@@ -61,6 +61,12 @@ public interface ISecuritiesRepository
 
     Task<ResponseGrowthRateRank?> RecommendStocksAccordingToNpAsync(string latestDate, int rank);
 
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToPerAsync(string latestDate, int rank);
+
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToPbrAsync(string latestDate, int rank);
+
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToRoeAsync(string latestDate, int rank);
+
     Task<AntStock[]> GetListByCompareToPreviousVolumeAsync(string latestDate);
 
     string? GetGrowthRateRankLatestDate();

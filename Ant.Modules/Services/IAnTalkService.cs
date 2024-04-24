@@ -39,6 +39,12 @@ public interface IAnTalkService
 
     Task<ResponseGrowthRateRank?> RecommendStocksAccordingToNpAsync(int rank);
 
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToPerAsync(int rank);
+
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToPbrAsync(int rank);
+
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToRoeAsync(int rank);
+
     IAsyncEnumerable<(DateTime dateTime, bool moreThanBefore, Quote quote, Indicators indicator)> GetSimulationDataAsync(string code, string date, IEnumerable<Quote> quotes, CancellationToken? stoppingToken = null);
 
     AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);
