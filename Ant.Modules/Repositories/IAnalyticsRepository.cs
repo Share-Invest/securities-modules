@@ -4,5 +4,9 @@ namespace ShareInvest.Repositories;
 
 public interface IAnalyticsRepository
 {
-    Analytics[] GetInOrderOfMarketCap(string? latestDate);
+    Task<int> ItemCountAsync(string? latestDate);
+
+    Analytics[] GetInOrderOfMarketCap(IDictionary<string, IEnumerable<StockThemeDetail>> themes, string? latestDate);
+
+    Analytics[] GetInOrderOfMarketCap(string? latestDate, int startIndex, int endIndex);
 }

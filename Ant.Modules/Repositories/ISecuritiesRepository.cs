@@ -117,6 +117,10 @@ public interface ISecuritiesRepository
 
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
+    IEnumerable<StockThemeDetail> GetThemeDetail(string code);
+
+    IDictionary<string, IEnumerable<StockThemeDetail>> GetThemeDetail();
+
     CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null);
 
     GrowthRateRank[] RecommendedAmongRankedStocks(string date);

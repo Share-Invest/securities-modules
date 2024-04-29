@@ -1,5 +1,7 @@
 ﻿using ShareInvest.Entities.Analysis;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ShareInvest.Entities;
 
 public class Analytics : ActualValue
@@ -50,6 +52,17 @@ public class Analytics : ActualValue
     }
 
     public string? Name
+    {
+        get; set;
+    }
+
+    public StockThemeDetail[]? Themes
+    {
+        get; set;
+    }
+
+    [NotMapped]
+    public int Index
     {
         get; set;
     }
