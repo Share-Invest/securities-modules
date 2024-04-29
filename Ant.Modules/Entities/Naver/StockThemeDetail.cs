@@ -40,4 +40,10 @@ public class StockThemeDetail
     {
         get; set;
     }
+
+    [NotMapped]
+    public double Rate
+    {
+        get; set;
+    }
 }
