@@ -36,4 +36,9 @@ public class ActualValue
     {
         get; set;
     }
+
+    public AnalyticsStock Quotes
+    {
+        get; set;
+    }
 }
