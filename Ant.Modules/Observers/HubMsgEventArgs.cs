@@ -9,16 +9,19 @@ public class HubMsgEventArgs : MsgEventArgs
     {
         get;
     }
+
     public OverviewCandleChart ChartData
     {
         get;
     }
+
     public HubMsgEventArgs(string code, string[] elements)
     {
         Stock = convertFunc(code, elements);
 
         ChartData = convertOverviewFunc(code, elements, Stock.Current);
     }
+
     readonly Func<string, string[], int, OverviewCandleChart> convertOverviewFunc = (code, elements, close) =>
     {
         return new OverviewCandleChart
@@ -31,6 +34,7 @@ public class HubMsgEventArgs : MsgEventArgs
             Low = elements.Length == 43 && int.TryParse(elements[0xB], out int low) ? Math.Abs(low) : 0
         };
     };
+
     readonly Func<string, string[], CoordinateStock> convertFunc = (code, elements) =>
     {
         return new CoordinateStock
