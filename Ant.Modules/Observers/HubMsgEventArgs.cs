@@ -28,7 +28,7 @@ public class HubMsgEventArgs : MsgEventArgs
         {
             Date = DateTime.Now.ToString("d"),
             Close = close,
-            Volume = elements.Length == 43 && int.TryParse(elements[7], out int vol) ? Math.Abs(vol) : 0,
+            Volume = int.TryParse(elements[elements.Length == 7 ? 5 : 7], out int vol) ? Math.Abs(vol) : 0,
             Open = elements.Length == 43 && int.TryParse(elements[9], out int open) ? Math.Abs(open) : 0,
             High = elements.Length == 43 && int.TryParse(elements[0xA], out int high) ? Math.Abs(high) : 0,
             Low = elements.Length == 43 && int.TryParse(elements[0xB], out int low) ? Math.Abs(low) : 0
