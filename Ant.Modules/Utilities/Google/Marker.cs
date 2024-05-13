@@ -19,6 +19,7 @@ public static class Marker
             _ => string.Empty
         };
     }
+
     public static object MakeClientMarker(CoordinateUser user)
     {
         return new
@@ -57,6 +58,7 @@ public static class Marker
             name = user.Name,
         };
     }
+
     public static object MakeStockMarker(MapStock stock)
     {
         var background = stock.CompareToPreviousSign switch
@@ -88,10 +90,12 @@ public static class Marker
             html = string.Concat(MakeSignAccording(stock.CompareToPreviousSign), stock.CompareToPreviousDay.ToString("N0"))
         };
     }
+
     public static string GetMarkerImageUrl(string? url, string color)
     {
         return Path.Combine(url ?? "http://share.enterprises", "images", "pins", $"pin_{color}.png");
     }
+
     public static bool HasCenterChanged(MapEventName eventName, MapStatus currentMapStatus, MapStatus previousMapStatus)
     {
         if (MapEventName.heading_changed == eventName || MapEventName.tilt_changed == eventName)

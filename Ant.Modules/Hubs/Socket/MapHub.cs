@@ -19,6 +19,7 @@ public class MapHub : IEventHandler<MsgEventArgs>
             await Hub.SendAsync(nameof(AddToGroupAsync), code);
         }
     }
+
     public async Task RemoveFromGroupAsync(string code)
     {
         if (HubConnectionState.Connected == Hub.State)
@@ -26,6 +27,7 @@ public class MapHub : IEventHandler<MsgEventArgs>
             await Hub.SendAsync(nameof(RemoveFromGroupAsync), code);
         }
     }
+
     public MapHub(Uri uri, string? userName = null)
     {
         Hub = new HubConnectionBuilder()
@@ -44,14 +46,14 @@ public class MapHub : IEventHandler<MsgEventArgs>
             {
                 configureLogging.SetMinimumLevel(LogLevel.Trace);
             })
-            .WithAutomaticReconnect(new[]
-            {
+            .WithAutomaticReconnect(
+            [
                 TimeSpan.Zero,
                 TimeSpan.FromSeconds(3),
                 TimeSpan.FromSeconds(9),
                 TimeSpan.FromSeconds(0x10),
                 TimeSpan.FromSeconds(0x20)
-            })
+            ])
             .Build();
 
         _ = Hub.On<string, string>(nameof(IHubs.TransmitConclusionInformationAsync), (code, data) =>
@@ -60,9 +62,11 @@ public class MapHub : IEventHandler<MsgEventArgs>
         });
         _ = Hub.On<string>(nameof(IHubs.TransmitOpenMessageAsync), json => Send?.Invoke(this, new HubOpenMsgArgs(json)));
     }
+
     public HubConnection Hub
     {
         get;
     }
+
     public event EventHandler<MsgEventArgs>? Send;
 }

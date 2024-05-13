@@ -6,6 +6,8 @@ public interface IAnalyticsRepository
 {
     Task<int> ItemCountAsync(string? latestDate);
 
+    FinancialStatements[] GetFinancialState(string code, string date);
+
     Analytics[] GetInOrderOfMarketCap(IDictionary<string, IEnumerable<StockThemeDetail>> themes, string? latestDate);
 
     Analytics[] GetInOrderOfMarketCap(string? latestDate, int startIndex, int endIndex);

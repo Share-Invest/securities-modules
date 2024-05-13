@@ -4,7 +4,7 @@ using Skender.Stock.Indicators;
 
 namespace ShareInvest.Utilities.TradingView;
 
-public class MinuteChart : Chart
+public class MinuteChart(string code) : Chart(code)
 {
     public override IEnumerable<(bool isBullish, object superTrend)> InitializedSuperTrendEnumerator(SuperTrendResult[]? superTrend = null)
     {
@@ -30,6 +30,7 @@ public class MinuteChart : Chart
         }
         yield return (superTrend?[^1].UpperBand == null, data);
     }
+
     public override IEnumerable<(bool isBullish, object atrStop)> InitializedAtrStopEnumerator(AtrStopResult[]? atrStop = null)
     {
         Queue<object> data = new();
@@ -54,6 +55,7 @@ public class MinuteChart : Chart
         }
         yield return (atrStop?[^1].SellStop == null, data);
     }
+
     public override object InitializedCandlestickData(IEnumerable<Quote> quotes)
     {
         return from e in quotes
@@ -66,6 +68,7 @@ public class MinuteChart : Chart
                    close = e.Close
                };
     }
+
     public override object InitializedVolumeData(IEnumerable<Quote> quotes)
     {
         var quoteArr = quotes.ToArray();
@@ -77,6 +80,7 @@ public class MinuteChart : Chart
             color = index > 0 && quoteArr[index - 1].Volume < e.Volume ? "#F00" : "#00F"
         });
     }
+
     public override (object? linear, object? slope) InitializedSlopeData(IEnumerable<SlopeResult>? slope = null)
     {
         slope ??= Cache.GetIndicators(code)?.Slope;
@@ -93,6 +97,7 @@ public class MinuteChart : Chart
         });
         return (linearData, slopeData);
     }
+
     public override (object? macd, object? signal, object? histogram) InitializedMacdData(MacdResult[]? macd = null)
     {
         macd ??= Cache.GetIndicators(code)?.Macd?.ToArray();
@@ -115,6 +120,7 @@ public class MinuteChart : Chart
         });
         return (macdData, macdSignalData, macdHistogramData);
     }
+
     public override (Series atrStop, Series superTrend, object indicator) UpdateFuturesIndicator(string code, Indicators? indicator = null)
     {
         indicator ??= Cache.GetIndicators(code);
@@ -178,9 +184,5 @@ public class MinuteChart : Chart
                 value = e.Line
             })
         });
-    }
-    public MinuteChart(string code) : base(code)
-    {
-
     }
 }
