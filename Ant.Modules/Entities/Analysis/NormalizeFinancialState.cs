@@ -7,7 +7,27 @@ public struct NormalizeFinancialState
         get; set;
     }
 
+    public int NormalizeOp
+    {
+        get; set;
+    }
+
+    public int NormalizeNp
+    {
+        get; set;
+    }
+
     public string Revenue
+    {
+        get; set;
+    }
+
+    public string Op
+    {
+        get; set;
+    }
+
+    public string Np
     {
         get; set;
     }
