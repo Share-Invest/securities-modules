@@ -31,6 +31,8 @@ public interface IAnTalkService
 
     Task<ResponseGrowthRateRank?> RecommendedAmongRankedStockAsync(GrowthRateRank stock);
 
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToOverallRankingAsync(int rank);
+
     Task<ResponseGrowthRateRank?> RecommendStocksAccordingToMarketCapAsync(int rank);
 
     Task<ResponseGrowthRateRank?> RecommendStocksAccordingToSalesAsync(int rank);

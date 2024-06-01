@@ -9,13 +9,18 @@ public enum Order
     CompareToPreviousVolume = 'P' + 'V'
 }
 
+/// <summary>ASCII</summary>
 public enum TypeOfRankToOrder
 {
     PBR = 'B',
     PER = 'E',
+    /// <summary>82</summary>
     ROE = 'R',
     MarketCap = 'C',
     Sales = 'S',
+    /// <summary>79</summary>
     OperatingProfit = 'O',
-    NetProfit = 'N'
+    NetProfit = 'N',
+    /// <summary>161</summary>
+    OverallRanking = 'O' + 'R'
 }
