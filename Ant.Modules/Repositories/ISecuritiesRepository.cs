@@ -53,6 +53,8 @@ public interface ISecuritiesRepository
 
     Task<ResponseGrowthRateRank?> RecommendedAmongRankedStockAsync(GrowthRateRank stock);
 
+    Task<ResponseGrowthRateRank?> RecommendStocksAccordingToOverallRankingAsync(string latestDate, int rank);
+
     Task<ResponseGrowthRateRank?> RecommendStocksAccordingToMarketCapAsync(string latestDate, int rank);
 
     Task<ResponseGrowthRateRank?> RecommendStocksAccordingToSalesAsync(string latestDate, int rank);
