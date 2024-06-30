@@ -14,6 +14,7 @@ public class Opt50001 : SingleOpt50001
     {
         get; set;
     }
+
     [StringLength(8), Key]
     public string? Date
     {
