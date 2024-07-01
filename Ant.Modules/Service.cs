@@ -7,6 +7,15 @@ namespace ShareInvest;
 
 public static class Service
 {
+    public static DateTime GetSecondThursday(int year, int month)
+    {
+        DateTime firstDayOfMonth = new(year, month, 1);
+
+        DateTime firstThursday = firstDayOfMonth.AddDays(((int)DayOfWeek.Thursday - (int)firstDayOfMonth.DayOfWeek + 7) % 7);
+
+        return firstThursday.AddDays(7);
+    }
+
     public static object? ProvideComparableChart(IEnumerable<AssetStatusChart> chart)
     {
         Queue<AssetStatusChart> previous = new(), present = new();

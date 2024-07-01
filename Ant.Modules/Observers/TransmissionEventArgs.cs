@@ -2,14 +2,11 @@
 
 namespace ShareInvest.Observers;
 
-public class TransmissionEventArgs : MsgEventArgs
+public class TransmissionEventArgs(TR tr) : MsgEventArgs
 {
     public TR Transmission
     {
         get;
     }
-    public TransmissionEventArgs(TR tr)
-    {
-        Transmission = tr;
-    }
+        = tr;
 }
