@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kiwoom;
 
-public class Opt50029 : MultiOpt50029
+public class Opt50067 : MultiOpt50067
 {
     [StringLength(8), Key, DataMember, JsonProperty("종목코드")]
     public string? Code
