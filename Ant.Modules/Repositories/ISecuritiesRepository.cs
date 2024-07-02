@@ -79,6 +79,8 @@ public interface ISecuritiesRepository
 
     string? GetCodeToLookupNextFuturesMinChart(string date);
 
+    string? GetCodeToLookupNextOptionsMinChart(string date);
+
     string? GetCodeToLookUpNextDailyChart(string date);
 
     string? GetCodeToLookUpNextMinuteChart(string date);

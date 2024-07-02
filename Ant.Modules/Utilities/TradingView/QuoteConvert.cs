@@ -16,7 +16,7 @@ public static class QuoteConvert
             High = Math.Abs(Convert.ToDecimal(e.HighPrice)),
             Open = Math.Abs(Convert.ToDecimal(e.OpenPrice)),
             Low = Math.Abs(Convert.ToDecimal(e.LowPrice)),
-            Volume = Convert.ToDecimal(e.VolumeOfTransaction),
+            Volume = Convert.ToDecimal(e.TradingVolume),
             Date = DateTime.TryParseExact(e.Time, Resources.DATETIME, null, DateTimeStyles.None, out DateTime dt) ? dt : DateTime.UnixEpoch
         });
     }
