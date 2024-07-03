@@ -21,6 +21,10 @@ public interface IAnTalkService
 
     Task<string?> GetStockNameAsync(string code);
 
+    Task GetOptionInfoAsync(string code);
+
+    Task<IEnumerable<AntOption>> GetOptionInfoAsync(int previous);
+
     Task<IEnumerable<AntFutures>> GetFuturesAsync();
 
     Task<AntStock[]> GetStockAsync(Order order);
@@ -52,6 +56,8 @@ public interface IAnTalkService
     AntStockChat[] ContinuouslyViewChat(string? id, string code, long ticks);
 
     Indicators[] GetStrategicsScenario();
+
+    AntOptionChart[] GetOptionDailyChart(string code, int period, string? date = null);
 
     DailyChart[] GetDailyChart(string code, int period, string? date = null);
 

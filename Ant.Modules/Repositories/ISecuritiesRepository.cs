@@ -121,6 +121,10 @@ public interface ISecuritiesRepository
 
     IEnumerable<string> GetSimulationDateList(string code);
 
+    IEnumerable<AntOptionChart> GetOptionDailyChart(string code, string date, int period);
+
+    IEnumerable<AntOption> GetOptionInfo(string latestDate, int previous);
+
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
 
     IEnumerable<StockThemeDetail> GetThemeDetail(string code);
@@ -136,4 +140,6 @@ public interface ISecuritiesRepository
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string? dateTime, int period = 0x400);
 
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string startDate, string endDate);
+
+    Entities.Kiwoom.Opt50001? GetOptionInfo(string code, string latestDate);
 }

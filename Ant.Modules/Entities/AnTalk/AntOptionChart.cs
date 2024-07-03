@@ -1,33 +1,33 @@
 ﻿namespace ShareInvest.Entities.AnTalk;
 
-public struct DailyChart
+public struct AntOptionChart
 {
     public string Date
     {
         get; set;
     }
 
-    public int Current
+    public double Current
     {
         get; set;
     }
 
-    public int High
+    public double Open
     {
         get; set;
     }
 
-    public int Low
+    public double High
     {
         get; set;
     }
 
-    public int Start
+    public double Low
     {
         get; set;
     }
 
-    public long Volume
+    public int Volume
     {
         get; set;
     }
