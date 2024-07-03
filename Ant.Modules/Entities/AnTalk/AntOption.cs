@@ -1,33 +1,38 @@
 ﻿namespace ShareInvest.Entities.AnTalk;
 
-public struct AntFutures
+public struct AntOption
 {
     public string Code
     {
         get; set;
     }
 
-    public string Date
+    public double CurrentPrice
     {
         get; set;
     }
 
-    public string Name
+    public int CompareToPreviousSign
     {
         get; set;
     }
 
-    public string RemainingDays
+    public double CompareToPreviousDay
     {
         get; set;
     }
 
-    public string RemainingDaysBasedOnBusinessDays
+    public double Rate
     {
         get; set;
     }
 
-    public string[] DateArr
+    public int Volume
+    {
+        get; set;
+    }
+
+    public double TheoryPrice
     {
         get; set;
     }
