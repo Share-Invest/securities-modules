@@ -13,7 +13,7 @@ using System.Xml;
 
 namespace ShareInvest.Utilities;
 
-public class OpenDart : RestClient
+public class OpenDart(string openDartKey) : RestClient("https://opendart.fss.or.kr")
 {
     public async Task<CompanyOverview?> GetCompanyOverviewAsync(string corpCode)
     {
@@ -30,6 +30,7 @@ public class OpenDart : RestClient
         }
         return null;
     }
+
     public async Task<object?> GetDisclousureInventoryAsync(string corpCode)
     {
         var query = Parameter.TransformQuery(JToken.FromObject(new
@@ -43,6 +44,10 @@ public class OpenDart : RestClient
 
         if (HttpStatusCode.OK == response.StatusCode && !string.IsNullOrEmpty(response.Content))
         {
+            if ('<' == response.Content[0])
+            {
+                return null;
+            }
             var disclousure = JsonConvert.DeserializeObject<DisclousureInventory>(response.Content);
 
             var status = Convert.ToInt32(disclousure?.Status);
@@ -51,6 +56,7 @@ public class OpenDart : RestClient
             {
                 return disclousure?.Inventory;
             }
+
             if (status != 13)
             {
                 return disclousure;
@@ -59,6 +65,7 @@ public class OpenDart : RestClient
         }
         return null;
     }
+
     public async IAsyncEnumerable<UniqueNumber> GetCorpCodeAsync()
     {
         var query = Parameter.TransformQuery(JToken.FromObject(new
@@ -89,6 +96,7 @@ public class OpenDart : RestClient
             Console.WriteLine(exception.Message);
 #endif
         }
+
         if (response.RawBytes is byte[] rawBytes)
         {
             using (var stream = new MemoryStream(rawBytes))
@@ -109,6 +117,7 @@ public class OpenDart : RestClient
                                 {
                                     continue;
                                 }
+
                                 yield return new UniqueNumber
                                 {
                                     Code = node["stock_code"]?.InnerText,
@@ -123,11 +132,8 @@ public class OpenDart : RestClient
             }
         }
     }
-    public OpenDart(string openDartKey) : base("https://opendart.fss.or.kr")
-    {
-        this.openDartKey = openDartKey;
-    }
-    readonly string openDartKey;
+
+    readonly string openDartKey = openDartKey;
     readonly CancellationTokenSource cts = new();
 
     const string corpCode = "api/corpCode.xml";

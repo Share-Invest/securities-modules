@@ -7,6 +7,11 @@ public struct AntOption
         get; set;
     }
 
+    public string Name
+    {
+        get; set;
+    }
+
     public double CurrentPrice
     {
         get; set;
@@ -33,6 +38,16 @@ public struct AntOption
     }
 
     public double TheoryPrice
+    {
+        get; set;
+    }
+
+    public double IntrinsicValue
+    {
+        get; set;
+    }
+
+    public double TimeValue
     {
         get; set;
     }
