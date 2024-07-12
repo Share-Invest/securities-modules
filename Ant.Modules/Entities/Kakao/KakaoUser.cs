@@ -3,6 +3,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ShareInvest.Entities.Kakao;
 
@@ -13,17 +14,20 @@ public class KakaoUser
     {
         get; set;
     }
-    [DataMember, JsonProperty("connected_at")]
+
+    [DataMember, JsonProperty("connected_at"), JsonPropertyName("connected_at")]
     public DateTime ConnectedAt
     {
         get; set;
     }
-    [DataMember, JsonProperty("properties")]
+
+    [DataMember, JsonProperty("properties"), JsonPropertyName("properties")]
     public Property? Profile
     {
         get; set;
     }
-    [DataMember, JsonProperty("kakao_account")]
+
+    [DataMember, JsonProperty("kakao_account"), JsonPropertyName("kakao_account")]
     public Account? Account
     {
         get; set;
