@@ -11,11 +11,13 @@ public struct AntUserLoginInfo
     {
         get; set;
     }
+
     [DataMember, JsonProperty("provider")]
     public string LoginProvider
     {
         get; set;
     }
+
     [DataMember, JsonProperty("id")]
     public string ProviderKey
     {
