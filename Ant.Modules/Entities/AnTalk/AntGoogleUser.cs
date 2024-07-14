@@ -13,11 +13,13 @@ public class AntGoogleUser : GoogleUser
     {
         get; set;
     }
+
     [DataMember, JsonProperty("access_token")]
     public string? AccessToken
     {
         get; set;
     }
+
     [DataMember, JsonProperty("id_token")]
     public string? IdToken
     {
