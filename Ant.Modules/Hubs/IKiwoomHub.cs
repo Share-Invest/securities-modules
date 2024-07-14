@@ -15,5 +15,5 @@ public interface IKiwoomHub
 
     Task SendFuturesOrderAsync(OrderFO orderFO);
 
-    Task<object> CheckOneSAccountAsync(string userName);
+    Task<Stack<object>> CheckOneSAccountAsync(string userName);
 }
