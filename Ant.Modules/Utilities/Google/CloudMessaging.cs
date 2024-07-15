@@ -13,7 +13,12 @@ using System.Net;
 
 namespace ShareInvest.Utilities.Google;
 
-public class CloudMessaging : RestClient
+public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestClient(baseUrl, configureDefaultHeaders: async headers =>
+    {
+        var cts = new CancellationTokenSource();
+
+        headers.Add(KnownHeaders.Authorization, $"Bearer {await credential.UnderlyingCredential.GetAccessTokenForRequestAsync(cancellationToken: cts.Token)}");
+    })
 {
     public async Task<ResFirebaseCloudMessage?> SendMessageAsync(CloudMessage message)
     {
@@ -36,6 +41,7 @@ public class CloudMessaging : RestClient
 
         return response != null ? JsonConvert.DeserializeObject<ResFirebaseCloudMessage>(response) : null;
     }
+
     public async Task<string> SendAsync(CloudMessage cloudMessage)
     {
         var message = new Message
@@ -52,6 +58,7 @@ public class CloudMessaging : RestClient
         };
         return await FirebaseMessaging.DefaultInstance.SendAsync(message, cts.Token);
     }
+
     public async Task<object> SendMulticastAsync(CloudMulticastMessage messages)
     {
         var multicastMessage = new MulticastMessage
@@ -66,6 +73,7 @@ public class CloudMessaging : RestClient
         };
         return await FirebaseMessaging.DefaultInstance.SendMulticastAsync(multicastMessage, cts.Token);
     }
+
     public async Task<object> SendAllAsync(IEnumerable<CloudMessage> cloudMessages)
     {
         var messages = cloudMessages.Select(s => new Message
@@ -82,17 +90,7 @@ public class CloudMessaging : RestClient
         });
         return await FirebaseMessaging.DefaultInstance.SendAllAsync(messages, cts.Token);
     }
-    public CloudMessaging(string baseUrl, GoogleCredential credential) : base(baseUrl, configureDefaultHeaders: async headers =>
-    {
-        var cts = new CancellationTokenSource();
 
-        headers.Add(KnownHeaders.Authorization, $"Bearer {await credential.UnderlyingCredential.GetAccessTokenForRequestAsync(cancellationToken: cts.Token)}");
-    })
-    {
-        this.credential = credential;
-
-        route = $"v1/projects/{((ServiceAccountCredential)credential.UnderlyingCredential).ProjectId}/messages:send";
-    }
     async Task<string?> ExecuteAsync(string json, string? accessToken = null)
     {
         var request = new RestRequest(route, Method.Post);
@@ -115,7 +113,8 @@ public class CloudMessaging : RestClient
         }
         return null;
     }
-    readonly string route;
-    readonly GoogleCredential credential;
+
+    readonly string route = $"v1/projects/{((ServiceAccountCredential)credential.UnderlyingCredential).ProjectId}/messages:send";
+    readonly GoogleCredential credential = credential;
     readonly CancellationTokenSource cts = new();
 }
