@@ -19,6 +19,7 @@ public class KiwoomHub
             await Hub.SendAsync(nameof(AddToGroupAsync), groupName);
         }
     }
+
     public async Task RemoveFromGroupAsync(string groupName)
     {
         if (HubConnectionState.Connected == Hub.State)
@@ -26,10 +27,12 @@ public class KiwoomHub
             await Hub.SendAsync(nameof(RemoveFromGroupAsync), groupName);
         }
     }
+
     public HubConnection Hub
     {
         get;
     }
+
     public KiwoomHub(string url, string? accessToken = null, string? serialKey = null)
     {
         Hub = new HubConnectionBuilder()
@@ -59,5 +62,6 @@ public class KiwoomHub
 
         _ = Hub.On<OrderFO>(nameof(IHubs.SendFuturesOrderAsync), orderFO => Send?.Invoke(this, new OrderFOArgs(orderFO)));
     }
+
     public event EventHandler<MsgEventArgs>? Send;
 }
