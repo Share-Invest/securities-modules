@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 
+using ShareInvest.Entities.Identity;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -7,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace ShareInvest.Entities.Kakao;
 
-public class KakaoUser
+public class KakaoUser : DeviceIdentity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.None), DataMember, JsonProperty("id"), Key]
     public long Id

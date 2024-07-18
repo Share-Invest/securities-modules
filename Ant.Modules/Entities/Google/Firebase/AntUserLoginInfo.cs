@@ -23,4 +23,10 @@ public struct AntUserLoginInfo
     {
         get; set;
     }
+
+    [DataMember, JsonProperty("device_id")]
+    public string DeviceId
+    {
+        get; set;
+    }
 }
