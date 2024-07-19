@@ -26,5 +26,7 @@ public interface IUserRepository
 
     IEnumerable<string> GetPushKeys();
 
+    IEnumerable<(string userId, string loginProvider)> ConfirmedExistingUsers(string deviceId);
+
     IEnumerable<(string? securitiesId, string? pushKey)> GetPushKeys(string userId, string serialKey);
 }

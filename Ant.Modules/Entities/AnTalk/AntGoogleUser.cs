@@ -3,24 +3,25 @@
 using ShareInvest.Entities.Google;
 
 using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace ShareInvest.Entities.AnTalk;
 
 public class AntGoogleUser : GoogleUser
 {
-    [DataMember, JsonProperty("server_auth_code")]
+    [DataMember, JsonProperty("auth_code"), JsonPropertyName("auth_code")]
     public string? AuthCode
     {
         get; set;
     }
 
-    [DataMember, JsonProperty("access_token")]
+    [DataMember, JsonProperty("access_token"), JsonPropertyName("access_token")]
     public string? AccessToken
     {
         get; set;
     }
 
-    [DataMember, JsonProperty("id_token")]
+    [DataMember, JsonProperty("id_token"), JsonPropertyName("id_token")]
     public string? IdToken
     {
         get; set;
