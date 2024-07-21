@@ -11,7 +11,7 @@ public interface IMapHub
 
     Task<IEnumerable<CoordinateStock>> GetStocksAsync(MapStatus status, double currentDistance, double previousDistance);
 
-    CoordinateUser[] GetClientApps(MapStatus status, double distance, string? userName = null);
+    CoordinateUser[] GetClientApps(MapStatus status, double distance, string? userName = null, string? userId = null);
 
     void OnConnected(string userIdentifier);
 
