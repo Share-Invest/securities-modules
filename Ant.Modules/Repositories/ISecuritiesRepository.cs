@@ -131,7 +131,7 @@ public interface ISecuritiesRepository
 
     IDictionary<string, IEnumerable<StockThemeDetail>> GetThemeDetail();
 
-    CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null);
+    CoordinateUser[] GetClientApps(Point point, double distance, string? userName = null, string? userId = null);
 
     GrowthRateRank[] RecommendedAmongRankedStocks(string date);
 

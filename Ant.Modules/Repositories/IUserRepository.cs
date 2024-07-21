@@ -22,9 +22,11 @@ public interface IUserRepository
 
     Securities[] GetSecuritiesById();
 
-    CoordinateUser[] GetClientCoordinates(IEnumerable<string> imageUrl, string? userName = null);
+    CoordinateUser[] GetClientCoordinates(IEnumerable<string> imageUrl, string? userName = null, string? userId = null);
 
     IEnumerable<string> GetPushKeys();
+
+    IEnumerable<(string userId, string loginProvider)> ConfirmedExistingUsers(string deviceId);
 
     IEnumerable<(string? securitiesId, string? pushKey)> GetPushKeys(string userId, string serialKey);
 }

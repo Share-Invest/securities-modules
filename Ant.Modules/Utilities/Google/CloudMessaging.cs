@@ -105,6 +105,7 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
         {
             return response.Content;
         }
+
         if (HttpStatusCode.Unauthorized == response.StatusCode)
         {
             var token = $"Bearer {await credential.UnderlyingCredential.GetAccessTokenForRequestAsync(cancellationToken: cts.Token)}";
