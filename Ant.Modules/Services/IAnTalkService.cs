@@ -21,8 +21,6 @@ public interface IAnTalkService
 
     Task<string?> GetStockNameAsync(string code);
 
-    Task GetOptionInfoAsync(string code);
-
     Task<IEnumerable<AntOption>> GetOptionInfoAsync(int previous);
 
     Task<IEnumerable<AntFutures>> GetFuturesAsync();
@@ -30,6 +28,8 @@ public interface IAnTalkService
     Task<AntStock[]> GetStockAsync(Order order);
 
     Task<EstimatedStock[]> AnalyzeGrowthPotentialAsync();
+
+    Task<Entities.Kiwoom.Opt50001?> GetOptionInfoAsync(string code);
 
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
