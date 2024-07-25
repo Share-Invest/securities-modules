@@ -14,6 +14,7 @@ public class Opt10004 : MultiOpt10004
     {
         get; set;
     }
+
     [DataMember, JsonProperty("종목코드"), StringLength(8), Key]
     public string Code
     {
@@ -21,5 +22,6 @@ public class Opt10004 : MultiOpt10004
 
         set => code = 'A' == value[0] ? value[1..] : value;
     }
+
     string? code;
 }

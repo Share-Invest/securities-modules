@@ -14,7 +14,13 @@ public interface IHubs
 
     Task TransmitConclusionInformationAsync(string code, string data);
 
+    Task TransmitOptionConclusionInformationAsync(string code, string data);
+
     Task TransmitQuoteInformationAsync(string code, string data);
+
+    Task TransmitOptionQuoteInformationAsync(string code, string data);
+
+    Task TransmitOptionTheoreticalPriceInfoAsync(string code, string data);
 
     Task TransmitOpenMessageAsync(string json);
 
