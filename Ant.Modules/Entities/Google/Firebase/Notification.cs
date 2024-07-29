@@ -11,11 +11,13 @@ public struct Notification
     {
         get; set;
     }
+
     [DataMember, JsonProperty("body")]
     public string Body
     {
         get; set;
     }
+
     [DataMember, JsonProperty("image")]
     public string ImageUrl
     {

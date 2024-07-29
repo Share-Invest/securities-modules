@@ -11,21 +11,31 @@ public class CloudMessage
     {
         get; set;
     }
+
     [DataMember, JsonProperty("token")]
     public string? Token
     {
         get; set;
     }
+
     [DataMember, JsonProperty("topic")]
     public string? Topic
     {
         get; set;
     }
+
     [DataMember, JsonProperty("condition")]
     public string? Condition
     {
         get; set;
     }
+
+    [DataMember, JsonProperty("channel_id")]
+    public string? ChannelId
+    {
+        get; set;
+    }
+
     [DataMember, JsonProperty("data")]
     public IReadOnlyDictionary<string, string>? Data
     {
