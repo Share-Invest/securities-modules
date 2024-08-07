@@ -14,11 +14,11 @@ using System.Net;
 namespace ShareInvest.Utilities.Google;
 
 public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestClient(baseUrl, configureDefaultHeaders: async headers =>
-    {
-        var cts = new CancellationTokenSource();
+{
+    var cts = new CancellationTokenSource();
 
-        headers.Add(KnownHeaders.Authorization, $"Bearer {await credential.UnderlyingCredential.GetAccessTokenForRequestAsync(cancellationToken: cts.Token)}");
-    })
+    headers.Add(KnownHeaders.Authorization, $"Bearer {await credential.UnderlyingCredential.GetAccessTokenForRequestAsync(cancellationToken: cts.Token)}");
+})
 {
     public async Task<ResFirebaseCloudMessage?> SendMessageAsync(CloudMessage message)
     {
@@ -26,6 +26,13 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
         {
             message = new Message
             {
+                Android = new AndroidConfig
+                {
+                    Notification = new AndroidNotification
+                    {
+                        ChannelId = message.ChannelId
+                    }
+                },
                 Notification = new FirebaseAdmin.Messaging.Notification
                 {
                     Body = message.Notification.Body,
@@ -46,6 +53,13 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
     {
         var message = new Message
         {
+            Android = new AndroidConfig
+            {
+                Notification = new AndroidNotification
+                {
+                    ChannelId = cloudMessage.ChannelId
+                }
+            },
             Notification = new FirebaseAdmin.Messaging.Notification
             {
                 Body = cloudMessage.Notification.Body,
@@ -63,6 +77,13 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
     {
         var multicastMessage = new MulticastMessage
         {
+            Android = new AndroidConfig
+            {
+                Notification = new AndroidNotification
+                {
+                    ChannelId = messages.ChannelId
+                }
+            },
             Notification = new FirebaseAdmin.Messaging.Notification
             {
                 Body = messages.Notification.Body,
@@ -78,6 +99,13 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
     {
         var messages = cloudMessages.Select(s => new Message
         {
+            Android = new AndroidConfig
+            {
+                Notification = new AndroidNotification
+                {
+                    ChannelId = s.ChannelId
+                }
+            },
             Notification = new FirebaseAdmin.Messaging.Notification
             {
                 Body = s.Notification.Body,
