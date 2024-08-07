@@ -26,6 +26,11 @@ public static class Cache
         get => 621_355_968_000_000_000;
     }
 
+    public static double OptionATM
+    {
+        get; set;
+    }
+
     public static string? CompanyName
     {
         get
