@@ -244,6 +244,10 @@ public static class Cache
     public static Dictionary<int, string> Error => new()
     {
         {
+            1,
+            "정상처리"
+        },
+        {
             0,
             "정상처리"
         },
@@ -266,6 +270,10 @@ public static class Cache
         {
             -13,
             "조건검색 조회요청 초과"
+        },
+        {
+            -14,
+            "실시간 조건검색 요청 10개 초과"
         },
         {
             -22,
