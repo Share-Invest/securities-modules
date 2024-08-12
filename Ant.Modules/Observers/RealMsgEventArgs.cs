@@ -1,23 +1,10 @@
 ﻿namespace ShareInvest.Observers;
 
-public class RealMsgEventArgs : MsgEventArgs
+public class RealMsgEventArgs(string type, string key, string data) : MsgEventArgs
 {
-    public string Type
-    {
-        get;
-    }
-    public string Key
-    {
-        get;
-    }
-    public string Data
-    {
-        get;
-    }
-    public RealMsgEventArgs(string type, string key, string data)
-    {
-        Type = type;
-        Key = key;
-        Data = data;
-    }
+    public string Type { get; } = type;
+
+    public string Key { get; } = key;
+    
+    public string Data { get; } = data;
 }
