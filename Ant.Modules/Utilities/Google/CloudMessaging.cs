@@ -51,26 +51,33 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
 
     public async Task<string> SendAsync(CloudMessage cloudMessage)
     {
-        var message = new Message
+        try
         {
-            Android = new AndroidConfig
+            var message = new Message
             {
-                Notification = new AndroidNotification
+                Android = new AndroidConfig
                 {
-                    ChannelId = cloudMessage.ChannelId
-                }
-            },
-            Notification = new FirebaseAdmin.Messaging.Notification
-            {
-                Body = cloudMessage.Notification.Body,
-                Title = cloudMessage.Notification.Title
-            },
-            Data = cloudMessage.Data,
-            Topic = cloudMessage.Topic,
-            Token = cloudMessage.Token,
-            Condition = cloudMessage.Condition
-        };
-        return await FirebaseMessaging.DefaultInstance.SendAsync(message, cts.Token);
+                    Notification = new AndroidNotification
+                    {
+                        ChannelId = cloudMessage.ChannelId
+                    }
+                },
+                Notification = new FirebaseAdmin.Messaging.Notification
+                {
+                    Body = cloudMessage.Notification.Body,
+                    Title = cloudMessage.Notification.Title
+                },
+                Data = cloudMessage.Data,
+                Topic = cloudMessage.Topic,
+                Token = cloudMessage.Token,
+                Condition = cloudMessage.Condition
+            };
+            return await FirebaseMessaging.DefaultInstance.SendAsync(message, cts.Token);
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
     }
 
     public async Task<object> SendMulticastAsync(CloudMulticastMessage messages)
@@ -97,26 +104,33 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
 
     public async Task<object> SendAllAsync(IEnumerable<CloudMessage> cloudMessages)
     {
-        var messages = cloudMessages.Select(s => new Message
+        try
         {
-            Android = new AndroidConfig
+            var messages = cloudMessages.Select(s => new Message
             {
-                Notification = new AndroidNotification
+                Android = new AndroidConfig
                 {
-                    ChannelId = s.ChannelId
-                }
-            },
-            Notification = new FirebaseAdmin.Messaging.Notification
-            {
-                Body = s.Notification.Body,
-                Title = s.Notification.Title
-            },
-            Data = s.Data,
-            Topic = s.Topic,
-            Token = s.Token,
-            Condition = s.Condition
-        });
-        return await FirebaseMessaging.DefaultInstance.SendAllAsync(messages, cts.Token);
+                    Notification = new AndroidNotification
+                    {
+                        ChannelId = s.ChannelId
+                    }
+                },
+                Notification = new FirebaseAdmin.Messaging.Notification
+                {
+                    Body = s.Notification.Body,
+                    Title = s.Notification.Title
+                },
+                Data = s.Data,
+                Topic = s.Topic,
+                Token = s.Token,
+                Condition = s.Condition
+            });
+            return await FirebaseMessaging.DefaultInstance.SendAllAsync(messages, cts.Token);
+        }
+        catch (Exception ex)
+        {
+            return ex;
+        }
     }
 
     async Task<string?> ExecuteAsync(string json, string? accessToken = null)
