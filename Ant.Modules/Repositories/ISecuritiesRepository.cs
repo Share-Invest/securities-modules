@@ -142,4 +142,6 @@ public interface ISecuritiesRepository
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string startDate, string endDate);
 
     Entities.Kiwoom.Opt50001? GetOptionInfo(string code, string latestDate);
+
+    OPT20003? GetStockIndex(string code, string latestDate);
 }

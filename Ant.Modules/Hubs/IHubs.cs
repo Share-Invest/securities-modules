@@ -22,6 +22,10 @@ public interface IHubs
 
     Task TransmitOptionTheoreticalPriceInfoAsync(string code, string data);
 
+    Task TransmitMarketIndexAsync(string code, string data);
+
+    Task TransmitMarketRateAsync(string code, string data);
+
     Task TransmitOpenMessageAsync(string json);
 
     Task InstructToRenewAssetStatusAsync(string accNo);
