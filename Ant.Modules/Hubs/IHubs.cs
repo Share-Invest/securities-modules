@@ -14,6 +14,8 @@ public interface IHubs
 
     Task TransmitConclusionInformationAsync(string code, string data);
 
+    Task TransmitFuturesConclusionInformationAsync(string code, string data);
+
     Task TransmitOptionConclusionInformationAsync(string code, string data);
 
     Task TransmitQuoteInformationAsync(string code, string data);
@@ -21,6 +23,12 @@ public interface IHubs
     Task TransmitOptionQuoteInformationAsync(string code, string data);
 
     Task TransmitOptionTheoreticalPriceInfoAsync(string code, string data);
+
+    Task TransmitMarketIndexAsync(string code, string data);
+
+    Task TransmitMarketRateAsync(string code, string data);
+
+    Task TransmitStockDayTraderAsync(string code, string data);
 
     Task TransmitOpenMessageAsync(string json);
 

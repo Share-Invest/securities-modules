@@ -68,9 +68,24 @@ public static class Cache
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
 
+    public static string[] GetFuturesOptionConclusion(string code)
+    {
+        return futuresConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
+    }
+
     public static string[] GetStockQuote(string code)
     {
         return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : [];
+    }
+
+    public static string[] GetFuturesOptionQuotes(string code)
+    {
+        return futuresQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : [];
+    }
+
+    public static string[] GetStockIndexRate(string code)
+    {
+        return stockIndexRate.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
 
     public static ConcurrentStack<Quote>? GetFuturesData(string code)
@@ -158,6 +173,16 @@ public static class Cache
     public static void SetConclusion(string code, string data)
     {
         stocksConclusion[code] = data;
+    }
+
+    public static void SetStockIndex(string code, string data)
+    {
+        stockIndex[code] = data;
+    }
+
+    public static void SetStockIndexRate(string code, string data)
+    {
+        stockIndexRate[code] = data;
     }
 
     public static void SetFuturesQuote(string code, string data)
@@ -417,6 +442,8 @@ public static class Cache
     static readonly ConcurrentQueue<object> queueWorker = new();
     static readonly ConcurrentDictionary<string, Entities.StockTheme> stockTheme = new();
     static readonly ConcurrentDictionary<string, TR> stores = new();
+    static readonly ConcurrentDictionary<string, string> stockIndex = new();
+    static readonly ConcurrentDictionary<string, string> stockIndexRate = new();
     static readonly ConcurrentDictionary<string, string> stockQuotes = new();
     static readonly ConcurrentDictionary<string, string> stocksConclusion = new();
     static readonly ConcurrentDictionary<string, string> futuresConclusion = new();
