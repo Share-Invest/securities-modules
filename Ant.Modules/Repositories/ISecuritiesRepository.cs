@@ -144,4 +144,6 @@ public interface ISecuritiesRepository
     Entities.Kiwoom.Opt50001? GetOptionInfo(string code, string latestDate);
 
     OPT20003? GetStockIndex(string code, string latestDate);
+
+    OPT20001? GetMarketIndex(string code, string latestDate);
 }
