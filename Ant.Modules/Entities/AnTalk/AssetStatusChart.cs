@@ -6,10 +6,12 @@ public struct AssetStatusChart
     {
         get; set;
     }
+
     public int Index
     {
         get; set;
     }
+
     public long Asset
     {
         get; set;
