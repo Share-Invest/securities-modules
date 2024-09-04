@@ -13,7 +13,7 @@
 		<Copyright>Copyright ⓒ 2023, ShareInvest Corp.</Copyright>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<Version>8.2.1.38</Version>
+		<Version>8.2.1.39</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -30,7 +30,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="8.0.3" />
 		<PackageReference Include="Microsoft.Net.Http.Headers" Version="8.0.3" />
 		<PackageReference Include="NetTopologySuite" Version="2.5.0" />
-		<PackageReference Include="RestSharp" Version="110.2.0" />
+		<PackageReference Include="RestSharp" Version="112.0.0" />
 		<PackageReference Include="Skender.Stock.Indicators" Version="2.5.0" />
 	</ItemGroup>
 

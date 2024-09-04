@@ -2,14 +2,7 @@
 
 namespace ShareInvest.Observers;
 
-public class AxMsgEventArgs : MsgEventArgs
+public class AxMsgEventArgs(OpenMessage message) : MsgEventArgs
 {
-    public OpenMessage Message
-    {
-        get;
-    }
-    public AxMsgEventArgs(OpenMessage message)
-    {
-        Message = message;
-    }
+    public OpenMessage Message { get; } = message;
 }

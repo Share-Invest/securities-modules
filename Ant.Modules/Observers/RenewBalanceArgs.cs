@@ -1,13 +1,6 @@
 ﻿namespace ShareInvest.Observers;
 
-public class RenewBalanceArgs : MsgEventArgs
+public class RenewBalanceArgs(string accNo) : MsgEventArgs
 {
-    public string AccNo
-    {
-        get;
-    }
-    public RenewBalanceArgs(string accNo)
-    {
-        AccNo = accNo;
-    }
+    public string AccNo { get; } = accNo;
 }

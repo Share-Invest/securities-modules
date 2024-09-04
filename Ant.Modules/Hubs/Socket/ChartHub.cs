@@ -46,14 +46,14 @@ public class ChartHub : IEventHandler<MsgEventArgs>
            {
                configureLogging.SetMinimumLevel(LogLevel.Trace);
            })
-           .WithAutomaticReconnect(new[]
-           {
+           .WithAutomaticReconnect(
+           [
                 TimeSpan.Zero,
                 TimeSpan.FromSeconds(3),
                 TimeSpan.FromSeconds(9),
                 TimeSpan.FromSeconds(0x10),
                 TimeSpan.FromSeconds(0x20)
-           })
+           ])
            .Build();
 
         _ = Hub.On<Quote, bool>(nameof(IHubs.TransmitFuturesQuoteAsync), (quote, moreThanBefore) => Send?.Invoke(this, new HubQuoteArgs(quote, moreThanBefore)));

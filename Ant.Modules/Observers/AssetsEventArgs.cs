@@ -1,13 +1,6 @@
 ﻿namespace ShareInvest.Observers;
 
-public class AssetsEventArgs : MsgEventArgs
+public class AssetsEventArgs(string accNo) : MsgEventArgs
 {
-    public string AccNo
-    {
-        get;
-    }
-    public AssetsEventArgs(string accNo)
-    {
-        AccNo = accNo;
-    }
+    public string AccNo { get; } = accNo;
 }
