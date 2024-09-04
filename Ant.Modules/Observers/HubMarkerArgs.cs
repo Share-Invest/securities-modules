@@ -1,18 +1,8 @@
 ﻿namespace ShareInvest.Observers;
 
-public class HubMarkerArgs : MsgEventArgs
+public class HubMarkerArgs(DateTime dateTime, bool position) : MsgEventArgs
 {
-    public HubMarkerArgs(DateTime dateTime, bool position)
-    {
-        DateTime = dateTime;
-        Position = position;
-    }
-    public DateTime DateTime
-    {
-        get;
-    }
-    public bool Position
-    {
-        get; set;
-    }
+    public DateTime DateTime { get; } = dateTime;
+
+    public bool Position { get; set; } = position;
 }

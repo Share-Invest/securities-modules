@@ -63,6 +63,8 @@ public interface IAnTalkService
 
     AntOptionChart[] GetOptionDailyChart(string code, int period, string? date = null);
 
+    AntOptionChart[] GetFuturesDailyChart(string code, int period, string? date = null);
+
     DailyChart[] GetDailyChart(string code, int period, string? date = null);
 
     /// <summary>

@@ -2,14 +2,7 @@
 
 namespace ShareInvest.Observers;
 
-public class OrderFOArgs : MsgEventArgs
+public class OrderFOArgs(OrderFO orderFO) : MsgEventArgs
 {
-    public OrderFOArgs(OrderFO orderFO)
-    {
-        OrderFO = orderFO;
-    }
-    public OrderFO OrderFO
-    {
-        get;
-    }
+    public OrderFO OrderFO { get; } = orderFO;
 }

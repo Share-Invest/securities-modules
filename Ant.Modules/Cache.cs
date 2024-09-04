@@ -83,6 +83,11 @@ public static class Cache
         return futuresQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
 
+    public static string[] GetStockIndex(string code)
+    {
+        return stockIndex.TryGetValue(code, out string? value) ? value.Split('\t') : [];
+    }
+
     public static string[] GetStockIndexRate(string code)
     {
         return stockIndexRate.TryGetValue(code, out string? value) ? value.Split('\t') : [];
