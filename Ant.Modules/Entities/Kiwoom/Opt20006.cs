@@ -8,16 +8,10 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kiwoom;
 
-public class Opt10080 : MultiOpt10080
+public class Opt20006 : MultiOpt20006
 {
     [NotMapped]
     public string? Name
-    {
-        get; set;
-    }
-
-    [StringLength(8)]
-    public string? Date
     {
         get; set;
     }
