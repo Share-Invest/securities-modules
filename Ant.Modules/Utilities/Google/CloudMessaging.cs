@@ -99,7 +99,7 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
             Data = messages.Data,
             Tokens = messages.Tokens
         };
-        return await FirebaseMessaging.DefaultInstance.SendMulticastAsync(multicastMessage, cts.Token);
+        return await FirebaseMessaging.DefaultInstance.SendEachForMulticastAsync(multicastMessage, cts.Token);
     }
 
     public async Task<object> SendAllAsync(IEnumerable<CloudMessage> cloudMessages)
@@ -125,7 +125,7 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
                 Token = s.Token,
                 Condition = s.Condition
             });
-            return await FirebaseMessaging.DefaultInstance.SendAllAsync(messages, cts.Token);
+            return await FirebaseMessaging.DefaultInstance.SendEachAsync(messages, cts.Token);
         }
         catch (Exception ex)
         {
@@ -158,6 +158,7 @@ public class CloudMessaging(string baseUrl, GoogleCredential credential) : RestC
     }
 
     readonly string route = $"v1/projects/{((ServiceAccountCredential)credential.UnderlyingCredential).ProjectId}/messages:send";
+
     readonly GoogleCredential credential = credential;
     readonly CancellationTokenSource cts = new();
 }
