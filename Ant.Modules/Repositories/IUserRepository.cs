@@ -10,6 +10,8 @@ public interface IUserRepository
 
     int SaveCallback(KakaoCallback callback);
 
+    int RemovePushKey(string fcmToken);
+
     string[] GetAccountsById(string userName);
 
     string[] GetFuturesAccount(Securities securities);
