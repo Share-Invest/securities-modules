@@ -7,7 +7,10 @@ using System.Net;
 
 namespace ShareInvest.Utilities;
 
-public class Publish : RestClient
+public class Publish(string path, string baseUrl, string accessToken) : RestClient(baseUrl, configureDefaultHeaders: headers =>
+{
+    headers.Add(KnownHeaders.Authorization, $"Bearer {accessToken}");
+})
 {
     public async Task ExecuteAsync(string program, string workingDirectory, string compile)
     {
@@ -21,11 +24,12 @@ public class Publish : RestClient
         };
         await ExecuteAsync(fileVersionInfo.GetType().Name, fileVersionInfo);
     }
+
     public async Task ExecuteAsync(string program, string? exclusionPath = null)
     {
         foreach (var info in GetVersionInfo(program, exclusionPath))
         {
-            var index = info.FileName.IndexOf(nameof(Publish).ToLowerInvariant());
+            var index = info.FileName.IndexOf(nameof(Publish), StringComparison.InvariantCultureIgnoreCase);
 
             if (index < 0)
             {
@@ -57,19 +61,12 @@ public class Publish : RestClient
             });
         }
     }
+
     public string? CommandLine
     {
         get; set;
     }
-    public Publish(string path, string baseUrl, string accessToken) : base(baseUrl, configureDefaultHeaders: headers =>
-    {
-        headers.Add(KnownHeaders.Authorization, $"Bearer {accessToken}");
-    })
-    {
-        cts = new CancellationTokenSource();
 
-        this.path = path;
-    }
     async Task ExecuteAsync(string route, Entities.FileVersionInfo ctor)
     {
         var request = new RestRequest(Parameter.TransformOutbound(route), Method.Post);
@@ -89,6 +86,7 @@ public class Publish : RestClient
 #endif
         }
     }
+
     IEnumerable<FileVersionInfo> GetVersionInfo(string fileName, string? exclusionPath = null)
     {
         string? dirName = string.Empty;
@@ -112,10 +110,12 @@ public class Publish : RestClient
                 }
             }
         }
+
         if (string.IsNullOrEmpty(dirName))
         {
             yield break;
         }
+
         foreach (var file in Directory.EnumerateFiles(dirName, "*", SearchOption.AllDirectories))
         {
             if (string.IsNullOrEmpty(exclusionPath) is false && file.StartsWith(exclusionPath, StringComparison.OrdinalIgnoreCase))
@@ -128,6 +128,7 @@ public class Publish : RestClient
             yield return FileVersionInfo.GetVersionInfo(file);
         }
     }
+
     void Build(string workingDirectory)
     {
         DirectoryInfo? directoryInfo;
@@ -146,6 +147,7 @@ public class Publish : RestClient
                 }
             }
         }
+
         using (var process = new Process
         {
             StartInfo = new ProcessStartInfo
@@ -175,6 +177,8 @@ public class Publish : RestClient
             }
         }
     }
-    readonly string path;
-    readonly CancellationTokenSource cts;
+
+    readonly string path = path;
+
+    readonly CancellationTokenSource cts = new();
 }
