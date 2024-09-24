@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kiwoom;
 
+/// <summary>업종일봉조회</summary>
 public class Opt20006 : MultiOpt20006
 {
     [NotMapped]
@@ -16,7 +17,7 @@ public class Opt20006 : MultiOpt20006
         get; set;
     }
 
-    [DataMember, JsonProperty("종목코드"), StringLength(8), Key]
+    [DataMember, JsonProperty("업종코드"), StringLength(8), Key]
     public string Code
     {
         get => code ?? string.Empty;

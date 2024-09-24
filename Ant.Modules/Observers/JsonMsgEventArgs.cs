@@ -29,6 +29,8 @@ public class JsonMsgEventArgs : MsgEventArgs
             Opt10004 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt10004>(json),
             Opt20001 => JsonConvert.DeserializeObject<Entities.Kiwoom.OPT20001>(json),
             Opt20003 => JsonConvert.DeserializeObject<Entities.Kiwoom.OPT20003>(json),
+            Opt20005 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt20005>(json),
+            Opt20006 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt20006>(json),
             Opt50001 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt50001>(json),
             Opt50029 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt50029>(json),
             Opt50030 => JsonConvert.DeserializeObject<Entities.Kiwoom.Opt50030>(json),

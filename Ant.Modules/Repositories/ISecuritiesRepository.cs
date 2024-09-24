@@ -39,6 +39,8 @@ public interface ISecuritiesRepository
 
     Task<string> GetLatestDateAsync();
 
+    Task<string> GetMarketIndexLatestDateAsync();
+
     Task<string> GetFuturesLatestDateAsync();
 
     Task<string?> GetFuturesCodeAsync();
@@ -77,9 +79,13 @@ public interface ISecuritiesRepository
 
     string? GetCodeToLookupNextOptionsDayChart(string date);
 
+    string? GetCodeToLookupNextMarketIndexDayChart(string date);
+
     string? GetCodeToLookupNextFuturesMinChart(string date);
 
     string? GetCodeToLookupNextOptionsMinChart(string date);
+
+    string? GetCodeToLookupNextMarketIndexMinChart(string date);
 
     string? GetCodeToLookUpNextDailyChart(string date);
 
