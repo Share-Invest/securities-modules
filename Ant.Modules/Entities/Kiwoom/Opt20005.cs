@@ -23,7 +23,7 @@ public class Opt20005 : MultiOpt20005
         get; set;
     }
 
-    [DataMember, JsonProperty("종목코드"), StringLength(8), Key]
+    [DataMember, JsonProperty("업종코드"), StringLength(8), Key]
     public string Code
     {
         get => code ?? string.Empty;
