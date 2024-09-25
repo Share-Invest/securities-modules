@@ -131,6 +131,8 @@ public interface ISecuritiesRepository
 
     IEnumerable<AntOptionChart> GetFuturesDailyChart(string code, string date, int period);
 
+    IEnumerable<AntOptionChart> GetMarketIndexDailyChart(string code, string date, int period);
+
     IEnumerable<AntOption> GetOptionInfo(string latestDate, int previous);
 
     IEnumerable<DailyChart> GetDailyChart(string code, string date, int period);
