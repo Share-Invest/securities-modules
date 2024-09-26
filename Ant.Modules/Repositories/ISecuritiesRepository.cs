@@ -109,6 +109,8 @@ public interface ISecuritiesRepository
 
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 
+    AssetStatusFOBalance[] GetKiwoomFOBalances(string accNo, string date);
+
     AssetStatusChart[] GetPresumeAssetTrend(string accNo);
 
     EstimatedStock[] CollectionToAnalyzeGrowthPotential();

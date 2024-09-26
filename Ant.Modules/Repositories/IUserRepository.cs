@@ -14,6 +14,8 @@ public interface IUserRepository
 
     string[] GetAccountsById(string userName);
 
+    string[] GetFOAccountsById(string userId);
+
     string[] GetFuturesAccount(Securities securities);
 
     KakaoFriend[] BringFriends(string userId);
