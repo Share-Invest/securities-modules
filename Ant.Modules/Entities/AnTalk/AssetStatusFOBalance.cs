@@ -43,6 +43,11 @@ public struct AssetStatusFOBalance
         get; set;
     }
 
+    public long Valuation
+    {
+        get; set;
+    }
+
     public double Purchase
     {
         get; set;
