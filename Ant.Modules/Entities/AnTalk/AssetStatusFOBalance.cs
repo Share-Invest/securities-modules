@@ -1,6 +1,7 @@
 ﻿namespace ShareInvest.Entities.AnTalk;
 
-public struct AssetStatusBalance
+/// <summary>선옵잔고현황정산가기준</summary>
+public struct AssetStatusFOBalance
 {
     public string Code
     {
@@ -12,17 +13,17 @@ public struct AssetStatusBalance
         get; set;
     }
 
+    public int Classification
+    {
+        get; set;
+    }
+
     public int Quantity
     {
         get; set;
     }
 
-    public int Average
-    {
-        get; set;
-    }
-
-    public int Current
+    public double Current
     {
         get; set;
     }
@@ -32,12 +33,22 @@ public struct AssetStatusBalance
         get; set;
     }
 
+    public long Contract
+    {
+        get; set;
+    }
+
+    public long Evaluation
+    {
+        get; set;
+    }
+
     public long Valuation
     {
         get; set;
     }
 
-    public long Purchase
+    public double Purchase
     {
         get; set;
     }

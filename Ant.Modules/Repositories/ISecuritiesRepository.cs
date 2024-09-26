@@ -109,6 +109,8 @@ public interface ISecuritiesRepository
 
     AssetStatusBalance[] GetKiwoomBalances(string accNo, string date);
 
+    AssetStatusFOBalance[] GetKiwoomFOBalances(string accNo, string date);
+
     AssetStatusChart[] GetPresumeAssetTrend(string accNo);
 
     EstimatedStock[] CollectionToAnalyzeGrowthPotential();
@@ -130,6 +132,8 @@ public interface ISecuritiesRepository
     IEnumerable<AntOptionChart> GetOptionDailyChart(string code, string date, int period);
 
     IEnumerable<AntOptionChart> GetFuturesDailyChart(string code, string date, int period);
+
+    IEnumerable<AntOptionChart> GetMarketIndexDailyChart(string code, string date, int period);
 
     IEnumerable<AntOption> GetOptionInfo(string latestDate, int previous);
 
