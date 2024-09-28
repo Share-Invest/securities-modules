@@ -63,6 +63,7 @@ public static class Cache
         return (tryDequeue, task);
     }
 
+    /// <returns>7.주식예상체결 43.주식체결</returns>
     public static string[] GetConclusion(string code)
     {
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
@@ -73,6 +74,7 @@ public static class Cache
         return futuresConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
 
+    /// <returns>103.주식호가잔량</returns>
     public static string[] GetStockQuote(string code)
     {
         return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : [];

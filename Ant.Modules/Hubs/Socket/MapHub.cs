@@ -60,6 +60,7 @@ public class MapHub : IEventHandler<MsgEventArgs>
         {
             Send?.Invoke(this, new HubMsgEventArgs(code, data.Split('\t')));
         });
+
         _ = Hub.On<string>(nameof(IHubs.TransmitOpenMessageAsync), json => Send?.Invoke(this, new HubOpenMsgArgs(json)));
     }
 
