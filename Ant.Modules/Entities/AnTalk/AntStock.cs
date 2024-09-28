@@ -76,4 +76,9 @@ public struct AntStock
     {
         get; set;
     }
+
+    public double Pressure
+    {
+        get; set;
+    }
 }
