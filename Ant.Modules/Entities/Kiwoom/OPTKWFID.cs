@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ShareInvest.Entities.Kiwoom;
 
+/// <summary>관심종목정보</summary>
 public class OPTKWFID : MultiOPTKWFID
 {
     [StringLength(0x40)]
@@ -17,13 +18,13 @@ public class OPTKWFID : MultiOPTKWFID
     {
         get; set;
     }
-    
+
     [StringLength(0x10)]
     public string? InvestmentCaution
     {
         get; set;
     }
-    
+
     [StringLength(8)]
     public string? ListingDate
     {

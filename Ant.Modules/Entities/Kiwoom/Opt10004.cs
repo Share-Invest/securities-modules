@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kiwoom;
 
+/// <summary>주식호가</summary>
 public class Opt10004 : MultiOpt10004
 {
     [StringLength(8)]

@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kiwoom;
 
+/// <summary>업종현재가</summary>
 public class OPT20001 : SingleOpt20001
 {
     [DataMember, JsonProperty("업종코드"), Key, StringLength(4)]

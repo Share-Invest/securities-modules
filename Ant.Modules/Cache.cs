@@ -63,16 +63,19 @@ public static class Cache
         return (tryDequeue, task);
     }
 
+    /// <returns>7.주식예상체결 43.주식체결</returns>
     public static string[] GetConclusion(string code)
     {
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
 
+    /// <returns>43.선물시세</returns>
     public static string[] GetFuturesOptionConclusion(string code)
     {
         return futuresConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
 
+    /// <returns>103.주식호가잔량</returns>
     public static string[] GetStockQuote(string code)
     {
         return stockQuotes.TryGetValue(code, out string? value) ? value.Split('\t') : [];
