@@ -69,6 +69,7 @@ public static class Cache
         return stocksConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
     }
 
+    /// <returns>43.선물시세</returns>
     public static string[] GetFuturesOptionConclusion(string code)
     {
         return futuresConclusion.TryGetValue(code, out string? value) ? value.Split('\t') : [];
