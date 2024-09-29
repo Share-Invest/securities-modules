@@ -1,13 +1,6 @@
 ﻿namespace ShareInvest.Observers;
 
-public class OccursInStockEventArgs : MsgEventArgs
+public class OccursInStockEventArgs(string code) : MsgEventArgs
 {
-    public OccursInStockEventArgs(string code)
-    {
-        Code = code;
-    }
-    public string Code
-    {
-        get;
-    }
+    public string Code { get; } = code;
 }
