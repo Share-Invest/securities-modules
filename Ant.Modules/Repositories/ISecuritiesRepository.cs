@@ -91,6 +91,8 @@ public interface ISecuritiesRepository
 
     string? GetCodeToLookUpNextMinuteChart(string date);
 
+    string? GetCodeToLookUpNextStockConclusion(string date);
+
     string? GetCodeToLookUpNextStockQuote(string date);
 
     int SaveChanges<T>(T entity) where T : class;
@@ -148,6 +150,8 @@ public interface ISecuritiesRepository
     GrowthRateRank[] RecommendedAmongRankedStocks(string date);
 
     Indicators[] GetStrategicsScenario();
+
+    Entities.Kiwoom.Opt10003[] GetStockConclusion(string code, string latestDate);
 
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string? dateTime, int period = 0x400);
 
