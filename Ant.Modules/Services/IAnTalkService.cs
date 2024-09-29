@@ -37,6 +37,8 @@ public interface IAnTalkService
 
     Task<Entities.Kiwoom.Opt10004?> GetStockQuoteAsync(string code);
 
+    Task<Entities.Kiwoom.Opt10003[]> GetStockConclusionAsync(string code);
+
     Task<ResponseGrowthRateRank?> RecommendedAmongRankedStockAsync(GrowthRateRank stock);
 
     Task<ResponseGrowthRateRank?> RecommendStocksAccordingToOverallRankingAsync(int rank);

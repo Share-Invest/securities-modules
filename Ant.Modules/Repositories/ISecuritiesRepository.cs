@@ -151,6 +151,8 @@ public interface ISecuritiesRepository
 
     Indicators[] GetStrategicsScenario();
 
+    Entities.Kiwoom.Opt10003[] GetStockConclusion(string code, string latestDate);
+
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string? dateTime, int period = 0x400);
 
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string startDate, string endDate);

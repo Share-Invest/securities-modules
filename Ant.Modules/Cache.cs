@@ -63,6 +63,15 @@ public static class Cache
         return (tryDequeue, task);
     }
 
+    public static IEnumerable<string> GetCumulativeConclusion(string code)
+    {
+        if (stockCumulativeConclusion.TryGetValue(code, out ConcurrentStack<string>? conclusion))
+        {
+            return conclusion.Take(0x20);
+        }
+        return [];
+    }
+
     /// <returns>7.주식예상체결 43.주식체결</returns>
     public static string[] GetConclusion(string code)
     {
@@ -180,6 +189,14 @@ public static class Cache
 
     public static void SetConclusion(string code, string data)
     {
+        if (stockCumulativeConclusion.TryGetValue(code, out ConcurrentStack<string>? stack))
+        {
+            stack.Push(data);
+        }
+        else
+        {
+            stockCumulativeConclusion[code] = new ConcurrentStack<string>([data]);
+        }
         stocksConclusion[code] = data;
     }
 
@@ -445,6 +462,7 @@ public static class Cache
             "종목코드 없음"
         }
     };
+
     static readonly ConcurrentQueue<(string code, string date, DateTime recordDate)> estimatedStock = new();
     static readonly ConcurrentQueue<(string code, string data)> futuresQueueWorker = new();
     static readonly ConcurrentQueue<object> queueWorker = new();
@@ -457,6 +475,7 @@ public static class Cache
     static readonly ConcurrentDictionary<string, string> futuresConclusion = new();
     static readonly ConcurrentDictionary<string, string> futuresQuotes = new();
     static readonly ConcurrentDictionary<string, ConcurrentStack<Quote>> futuresRealTypeData = new();
+    static readonly ConcurrentDictionary<string, ConcurrentStack<string>> stockCumulativeConclusion = new();
     static readonly ConcurrentDictionary<string, ConcurrentQueue<string>> tempStorage = new();
     static readonly ConcurrentDictionary<string, Entities.Indicators> indicators = new();
 }
