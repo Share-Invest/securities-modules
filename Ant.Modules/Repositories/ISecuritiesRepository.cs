@@ -91,6 +91,8 @@ public interface ISecuritiesRepository
 
     string? GetCodeToLookUpNextMinuteChart(string date);
 
+    string? GetCodeToLookUpNextStockConclusion(string date);
+
     string? GetCodeToLookUpNextStockQuote(string date);
 
     int SaveChanges<T>(T entity) where T : class;
