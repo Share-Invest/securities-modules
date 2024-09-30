@@ -41,6 +41,15 @@ public static class Cache
         }
     }
 
+    public static (bool tryPop, string? conclusion) GetCumulativeConclusionFromStack(string code)
+    {
+        if (stockCumulativeConclusion.TryGetValue(code, out ConcurrentStack<string>? stack))
+        {
+            return (stack.TryPop(out string? str), str);
+        }
+        return (false, null);
+    }
+
     public static IEnumerable<KeyValuePair<string, ConcurrentQueue<string>>> GetTempStorageEnumerator()
     {
         foreach (var kv in tempStorage)

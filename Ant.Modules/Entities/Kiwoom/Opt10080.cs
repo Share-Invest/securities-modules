@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kiwoom;
 
+/// <summary>주식분봉차트조회</summary>
 public class Opt10080 : MultiOpt10080
 {
     [NotMapped]
