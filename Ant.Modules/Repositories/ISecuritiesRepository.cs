@@ -87,13 +87,15 @@ public interface ISecuritiesRepository
 
     string? GetCodeToLookupNextMarketIndexMinChart(string date);
 
-    string? GetCodeToLookUpNextDailyChart(string date);
+    string? GetCodeToLookupNextDailyChart(string date);
 
-    string? GetCodeToLookUpNextMinuteChart(string date);
+    string? GetCodeToLookupNextMinuteChart(string date);
 
-    string? GetCodeToLookUpNextStockConclusion(string date);
+    string? GetCodeToLookupNextStockConclusion(string date);
 
-    string? GetCodeToLookUpNextStockQuote(string date);
+    string? GetCodeToLookupNextFOConclusion(string date);
+
+    string? GetCodeToLookupNextStockQuote(string date);
 
     int SaveChanges<T>(T entity) where T : class;
 
@@ -158,6 +160,8 @@ public interface ISecuritiesRepository
     Entities.Kiwoom.Opt50029[] GetFuturesMinuteChart(string code, string startDate, string endDate);
 
     Entities.Kiwoom.Opt50001? GetOptionInfo(string code, string latestDate);
+
+    Entities.Kiwoom.OPTKWFID? GetStockInfo(string code, string latestDate);
 
     OPT20003? GetStockIndex(string code, string latestDate);
 
