@@ -27,6 +27,8 @@ public interface IAnTalkService
 
     Task<AntStock[]> GetStockAsync(Order order);
 
+    Task<Entities.Kiwoom.Opw20015[]> GetOptionOrderMarginAsync(string classification);
+
     Task<Entities.Kiwoom.OPT20003?> GetStockIndexAsync(string code);
 
     Task<Entities.Kiwoom.OPT20001?> GetMarketIndexAsync(string code);

@@ -13,6 +13,8 @@ public interface IKiwoomHub
 
     Task CheckOneSAccountAsync();
 
+    Task RequestOptionOrderMarginAsync(string? classification = "01");
+
     Task SendFuturesOrderAsync(OrderFO orderFO);
 
     Task<Stack<object>> CheckOneSAccountAsync(string userName);

@@ -15,11 +15,13 @@ public class BalOPW00005 : MultiOpw00005, IAccountBook
     {
         get; set;
     }
+
     [StringLength(10), Key]
     public string? Date
     {
         get; set;
     }
+
     [Column(Order = 1)]
     public long Lookup
     {
@@ -29,6 +31,7 @@ public class BalOPW00005 : MultiOpw00005, IAccountBook
         }
         get => lookup;
     }
+
     [StringLength(0x8), DataMember, JsonProperty("종목번호"), Key]
     public override string? Code
     {
@@ -36,6 +39,8 @@ public class BalOPW00005 : MultiOpw00005, IAccountBook
 
         set => code = value?.Length > 0 && 'A' == value[0] ? value[1..] : value;
     }
+
     string? code;
+
     long lookup;
 }
