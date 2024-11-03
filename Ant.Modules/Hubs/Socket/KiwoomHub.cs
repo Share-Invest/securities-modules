@@ -58,6 +58,8 @@ public class KiwoomHub
 
         _ = Hub.On<string>(nameof(IHubs.InstructToRenewBalanceAsync), accNo => Send?.Invoke(this, new RenewBalanceArgs(accNo)));
 
+        _ = Hub.On<string>(nameof(IHubs.RequestOptionOrderMarginAsync), classification => Send?.Invoke(this, new OptionOrderMarginArgs(classification)));
+
         _ = Hub.On<string>(nameof(IHubs.EventOccursInStockAsync), code => Send?.Invoke(this, new OccursInStockEventArgs(code)));
 
         _ = Hub.On<OrderFO>(nameof(IHubs.SendFuturesOrderAsync), orderFO => Send?.Invoke(this, new OrderFOArgs(orderFO)));

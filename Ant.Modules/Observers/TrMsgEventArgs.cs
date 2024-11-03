@@ -26,6 +26,7 @@ public class TrMsgEventArgs : MsgEventArgs
 
             OPW00004 => determineTheNameOPW4(json),
             Opw00005 => determineTheNameOPW5(json),
+            Opw20015 => determineTheNameOPW215(json),
 
             _ => throw new NotImplementedException(nameof(TR))
         };
@@ -54,5 +55,12 @@ public class TrMsgEventArgs : MsgEventArgs
         var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.CODENUMBER.Equals(predicate.Path));
 
         return isExist ? nameof(BalOPW00005) : nameof(AccOPW00005);
+    };
+
+    readonly Func<string, string> determineTheNameOPW215 = json =>
+    {
+        var isExist = JObject.Parse(json).AsJEnumerable().Any(predicate => Resources.STOCKCODE.Equals(predicate.Path));
+
+        return isExist ? nameof(SingleOpw20015) : nameof(MultiOpw20015);
     };
 }

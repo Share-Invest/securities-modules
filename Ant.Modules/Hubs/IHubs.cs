@@ -38,6 +38,8 @@ public interface IHubs
 
     Task EventOccursInStockAsync(string code);
 
+    Task RequestOptionOrderMarginAsync(string classification);
+
     Task SendMessageAsync(string image, string name, string dt, string message, string code, string token);
 
     Task SendFuturesOrderAsync(OpenAPI.OrderFO orderFO);
