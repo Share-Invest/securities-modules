@@ -2,14 +2,11 @@
 
 namespace ShareInvest.Observers;
 
-public class FuturesQuoteArgs : MsgEventArgs
+public class FuturesQuoteArgs(FuturesQuoteBalance quote) : MsgEventArgs
 {
-    public FuturesQuoteArgs(FuturesQuoteBalance quote)
-    {
-        Quote = quote;
-    }
     public FuturesQuoteBalance Quote
     {
         get;
     }
+        = quote;
 }

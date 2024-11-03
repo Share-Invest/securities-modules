@@ -2,14 +2,11 @@
 
 namespace ShareInvest.Observers;
 
-public class FuturesOptionPriorityArgs : MsgEventArgs
+public class FuturesOptionPriorityArgs(PriorityQuote quote) : MsgEventArgs
 {
-    public FuturesOptionPriorityArgs(PriorityQuote quote)
-    {
-        Quote = quote;
-    }
     public PriorityQuote Quote
     {
         get; set;
     }
+        = quote;
 }
