@@ -5,6 +5,6 @@ public class RealMsgEventArgs(string type, string key, string data) : MsgEventAr
     public string Type { get; } = type;
 
     public string Key { get; } = key;
-    
+
     public string Data { get; } = data;
 }

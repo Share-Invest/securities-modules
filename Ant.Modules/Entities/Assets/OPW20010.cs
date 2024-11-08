@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Assets;
 
+/// <summary>선옵예탁금및증거금조회</summary>
 public class OPW20010 : SingleOPW20010, IAccountBook
 {
     [StringLength(0x10), DataMember, JsonProperty("계좌번호"), Key]
@@ -15,11 +16,13 @@ public class OPW20010 : SingleOPW20010, IAccountBook
     {
         get; set;
     }
+
     [StringLength(10), Key]
     public string? Date
     {
         get; set;
     }
+
     [Column(Order = 1)]
     public long Lookup
     {
@@ -29,5 +32,6 @@ public class OPW20010 : SingleOPW20010, IAccountBook
         }
         get => lookup;
     }
+
     long lookup;
 }
