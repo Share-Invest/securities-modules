@@ -65,13 +65,17 @@ public interface IAnTalkService
 
     Indicators[] GetStrategicsScenario();
 
-    AntOptionChart[] GetOptionDailyChart(string code, int period, string? date = null);
+    DailyChart[] GetDailyChart(string code, int period, string? date = null);
 
-    AntOptionChart[] GetFuturesDailyChart(string code, int period, string? date = null);
+    AntOptionChart[] GetOptionDailyChart(string code, int period, string? date = null);
 
     AntOptionChart[] GetMarketIndexDailyChart(string code, int period, string? date = null);
 
-    DailyChart[] GetDailyChart(string code, int period, string? date = null);
+    IEnumerable<T> GetMarketIndexDailyChart<T>(string code = "201", string? date = null, int period = 0x400) where T : class;
+
+    AntOptionChart[] GetFuturesDailyChart(string code, int period, string? date = null);
+
+    IEnumerable<T> GetFuturesDailyChart<T>(string code, string? date = null, int period = 0x400) where T : class;
 
     /// <summary>
     /// <param name="dateTime">dateTimeFormat: yyyyMMddHHmmss</param>

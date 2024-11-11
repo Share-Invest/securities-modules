@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 
 namespace ShareInvest.Entities.Kiwoom;
 
+/// <summary>선물옵션분차트</summary>
 public class Opt50029 : MultiOpt50029
 {
     [StringLength(8), Key, DataMember, JsonProperty("종목코드")]

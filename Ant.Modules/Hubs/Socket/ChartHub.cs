@@ -21,6 +21,7 @@ public class ChartHub : IEventHandler<MsgEventArgs>
             await Hub.SendAsync(nameof(AddToGroupAsync), code);
         }
     }
+
     public async Task RemoveFromGroupAsync(string code)
     {
         if (HubConnectionState.Connected == Hub.State)
@@ -28,9 +29,11 @@ public class ChartHub : IEventHandler<MsgEventArgs>
             await Hub.SendAsync(nameof(RemoveFromGroupAsync), code);
         }
     }
+
     public ChartHub(Uri uri, string? userName = null)
     {
         Hub = new HubConnectionBuilder()
+
            .WithUrl(uri, configureHttpConnection =>
            {
                if (string.IsNullOrEmpty(userName) is false)
@@ -38,14 +41,17 @@ public class ChartHub : IEventHandler<MsgEventArgs>
                    _ = configureHttpConnection.Headers.TryAdd(Resources.USER, userName);
                }
            })
+
            .AddNewtonsoftJsonProtocol(configure =>
            {
                configure.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
            })
+
            .ConfigureLogging(configureLogging =>
            {
                configureLogging.SetMinimumLevel(LogLevel.Trace);
            })
+
            .WithAutomaticReconnect(
            [
                 TimeSpan.Zero,
@@ -60,9 +66,11 @@ public class ChartHub : IEventHandler<MsgEventArgs>
 
         _ = Hub.On<DateTime, bool>(nameof(IHubs.TransmitMarkerAsync), (dateTime, position) => Send?.Invoke(this, new HubMarkerArgs(dateTime, position)));
     }
+
     public HubConnection Hub
     {
         get;
     }
+
     public event EventHandler<MsgEventArgs>? Send;
 }
