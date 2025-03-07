@@ -281,7 +281,10 @@ public static class Cache
                 SuperTrend = quotes.GetSuperTrend().Condense().RemoveWarmupPeriods()
             };
         }
-        futuresRealTypeData[code] = new ConcurrentStack<Quote>(quotes.OrderBy(ks => ks.Date));
+        var sortedQuotes = quotes.OrderBy(ks => ks.Date);
+
+        futuresRealTypeData[code] = new ConcurrentStack<Quote>();
+        futuresRealTypeData[code].PushRange([.. sortedQuotes]);
     }
 
     public static void SaveTemporarily(string sScrNo, TR constructor)
