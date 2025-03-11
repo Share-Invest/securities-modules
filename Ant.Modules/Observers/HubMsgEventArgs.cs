@@ -28,10 +28,10 @@ public class HubMsgEventArgs : MsgEventArgs
         {
             Date = DateTime.Now.ToString("d"),
             Close = close,
-            Volume = int.TryParse(elements[elements.Length == 7 ? 5 : 7], out int vol) ? Math.Abs(vol) : 0,
-            Open = elements.Length == 43 && int.TryParse(elements[9], out int open) ? Math.Abs(open) : 0,
-            High = elements.Length == 43 && int.TryParse(elements[0xA], out int high) ? Math.Abs(high) : 0,
-            Low = elements.Length == 43 && int.TryParse(elements[0xB], out int low) ? Math.Abs(low) : 0
+            Volume = int.TryParse(elements[elements.Length == 7 || elements.Length == 8 ? 5 : 7], out int vol) ? Math.Abs(vol) : 0,
+            Open = (elements.Length == 43 || elements.Length == 44) && int.TryParse(elements[9], out int open) ? Math.Abs(open) : 0,
+            High = (elements.Length == 43 || elements.Length == 44) && int.TryParse(elements[0xA], out int high) ? Math.Abs(high) : 0,
+            Low = (elements.Length == 43 || elements.Length == 44) && int.TryParse(elements[0xB], out int low) ? Math.Abs(low) : 0
         };
     };
 
@@ -43,7 +43,7 @@ public class HubMsgEventArgs : MsgEventArgs
             Current = Math.Abs(int.TryParse(elements[1], out int current) ? current : 0),
             Rate = Math.Abs(double.TryParse(elements[3], out double rate) ? rate * 1e-2 : 0),
             CompareToPreviousDay = Math.Abs(int.TryParse(elements[2], out int compareToPreviousDay) ? compareToPreviousDay : 0),
-            CompareToPreviousSign = elements[elements.Length == 7 ? 6 : 0xC]
+            CompareToPreviousSign = elements[elements.Length == 7 || elements.Length == 8 ? 6 : 0xC]
         };
     };
 }
