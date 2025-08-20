@@ -17,13 +17,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\LICENSE.txt">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="FirebaseAdmin" Version="3.0.1" />
 		<PackageReference Include="Geocoding.Google" Version="4.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.8" />
