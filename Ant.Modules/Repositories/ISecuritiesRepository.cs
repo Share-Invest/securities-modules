@@ -5,7 +5,7 @@ using ShareInvest.Entities.Analysis;
 using ShareInvest.Entities.AnTalk;
 using ShareInvest.Entities.Google;
 using ShareInvest.Entities.Kiwoom;
-using ShareInvest.OpenAPI.Entity;
+using ShareInvest.Interface;
 
 namespace ShareInvest.Repositories;
 

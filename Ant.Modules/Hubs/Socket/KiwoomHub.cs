@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 using ShareInvest.Observers;
-using ShareInvest.OpenAPI;
 using ShareInvest.Properties;
 
 namespace ShareInvest.Hubs.Socket;

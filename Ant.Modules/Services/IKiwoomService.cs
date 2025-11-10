@@ -1,5 +1,5 @@
 ﻿using ShareInvest.Entities.Kiwoom;
-using ShareInvest.OpenAPI.Entity;
+using ShareInvest.Interface;
 
 namespace ShareInvest.Services;
 

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using ShareInvest.Interface;
 using ShareInvest.OpenAPI.Entity;
 using ShareInvest.Properties;
 
