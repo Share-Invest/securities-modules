@@ -1,4 +1,6 @@
-﻿namespace ShareInvest.Observers;
+﻿using ShareInvest.Interface;
+
+namespace ShareInvest.Observers;
 
 public class ChejanEventArgs : MsgEventArgs
 {

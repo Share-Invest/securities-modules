@@ -1,6 +1,4 @@
-﻿using ShareInvest.OpenAPI.Entity;
-
-namespace ShareInvest.Observers;
+﻿namespace ShareInvest.Observers;
 
 public class TransmissionEventArgs(TR tr) : MsgEventArgs
 {

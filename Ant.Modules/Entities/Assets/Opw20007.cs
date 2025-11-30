@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 
+using ShareInvest.Interface;
 using ShareInvest.OpenAPI.Entity;
 
 using System.ComponentModel.DataAnnotations;

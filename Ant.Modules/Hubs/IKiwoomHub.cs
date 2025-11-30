@@ -1,5 +1,4 @@
 ﻿using ShareInvest.Entities.Google.Firebase;
-using ShareInvest.OpenAPI;
 
 namespace ShareInvest.Hubs;
 

@@ -1,5 +1,4 @@
 ﻿using ShareInvest.Entities.Analysis;
-using ShareInvest.OpenAPI.Entity;
 
 using Skender.Stock.Indicators;
 

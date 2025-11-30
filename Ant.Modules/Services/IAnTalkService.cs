@@ -1,7 +1,6 @@
 ﻿using ShareInvest.Entities;
 using ShareInvest.Entities.Analysis;
 using ShareInvest.Entities.AnTalk;
-using ShareInvest.Services.AnTalk;
 
 using Skender.Stock.Indicators;
 
@@ -25,7 +24,7 @@ public interface IAnTalkService
 
     Task<IEnumerable<AntFutures>> GetFuturesAsync();
 
-    Task<AntStock[]> GetStockAsync(Order order);
+    Task<AntStock[]> GetStockAsync(AnTalk.Order order);
 
     Task<Entities.Kiwoom.OPTKWFID?> GetStockAsync(string code);
 

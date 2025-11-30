@@ -1,6 +1,4 @@
-﻿using ShareInvest.OpenAPI;
-
-namespace ShareInvest.Observers;
+﻿namespace ShareInvest.Observers;
 
 public class OrderFOArgs(OrderFO orderFO) : MsgEventArgs
 {
