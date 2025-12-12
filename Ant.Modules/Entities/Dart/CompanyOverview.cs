@@ -95,7 +95,7 @@ public class CompanyOverview : UniqueNumber
         get; set;
     }
 
-    [DataMember, JsonProperty("bizr_no"), StringLength(0x10)]
+    [DataMember, JsonProperty("bizr_no"), StringLength(0x20)]
     public string? CorporateRegistrationNumber
     {
         get; set;
