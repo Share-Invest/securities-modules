@@ -1,12 +1,52 @@
 ﻿using ShareInvest.Entities.AnTalk;
 
+using System.Globalization;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace ShareInvest;
 
 public static class Service
 {
+    public static DateTime ConvertTimeToUtc(long lookup)
+    {
+        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+
+            new DateTime(lookup) : TimeZoneInfo.ConvertTimeToUtc(new DateTime(lookup, DateTimeKind.Unspecified), SeoulTimeZone);
+    }
+
+    public static DateTime ConvertTimeFromUtc(long lookup)
+    {
+        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+
+            new DateTime(Cache.Epoch + lookup) : TimeZoneInfo.ConvertTimeFromUtc(new DateTime(Cache.Epoch + lookup, DateTimeKind.Utc), SeoulTimeZone);
+    }
+
+    public static DateTime Now
+    {
+        get => RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? DateTime.Now : TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, SeoulTimeZone);
+    }
+
+    public static TimeZoneInfo SeoulTimeZone
+    {
+        get => seoulTimeZone;
+    }
+
+    public static CultureInfo CultureInfo
+    {
+        get => ko;
+    }
+
+    static readonly CultureInfo ko = CultureInfo.GetCultureInfo("ko-KR");
+
+    static readonly TimeZoneInfo seoulTimeZone = TimeZoneInfo.FindSystemTimeZoneById(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "Korea Standard Time" : "Asia/Seoul");
+
+    public static string ShortDatePattern
+    {
+        get => RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "d" : "yyyy-MM-dd";
+    }
+
     public static DateTime GetSecondThursday(int year, int month)
     {
         DateTime firstDayOfMonth = new(year, month, 1);
@@ -76,29 +116,37 @@ public static class Service
         }
         return string.Empty;
     }
+
     public static double KospiConsignmentMarginRate
     {
         get => kospiConsignmentMarginRate;
     }
+
     public static double KosdaqConsignmentMarginRate
     {
         get => kosdaqConsignmentMarginRate;
     }
+
     public static int KospiTransactionMultiplier
     {
         get => kospiTransactionMultiplier;
     }
+
     public static int KosdaqTransactionMultiplier
     {
         get => kosdaqTransactionMultiplier;
     }
+
     public static double Commission
     {
         get => commission;
     }
+
     const double kospiConsignmentMarginRate = 9e-2;
     const double kosdaqConsignmentMarginRate = 168e-3;
+
     const int kospiTransactionMultiplier = 250_000;
     const int kosdaqTransactionMultiplier = 10_000;
+
     const double commission = 3e-5;
 }

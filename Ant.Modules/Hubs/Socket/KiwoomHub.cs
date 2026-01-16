@@ -35,6 +35,7 @@ public class KiwoomHub
     public KiwoomHub(string url, string? accessToken = null, string? serialKey = null)
     {
         Hub = new HubConnectionBuilder()
+
             .WithUrl(url, configureHttpConnection =>
             {
                 if (string.IsNullOrEmpty(serialKey) is false)
@@ -43,14 +44,17 @@ public class KiwoomHub
                 }
                 configureHttpConnection.AccessTokenProvider = () => Task.FromResult(accessToken);
             })
+
             .AddNewtonsoftJsonProtocol(configure =>
             {
                 configure.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
             })
+
             .ConfigureLogging(configureLogging =>
             {
                 configureLogging.SetMinimumLevel(LogLevel.Trace);
             })
+
             .Build();
 
         _ = Hub.On<string>(nameof(IHubs.InstructToRenewAssetStatusAsync), accNo => Send?.Invoke(this, new AssetsEventArgs(accNo)));

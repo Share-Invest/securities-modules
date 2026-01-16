@@ -10,7 +10,7 @@ namespace ShareInvest.Entities.Kiwoom;
 /// <summary>업종현재가</summary>
 public class OPT20001 : SingleOpt20001
 {
-    [DataMember, JsonProperty("업종코드"), Key, StringLength(4)]
+    [DataMember, JsonProperty("업종코드"), Key, StringLength(8)]
     public string? Code
     {
         get; set;

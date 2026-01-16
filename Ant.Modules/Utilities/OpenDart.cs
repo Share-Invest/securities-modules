@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using RestSharp;
@@ -13,8 +15,18 @@ using System.Xml;
 
 namespace ShareInvest.Utilities;
 
-public class OpenDart(string openDartKey) : RestClient("https://opendart.fss.or.kr")
+public class OpenDart : RestClient
 {
+    public OpenDart(string openDartKey) : base("https://opendart.fss.or.kr")
+    {
+        this.openDartKey = openDartKey;
+    }
+
+    public OpenDart(string openDartKey, RestClientOptions options) : base(options)
+    {
+        this.openDartKey = openDartKey;
+    }
+
     public async Task<CompanyOverview?> GetCompanyOverviewAsync(string corpCode)
     {
         var query = Parameter.TransformQuery(JToken.FromObject(new
@@ -66,7 +78,7 @@ public class OpenDart(string openDartKey) : RestClient("https://opendart.fss.or.
         return null;
     }
 
-    public async IAsyncEnumerable<UniqueNumber> GetCorpCodeAsync()
+    public async IAsyncEnumerable<UniqueNumber> GetCorpCodeAsync<T>(ILogger<T> logger) where T : class
     {
         var query = Parameter.TransformQuery(JToken.FromObject(new
         {
@@ -87,13 +99,15 @@ public class OpenDart(string openDartKey) : RestClient("https://opendart.fss.or.
                     yield break;
                 }
             }
+
+            if (response.ErrorException != null && logger.IsEnabled(LogLevel.Error)) logger.LogError("{ }", response.ErrorException);
         }
         catch (Exception exception)
         {
 #if DEBUG
             Debug.WriteLine(exception.Message);
 #else
-            Console.WriteLine(exception.Message);
+            if (logger.IsEnabled(LogLevel.Error)) logger.LogError("{ }", exception.Message);
 #endif
         }
 
@@ -133,8 +147,9 @@ public class OpenDart(string openDartKey) : RestClient("https://opendart.fss.or.
         }
     }
 
-    readonly string openDartKey = openDartKey;
     readonly CancellationTokenSource cts = new();
+
+    readonly string openDartKey;
 
     const string corpCode = "api/corpCode.xml";
     const string company = "api/company.json";

@@ -31,6 +31,7 @@ public class MapHub : IEventHandler<MsgEventArgs>
     public MapHub(Uri uri, string? userName = null)
     {
         Hub = new HubConnectionBuilder()
+
             .WithUrl(uri, configureHttpConnection =>
             {
                 if (string.IsNullOrEmpty(userName) is false)
@@ -38,14 +39,17 @@ public class MapHub : IEventHandler<MsgEventArgs>
                     _ = configureHttpConnection.Headers.TryAdd(Resources.USER, userName);
                 }
             })
+
             .AddNewtonsoftJsonProtocol(configure =>
             {
                 configure.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
             })
+
             .ConfigureLogging(configureLogging =>
             {
                 configureLogging.SetMinimumLevel(LogLevel.Trace);
             })
+
             .WithAutomaticReconnect(
             [
                 TimeSpan.Zero,
