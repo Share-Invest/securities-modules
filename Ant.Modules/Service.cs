@@ -11,16 +11,12 @@ public static class Service
 {
     public static DateTime ConvertTimeToUtc(long lookup)
     {
-        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
-
-            new DateTime(lookup) : TimeZoneInfo.ConvertTimeToUtc(new DateTime(lookup, DateTimeKind.Unspecified), SeoulTimeZone);
+        return new DateTime(lookup);
     }
 
     public static DateTime ConvertTimeFromUtc(long lookup)
     {
-        return RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
-
-            new DateTime(Cache.Epoch + lookup) : TimeZoneInfo.ConvertTimeFromUtc(new DateTime(Cache.Epoch + lookup, DateTimeKind.Utc), SeoulTimeZone);
+        return new DateTime(Cache.Epoch + lookup);
     }
 
     public static DateTime Now
