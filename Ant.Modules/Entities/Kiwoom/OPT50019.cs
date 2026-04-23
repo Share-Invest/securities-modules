@@ -9,7 +9,7 @@ namespace ShareInvest.Entities.Kiwoom;
 
 public class OPT50019 : SingleOPT50019
 {
-    [StringLength(8), Key, DataMember, JsonProperty("종목코드")]
+    [StringLength(0x10), Key, DataMember, JsonProperty("종목코드")]
     public string? Code
     {
         get; set;

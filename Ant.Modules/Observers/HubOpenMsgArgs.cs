@@ -10,11 +10,12 @@ public class HubOpenMsgArgs : MsgEventArgs
     {
         get;
     }
+
     public HubOpenMsgArgs(string json)
     {
         if (JsonConvert.DeserializeObject<OpenMessage>(json) is OpenMessage msg)
         {
-            msg.Lookup = DateTime.Now.Ticks;
+            msg.Lookup = Service.Now.Ticks;
 
             Message = msg;
         }
@@ -23,6 +24,7 @@ public class HubOpenMsgArgs : MsgEventArgs
             throw new InvalidCastException(json);
         }
     }
+
     public HubOpenMsgArgs(OpenMessage message)
     {
         Message = message;

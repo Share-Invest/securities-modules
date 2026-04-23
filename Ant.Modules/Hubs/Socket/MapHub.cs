@@ -31,28 +31,29 @@ public class MapHub : IEventHandler<MsgEventArgs>
     public MapHub(Uri uri, string? userName = null)
     {
         Hub = new HubConnectionBuilder()
+
             .WithUrl(uri, configureHttpConnection =>
             {
-                if (string.IsNullOrEmpty(userName) is false)
-                {
-                    _ = configureHttpConnection.Headers.TryAdd(Resources.USER, userName);
-                }
+                if (string.IsNullOrEmpty(userName) is false) _ = configureHttpConnection.Headers.TryAdd(Resources.USER, userName);
             })
+
             .AddNewtonsoftJsonProtocol(configure =>
             {
                 configure.PayloadSerializerSettings.TypeNameHandling = TypeNameHandling.Auto;
             })
+
             .ConfigureLogging(configureLogging =>
             {
                 configureLogging.SetMinimumLevel(LogLevel.Trace);
             })
+
             .WithAutomaticReconnect(
             [
                 TimeSpan.Zero,
-                TimeSpan.FromSeconds(3),
-                TimeSpan.FromSeconds(9),
-                TimeSpan.FromSeconds(0x10),
-                TimeSpan.FromSeconds(0x20)
+                TimeSpan.FromSeconds(0x20),
+                TimeSpan.FromSeconds(0x40),
+                TimeSpan.FromSeconds(0x100),
+                TimeSpan.FromSeconds(0x200)
             ])
             .Build();
 

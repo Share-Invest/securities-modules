@@ -13,26 +13,31 @@ public class Chejan
     {
         get; set;
     }
+
     [DataMember, StringLength(0x10), JsonProperty("계좌번호"), Key]
     public virtual string? AccNo
     {
         get; set;
     }
-    [DataMember, StringLength(0x10), JsonProperty("종목명")]
+
+    [DataMember, StringLength(0x40), JsonProperty("종목명")]
     public virtual string? Name
     {
         get; set;
     }
+
     [DataMember, StringLength(0x10), JsonProperty("현재가")]
     public virtual string? CurrentPrice
     {
         get; set;
     }
+
     [StringLength(10), Key]
     public virtual string? Date
     {
         get; set;
     }
+
     [Column(Order = 1), Key]
     public virtual long Lookup
     {
@@ -42,6 +47,7 @@ public class Chejan
         }
         get => lookup;
     }
+
     [DataMember, JsonProperty("종목코드_업종코드"), StringLength(8), Key]
     public virtual string Code
     {
@@ -49,6 +55,8 @@ public class Chejan
 
         set => code = 'A' == value[0] ? value[1..] : value;
     }
+
     long lookup;
+
     string? code;
 }

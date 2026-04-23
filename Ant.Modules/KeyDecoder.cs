@@ -10,6 +10,7 @@ enum DigitalProductIdVersion
     UpToWindows7,
     Windows8AndUp
 }
+
 [SupportedOSPlatform("windows8.0")]
 public static class KeyDecoder
 {
@@ -35,10 +36,12 @@ public static class KeyDecoder
             return null;
         }
     }
+
     static string GetWindowsProductKeyFromDigitalProductId(byte[] digitalProductId, DigitalProductIdVersion digitalProductIdVersion)
     {
         return digitalProductIdVersion is DigitalProductIdVersion.Windows8AndUp ? DecodeProductKeyWin8AndUp(digitalProductId) : DecodeProductKey(digitalProductId);
     }
+
     static string DecodeProductKey(byte[] digitalProductId)
     {
         char[] digits = KeyDecoder.digits.ToCharArray(), decodedChars = new char[decodeLength];
@@ -69,6 +72,7 @@ public static class KeyDecoder
         }
         return new string(decodedChars);
     }
+
     static string DecodeProductKeyWin8AndUp(byte[] digitalProductId)
     {
         var key = string.Empty;
@@ -91,7 +95,7 @@ public static class KeyDecoder
             }
             key = digits[current] + key;
         }
-        string keypart1 = key.Substring(1, last), keypart2 = key.Substring(1 + last, key.Length - (last + 1));
+        string keypart1 = key.Substring(1, last), keypart2 = key[(1 + last)..];
 
         key = string.Concat(keypart1, "N", keypart2);
 
@@ -101,10 +105,12 @@ public static class KeyDecoder
         }
         return key;
     }
+
     const int decodeLength = 0x1D;
     const int decodeStringLength = 0xF;
     const int keyOffset = 0x34;
     const int keyStartIndex = 0x34;
     const int keyEndIndex = keyStartIndex + 0xF;
+    
     const string digits = "BCDFGHJKMPQRTVWXY2346789";
 }
